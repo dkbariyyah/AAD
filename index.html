@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="ms" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Academic Advisor Dashboard — DEP1A 2025/2026</title>
+<style>
+:root[data-theme="dark"] {
+  --bg: #0a0e1a;
+  --bg2: #0f1628;
+  --surface: #141d35;
+  --surface2: #1a2540;
+  --border: #243058;
+  --text: #e8eaf6;
+  --text2: #8892b0;
+  --accent: #00d4ff;
+  --accent2: #7c3aed;
+  --gold: #f5c518;
+  --green: #00ff9d;
+  --red: #ff4757;
+  --orange: #ff6b35;
+  --yellow: #ffd700;
+  --glow: 0 0 20px rgba(0,212,255,0.3);
+  --glow-gold: 0 0 20px rgba(245,197,24,0.4);
+  --card-shadow: 0 4px 24px rgba(0,0,0,0.5);
+}
+:root[data-theme="light"] {
+  --bg: #f0f4ff;
+  --bg2: #e8eef8;
+  --surface: #ffffff;
+  --surface2: #f7f9ff;
+  --border: #d0d8f0;
+  --text: #1a1f36;
+  --text2: #5a6282;
+  --accent: #0066cc;
+  --accent2: #6d28d9;
+  --gold: #b8860b;
+  --green: #16a34a;
+  --red: #dc2626;
+  --orange: #ea580c;
+  --yellow: #ca8a04;
+  --glow: 0 0 12px rgba(0,102,204,0.2);
+  --glow-gold: 0 0 12px rgba(184,134,11,0.2);
+  --card-shadow: 0 4px 16px rgba(0,0,0,0.1);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); transition: all 0.3s ease; min-height: 100vh; }
+
+/* === HEADER === */
+.header {
+  background: linear-gradient(135deg, #0a0e1a 0%, #141d35 50%, #1a0a35 100%);
+  border-bottom: 1px solid var(--border);
+  padding: 0 24px;
+  display: flex; align-items: center; justify-content: space-between;
+  position: sticky; top: 0; z-index: 100;
+  box-shadow: 0 2px 20px rgba(0,212,255,0.15);
+}
+[data-theme="light"] .header { background: linear-gradient(135deg, #1a237e, #283593, #311b92); box-shadow: 0 2px 12px rgba(0,0,0,0.2); }
+.header-left { display: flex; align-items: center; gap: 16px; padding: 14px 0; }
+.header-logo { width: 44px; height: 44px; background: linear-gradient(135deg, var(--accent), var(--accent2)); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; box-shadow: var(--glow); }
+.header-title h1 { font-size: 1.1rem; font-weight: 800; color: #fff; letter-spacing: 0.05em; text-transform: uppercase; }
+.header-title p { font-size: 0.75rem; color: rgba(255,255,255,0.6); margin-top: 1px; }
+.header-right { display: flex; align-items: center; gap: 12px; }
+.badge-sem { background: rgba(0,212,255,0.15); border: 1px solid rgba(0,212,255,0.4); color: var(--accent); border-radius: 20px; padding: 5px 14px; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.05em; }
+.theme-btn { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; border-radius: 8px; padding: 7px 14px; cursor: pointer; font-size: 0.82rem; font-weight: 600; transition: all 0.2s; display: flex; align-items: center; gap: 6px; }
+.theme-btn:hover { background: rgba(255,255,255,0.2); }
+
+/* === NAV === */
+.nav { display: flex; background: var(--surface); border-bottom: 1px solid var(--border); padding: 0 20px; overflow-x: auto; }
+.nav-item { padding: 13px 18px; cursor: pointer; font-size: 0.83rem; font-weight: 600; color: var(--text2); border-bottom: 2px solid transparent; margin-bottom: -1px; white-space: nowrap; transition: all 0.2s; display: flex; align-items: center; gap: 6px; }
+.nav-item:hover { color: var(--accent); }
+.nav-item.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+/* === MAIN === */
+.main { padding: 22px; max-width: 1440px; margin: 0 auto; }
+.tab { display: none; }
+.tab.active { display: block; }
+
+/* === STAT CARDS === */
+.stat-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; margin-bottom: 22px; }
+.stat-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 18px 16px;
+  box-shadow: var(--card-shadow);
+  position: relative; overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.stat-card:hover { transform: translateY(-2px); box-shadow: var(--glow); }
+.stat-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--accent); }
+.stat-card.gold::before { background: linear-gradient(90deg, var(--gold), #ff8c00); }
+.stat-card.green::before { background: linear-gradient(90deg, var(--green), #00b894); }
+.stat-card.red::before { background: linear-gradient(90deg, var(--red), #ff6b81); }
+.stat-card.orange::before { background: linear-gradient(90deg, var(--orange), #ffd32a); }
+.stat-card.purple::before { background: linear-gradient(90deg, var(--accent2), #a855f7); }
+.stat-val { font-size: 2.2rem; font-weight: 900; line-height: 1; }
+.stat-val.cyan { color: var(--accent); }
+.stat-val.gold { color: var(--gold); }
+.stat-val.green { color: var(--green); }
+.stat-val.red { color: var(--red); }
+.stat-val.orange { color: var(--orange); }
+.stat-lbl { font-size: 0.72rem; color: var(--text2); margin-top: 5px; text-transform: uppercase; letter-spacing: 0.06em; }
+
+/* === PANELS === */
+.panel { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; box-shadow: var(--card-shadow); margin-bottom: 20px; overflow: hidden; }
+.panel-header { padding: 14px 18px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+.panel-title { font-size: 0.88rem; font-weight: 700; color: var(--text); display: flex; align-items: center; gap: 8px; }
+.panel-title span { color: var(--accent); }
+.panel-body { padding: 18px; }
+
+/* === TABLE === */
+.tbl-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+th { background: var(--surface2); color: var(--text2); padding: 10px 14px; text-align: left; font-weight: 700; font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.06em; border-bottom: 1px solid var(--border); }
+td { padding: 11px 14px; border-bottom: 1px solid var(--border); color: var(--text); vertical-align: middle; }
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: rgba(0,212,255,0.04); }
+
+/* === BADGES === */
+.b { display: inline-flex; align-items: center; gap: 4px; padding: 3px 10px; border-radius: 20px; font-size: 0.73rem; font-weight: 700; }
+.b-gold { background: rgba(245,197,24,0.15); color: var(--gold); border: 1px solid rgba(245,197,24,0.3); }
+.b-green { background: rgba(0,255,157,0.1); color: var(--green); border: 1px solid rgba(0,255,157,0.3); }
+.b-red { background: rgba(255,71,87,0.15); color: var(--red); border: 1px solid rgba(255,71,87,0.3); }
+.b-orange { background: rgba(255,107,53,0.15); color: var(--orange); border: 1px solid rgba(255,107,53,0.3); }
+.b-cyan { background: rgba(0,212,255,0.1); color: var(--accent); border: 1px solid rgba(0,212,255,0.3); }
+.b-purple { background: rgba(124,58,237,0.15); color: #a78bfa; border: 1px solid rgba(124,58,237,0.3); }
+.b-gray { background: rgba(136,146,176,0.1); color: var(--text2); border: 1px solid rgba(136,146,176,0.2); }
+.b-yellow { background: rgba(255,215,0,0.1); color: var(--yellow); border: 1px solid rgba(255,215,0,0.3); }
+
+/* === GPA BAR === */
+.gpa-bar-wrap { display: flex; align-items: center; gap: 8px; }
+.gpa-bar { height: 6px; border-radius: 3px; background: var(--border); flex: 1; overflow: hidden; }
+.gpa-fill { height: 100%; border-radius: 3px; }
+
+/* === DIST CHART === */
+.dist-chart { display: flex; flex-direction: column; gap: 10px; }
+.dist-row { display: flex; align-items: center; gap: 10px; }
+.dist-lbl { font-size: 0.78rem; color: var(--text2); width: 115px; flex-shrink: 0; }
+.dist-bar-bg { flex: 1; background: var(--border); border-radius: 4px; height: 20px; overflow: hidden; }
+.dist-bar-fill { height: 100%; border-radius: 4px; display: flex; align-items: center; padding-left: 8px; font-size: 0.72rem; font-weight: 700; color: #fff; min-width: 4px; }
+.dist-cnt { font-size: 0.78rem; font-weight: 700; width: 72px; color: var(--text2); flex-shrink: 0; text-align: right; }
+
+/* === ALERT === */
+.alert { border-radius: 10px; padding: 12px 16px; margin-bottom: 14px; display: flex; gap: 12px; }
+.alert-red { background: rgba(255,71,87,0.08); border: 1px solid rgba(255,71,87,0.3); }
+.alert-yellow { background: rgba(255,215,0,0.06); border: 1px solid rgba(255,215,0,0.25); }
+.alert-gray { background: rgba(136,146,176,0.06); border: 1px solid rgba(136,146,176,0.2); }
+.alert-cyan { background: rgba(0,212,255,0.06); border: 1px solid rgba(0,212,255,0.25); }
+.alert-icon { font-size: 1.2rem; line-height: 1.4; }
+.alert-body strong { display: block; font-size: 0.85rem; color: var(--text); margin-bottom: 2px; }
+.alert-body p { font-size: 0.78rem; color: var(--text2); }
+
+/* === TOOLBAR === */
+.toolbar { display: flex; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; align-items: center; }
+input.search { padding: 8px 14px; background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; color: var(--text); font-size: 0.83rem; width: 240px; outline: none; }
+input.search:focus { border-color: var(--accent); box-shadow: 0 0 0 2px rgba(0,212,255,0.15); }
+select.sel { padding: 8px 14px; background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; color: var(--text); font-size: 0.83rem; outline: none; cursor: pointer; }
+select.sel:focus { border-color: var(--accent); }
+
+/* === PROFIL === */
+.profil-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 22px; box-shadow: var(--card-shadow); }
+.profil-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 14px; margin-bottom: 18px; }
+.profil-name { font-size: 1.1rem; font-weight: 800; color: var(--text); }
+.profil-gpa { font-size: 3rem; font-weight: 900; line-height: 1; }
+.info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 10px; background: var(--surface2); border-radius: 10px; padding: 14px; margin-bottom: 16px; }
+.info-item .lbl { font-size: 0.68rem; color: var(--text2); text-transform: uppercase; letter-spacing: 0.05em; }
+.info-item .val { font-size: 1.05rem; font-weight: 800; color: var(--text); margin-top: 2px; }
+.kursus-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 10px; }
+.k-card { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; border-left: 3px solid var(--green); }
+.k-card.gagal { border-left-color: var(--red); background: rgba(255,71,87,0.05); }
+.k-card.remedial { border-left-color: var(--text2); }
+.k-kod { font-size: 0.72rem; color: var(--text2); font-weight: 600; margin-bottom: 3px; }
+.k-nama { font-size: 0.85rem; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+.k-meta { display: flex; gap: 6px; flex-wrap: wrap; }
+
+/* === SEM2 === */
+.rec-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 20px; box-shadow: var(--card-shadow); }
+.rec-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+.rec-table th { background: rgba(0,212,255,0.08); color: var(--accent); padding: 9px 12px; text-align: left; font-weight: 700; font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid rgba(0,212,255,0.2); }
+.rec-table td { padding: 9px 12px; border-bottom: 1px solid var(--border); color: var(--text); }
+.rec-table tfoot td { background: rgba(0,255,157,0.06); font-weight: 700; color: var(--green); border-top: 1px solid rgba(0,255,157,0.2); }
+
+/* === TWO COL === */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 20px; }
+@media(max-width:900px){ .two-col { grid-template-columns: 1fr; } }
+
+/* === EMPTY STATE === */
+.empty { text-align: center; padding: 50px 20px; color: var(--text2); }
+.empty .ico { font-size: 3rem; margin-bottom: 10px; }
+
+/* === RANK GLOW === */
+.rank-1 { color: var(--gold); text-shadow: 0 0 10px rgba(245,197,24,0.6); }
+.rank-2 { color: #c0c0c0; }
+.rank-3 { color: #cd7f32; }
+
+@media(max-width:768px){
+  .header { flex-wrap: wrap; gap: 10px; }
+  .stat-row { grid-template-columns: repeat(2,1fr); }
+  .main { padding: 14px; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-left">
+    <div class="header-logo">⚡</div>
+    <div class="header-title">
+      <h1>Academic Advisor Dashboard</h1>
+      <p>Diploma Kejuruteraan Elektronik (Komunikasi) &nbsp;|&nbsp; DEP1A &nbsp;|&nbsp; Politeknik Kuching Sarawak</p>
+    </div>
+  </div>
+  <div class="header-right">
+    <div class="badge-sem">◈ SEMESTER 1 &nbsp;|&nbsp; SESI II 2025/2026</div>
+    <button class="theme-btn" onclick="toggleTheme()">
+      <span id="theme-icon">☀️</span> <span id="theme-txt">Light Mode</span>
+    </button>
+  </div>
+</div>
+
+<!-- NAV -->
+<div class="nav">
+  <div class="nav-item active" onclick="showTab('ringkasan',this)">⚡ Ringkasan</div>
+  <div class="nav-item" onclick="showTab('pelajar',this)">🛡️ Semua Pelajar</div>
+  <div class="nav-item" onclick="showTab('profil',this)">👤 Profil Pelajar</div>
+  <div class="nav-item" onclick="showTab('risiko',this)">☠️ Pelajar Berisiko</div>
+  <div class="nav-item" onclick="showTab('sem2',this)">📋 Cadangan Sem 2</div>
+</div>
+
+<div class="main">
+
+<!-- ===== RINGKASAN ===== -->
+<div id="tab-ringkasan" class="tab active">
+  <div class="stat-row">
+    <div class="stat-card"><div class="stat-val cyan">23</div><div class="stat-lbl">⚡ Jumlah Pelajar</div></div>
+    <div class="stat-card green"><div class="stat-val green">23</div><div class="stat-lbl">✅ Data Lengkap</div></div>
+    <div class="stat-card gold"><div class="stat-val gold">5</div><div class="stat-lbl">🏆 Anugerah Ketua Jabatan</div></div>
+    <div class="stat-card red"><div class="stat-val red">4</div><div class="stat-lbl">☠️ Ada Kursus Gagal C1</div></div>
+    <div class="stat-card orange"><div class="stat-val orange">3.09</div><div class="stat-lbl">📊 GPA Purata Kelas</div></div>
+    <div class="stat-card purple"><div class="stat-val" style="color:#a78bfa;">21</div><div class="stat-lbl">💊 Pelajar Remedial</div></div>
+  </div>
+
+  <div class="two-col">
+    <div class="panel">
+      <div class="panel-header"><div class="panel-title"><span>◈</span> Taburan GPA Semester 1</div></div>
+      <div class="panel-body">
+        <div class="dist-chart">
+          <div class="dist-row">
+            <div class="dist-lbl">🏆 3.50 – 4.00</div>
+            <div class="dist-bar-bg"><div class="dist-bar-fill" style="width:23%;background:linear-gradient(90deg,#f5c518,#ff8c00);">23%</div></div>
+            <div class="dist-cnt" style="color:var(--gold);">5 pelajar</div>
+          </div>
+          <div class="dist-row">
+            <div class="dist-lbl">✅ 3.00 – 3.49</div>
+            <div class="dist-bar-bg"><div class="dist-bar-fill" style="width:36%;background:linear-gradient(90deg,#00ff9d,#00b894);">36%</div></div>
+            <div class="dist-cnt" style="color:var(--green);">8 pelajar</div>
+          </div>
+          <div class="dist-row">
+            <div class="dist-lbl">🟡 2.50 – 2.99</div>
+            <div class="dist-bar-bg"><div class="dist-bar-fill" style="width:27%;background:linear-gradient(90deg,#ffd700,#f39c12);">27%</div></div>
+            <div class="dist-cnt" style="color:var(--yellow);">6 pelajar</div>
+          </div>
+          <div class="dist-row">
+            <div class="dist-lbl">⚠️ 2.00 – 2.49</div>
+            <div class="dist-bar-bg"><div class="dist-bar-fill" style="width:9%;background:linear-gradient(90deg,#ff6b35,#ff4757);">9%</div></div>
+            <div class="dist-cnt" style="color:var(--orange);">2 pelajar</div>
+          </div>
+          <div class="dist-row">
+            <div class="dist-lbl">🔴 &lt; 2.00</div>
+            <div class="dist-bar-bg"><div class="dist-bar-fill" style="width:1%;background:#ff4757;"></div></div>
+            <div class="dist-cnt" style="color:var(--text2);">0 pelajar</div>
+          </div>
+          <div class="dist-row">
+            <div class="dist-lbl">❓ Tiada Data</div>
+            <div class="dist-bar-bg"><div class="dist-bar-fill" style="width:5%;background:#4a5568;">5%</div></div>
+            <div class="dist-cnt" style="color:var(--text2);">1 pelajar</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-header"><div class="panel-title"><span>◈</span> Keputusan Kursus Sem 1</div></div>
+      <div class="panel-body">
+        <div class="dist-chart">
+          <div class="dist-row">
+            <div class="dist-lbl" style="width:160px;">Measurement Devices</div>
+            <div class="dist-bar-bg"><div class="dist-bar-fill" style="width:82%;background:linear-gradient(90deg,#0066cc,#00d4ff);">82%</div></div>
+            <div class="dist-cnt" style="color:var(--red);">❌ 4 gagal</div>
+          </div>
+          <div class="dist-row">
+            <div class="dist-lbl" style="width:160px;">Engineering Science</div>
+            <div class="dist-bar-bg"><div class="dist-bar-fill" style="width:86%;background:linear-gradient(90deg,#0066cc,#00d4ff);">86%</div></div>
+            <div class="dist-cnt" style="color:var(--red);">❌ 3 gagal</div>
+          </div>
+          <div class="dist-row">
+            <div class="dist-lbl" style="width:160px;">Electrical Circuits 1</div>
+            <div class="dist-bar-bg"><div class="dist-bar-fill" style="width:91%;background:linear-gradient(90deg,#0066cc,#00d4ff);">91%</div></div>
+            <div class="dist-cnt" style="color:var(--red);">❌ 2 gagal</div>
+          </div>
+          <div class="dist-row">
+            <div class="dist-lbl" style="width:160px;">Technical English 1</div>
+            <div class="dist-bar-bg"><div class="dist-bar-fill" style="width:100%;background:linear-gradient(90deg,#00ff9d,#00b894);">100%</div></div>
+            <div class="dist-cnt" style="color:var(--green);">✅ 22/22</div>
+          </div>
+          <div class="dist-row">
+            <div class="dist-lbl" style="width:160px;">OSH Engineering</div>
+            <div class="dist-bar-bg"><div class="dist-bar-fill" style="width:100%;background:linear-gradient(90deg,#00ff9d,#00b894);">100%</div></div>
+            <div class="dist-cnt" style="color:var(--green);">✅ 22/22</div>
+          </div>
+          <div class="dist-row">
+            <div class="dist-lbl" style="width:160px;">Basic Mathematics</div>
+            <div class="dist-bar-bg"><div class="dist-bar-fill" style="width:100%;background:linear-gradient(90deg,#7c3aed,#a855f7);">PRC - 100%</div></div>
+            <div class="dist-cnt" style="color:#a78bfa;">✅ 21/21</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-header"><div class="panel-title"><span>🏆</span> Anugerah Ketua Jabatan — Top 5</div></div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Kedudukan</th><th>No. Matrik</th><th>Nama Pelajar</th><th>GPA</th><th>Versi Plan</th></tr></thead>
+        <tbody>
+          <tr><td><span class="rank-1">👑 #1</span></td><td>05DEP25F2021</td><td><strong>Muhammad Muaz Haiqal bin Musaini</strong></td><td><span class="b b-gold">🏆 3.95</span></td><td><span class="b b-purple">Remedial</span></td></tr>
+          <tr><td><span class="rank-1">⭐ #2</span></td><td>05DEP25F2015</td><td><strong>Mohammad Haziq Luqman</strong></td><td><span class="b b-gold">🏆 3.85</span></td><td><span class="b b-purple">Remedial</span></td></tr>
+          <tr><td><span class="rank-1">⭐ #3</span></td><td>05DEP25F2031</td><td><strong>Carl Hanson Anak Rinos</strong></td><td><span class="b b-gold">🏆 3.59</span></td><td><span class="b b-purple">Remedial</span></td></tr>
+          <tr><td><span class="rank-2">🥈 #4</span></td><td>05DEP25F2001</td><td><strong>Joshua Ngang Anak Fedrick</strong></td><td><span class="b b-gold">🏆 3.56</span></td><td><span class="b b-cyan">Standard</span></td></tr>
+          <tr><td><span class="rank-2">🥈 #5</span></td><td>05DEP25F2002</td><td><strong>Jerrycho Daniel Anak Jepry</strong></td><td><span class="b b-gold">🏆 3.54</span></td><td><span class="b b-purple">Remedial</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SEMUA PELAJAR ===== -->
+<div id="tab-pelajar" class="tab">
+  <div class="toolbar">
+    <input type="text" class="search" id="srch" placeholder="🔍  Cari nama atau no. matrik..." oninput="filterP()">
+    <select class="sel" id="fgpa" onchange="filterP()">
+      <option value="">Semua GPA</option>
+      <option value="cemerlang">≥ 3.50 Cemerlang</option>
+      <option value="baik">3.00–3.49 Baik</option>
+      <option value="sederhana">2.50–2.99 Sederhana</option>
+      <option value="pantau">2.00–2.49 Perlu Pantau</option>
+      <option value="tiada">Tiada Data</option>
+    </select>
+    <select class="sel" id="fstatus" onchange="filterP()">
+      <option value="">Semua Status</option>
+      <option value="anugerah">Anugerah Ketua Jabatan</option>
+      <option value="gagal">Ada Kursus Gagal</option>
+    </select>
+  </div>
+  <div class="panel">
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>#</th><th>No. Matrik</th><th>Nama Penuh</th><th>Plan</th><th>Kredit Lulus/Dikira</th><th>GPA Sem 1</th><th>Status</th><th>Tindakan Penasihat</th></tr></thead>
+        <tbody id="tbody-p"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PROFIL ===== -->
+<div id="tab-profil" class="tab">
+  <div class="toolbar">
+    <select class="sel" id="sel-profil" onchange="showProfil(this.value)" style="width:380px;font-size:0.88rem;">
+      <option value="">-- Pilih Pelajar --</option>
+    </select>
+  </div>
+  <div id="profil-out">
+    <div class="empty"><div class="ico">👤</div><p>Pilih pelajar dari senarai di atas</p></div>
+  </div>
+</div>
+
+<!-- ===== RISIKO ===== -->
+<div id="tab-risiko" class="tab">
+  <div class="alert alert-red">
+    <div class="alert-icon">☠️</div>
+    <div class="alert-body"><strong>Pelajar Dengan Kursus Gagal C1 — Wajib Ulang Semester 2</strong><p>Berdasarkan Buku Panduan Peperiksaan Politeknik: Kursus gagal kali pertama (C1) mesti diulang semester berikutnya. Gagal kali ke-2 (C2) — berisiko penamatan pengajian.</p></div>
+  </div>
+  <div class="panel" style="margin-bottom:18px;">
+    <div class="panel-header"><div class="panel-title"><span>☠️</span> Kursus Gagal C1 (4 pelajar)</div></div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>No. Matrik</th><th>Nama Pelajar</th><th>GPA Sem 1</th><th>Kursus Gagal (C1)</th><th>Kali</th><th>Risiko</th></tr></thead>
+        <tbody>
+          <tr><td><strong>05DEP25F2003</strong></td><td>Berenden Christina Ngau</td><td><span class="b b-yellow">2.64</span></td><td><span class="b b-red">DEE10133 Measurement Devices</span></td><td>C1</td><td><span class="b b-yellow">⚠️ Pantau</span></td></tr>
+          <tr><td><strong>05DEP25F2017</strong></td><td>Mohammad Noorafizan bin Jalah</td><td><span class="b b-orange">2.31</span></td><td><span class="b b-red">DBS10042</span> &nbsp; <span class="b b-red">DEE10133</span></td><td>C1 (2 kursus)</td><td><span class="b b-red">🔴 Pantau Rapat</span></td></tr>
+          <tr><td><strong>05DEP25F2025</strong></td><td>Mohammad Fitri Hartono</td><td><span class="b b-orange">2.23</span></td><td><span class="b b-red">DBS10042</span> &nbsp; <span class="b b-red">DEE10133</span></td><td>C1 (2 kursus)</td><td><span class="b b-red">🔴 Pantau Rapat</span></td></tr>
+          <tr><td><strong>05DEP25F2028</strong></td><td>Febian Fabregas Anak Fredrick</td><td><span class="b b-yellow">2.67</span></td><td><span class="b b-red">DEE10133</span> &nbsp; <span class="b b-red">DET10103</span></td><td>C1 (2 kursus)</td><td><span class="b b-yellow">⚠️ Pantau</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="alert alert-yellow">
+    <div class="alert-icon">⚠️</div>
+    <div class="alert-body"><strong>GPA Rendah (2.00–2.49) — Perlu Dipantau</strong><p>Jika GPA jatuh bawah 2.00 DUA semester berturut-turut, pelajar berisiko penamatan pengajian.</p></div>
+  </div>
+  <div class="panel" style="margin-bottom:18px;">
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>No. Matrik</th><th>Nama</th><th>GPA Sem 1</th><th>GPA &lt; 2.00 (kali)</th><th>Tindakan</th></tr></thead>
+        <tbody>
+          <tr><td><strong>05DEP25F2017</strong></td><td>Mohammad Noorafizan bin Jalah</td><td><span class="b b-orange">2.31</span></td><td>0 kali</td><td style="font-size:0.78rem;color:var(--text2);">Pantau GPA Sem 2 — jangan biarkan jatuh bawah 2.00</td></tr>
+          <tr><td><strong>05DEP25F2025</strong></td><td>Mohammad Fitri Hartono</td><td><span class="b b-orange">2.23</span></td><td>0 kali</td><td style="font-size:0.78rem;color:var(--text2);">Pantau rapat — GPA paling rendah dalam kelas</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<!-- ===== CADANGAN SEM 2 ===== -->
+<div id="tab-sem2" class="tab">
+  <div class="toolbar">
+    <select class="sel" id="sel-sem2" onchange="showSem2(this.value)" style="width:380px;font-size:0.88rem;">
+      <option value="">-- Pilih Pelajar --</option>
+    </select>
+  </div>
+  <div id="sem2-out">
+    <div class="empty"><div class="ico">📋</div><p>Pilih pelajar untuk lihat cadangan kursus Semester 2</p></div>
+  </div>
+</div>
+
+</div><!-- /main -->
+
+<script>
+// ===================== DATA =====================
+const P = [
+  {m:"05DEP25F2001",n:"JOSHUA NGANG ANAK FEDRICK",pl:"Standard",kd:16,kk:16,kl:16,g:3.56,a:"Anugerah Ketua Jabatan",t:""},
+  {m:"05DEP25F2002",n:"JERRYCHO DANIEL ANAK JEPRY",pl:"Remedial",kd:15,kk:13,kl:13,g:3.54,a:"Anugerah Ketua Jabatan",t:"DBM10163 perlu daftar Sem 2"},
+  {m:"05DEP25F2003",n:"BERENDEN CHRISTINA NGAU",pl:"Remedial",kd:15,kk:13,kl:13,g:2.64,a:"",t:"⚠️ DEE10133 gagal C1 — wajib ulang Sem 2"},
+  {m:"05DEP25F2004",n:"DANIEL MATHIUS ANAK JOHN",pl:"Remedial",kd:13,kk:13,kl:13,g:2.74,a:"",t:"DBM10163 perlu daftar Sem 2"},
+  {m:"05DEP25F2007",n:"MOHAMMAD SYAFIQ AKMAL BIN ABDULLAH",pl:"Remedial",kd:15,kk:13,kl:13,g:2.90,a:"",t:"DBM10163 perlu daftar Sem 2"},
+  {m:"05DEP25F2008",n:"MUHAMAD JADDINIY IZZAT BIN TRESSNO",pl:"Remedial",kd:13,kk:13,kl:13,g:3.11,a:"",t:"DBM10163 perlu daftar Sem 2"},
+  {m:"05DEP25F2009",n:"MUHAMMAD ALFIAN HAFIZAL BIN AHAMAD",pl:"Remedial",kd:15,kk:13,kl:13,g:3.41,a:"",t:"DBM10163 perlu daftar Sem 2"},
+  {m:"05DEP25F2011",n:"CYRIL ISAAC AUGUSTINE",pl:"Remedial",kd:13,kk:13,kl:13,g:3.08,a:"",t:"DBM10163 perlu daftar Sem 2"},
+  {m:"05DEP25F2012",n:"PETERSON GUNTHUR PETERUS",pl:"Remedial",kd:15,kk:13,kl:13,g:3.23,a:"",t:"DBM10163 perlu daftar Sem 2"},
+  {m:"05DEP25F2013",n:"MOHAMMAD AIMAN BIN LET",pl:"Remedial",kd:15,kk:13,kl:13,g:3.28,a:"",t:"DBM10163 perlu daftar Sem 2"},
+  {m:"05DEP25F2014",n:"ABANG ABDURRAHMAN NAYAN BIN ABANG AHMAD RONNIE",pl:"Remedial",kd:15,kk:13,kl:13,g:3.00,a:"",t:"DBM10163 perlu daftar Sem 2"},
+  {m:"05DEP25F2015",n:"MOHAMMAD HAZIQ LUQMAN BIN MOHAMMAD ISMAIL HAIRUL",pl:"Remedial",kd:13,kk:13,kl:13,g:3.85,a:"Anugerah Ketua Jabatan",t:"DBM10163 perlu daftar Sem 2"},
+  {m:"05DEP25F2016",n:"CHEONG WUN SHING",pl:"Remedial",kd:13,kk:13,kl:13,g:3.36,a:"",t:"DBM10163 perlu daftar Sem 2"},
+  {m:"05DEP25F2017",n:"MOHAMMAD NOORAFIZAN BIN JALAH",pl:"Remedial",kd:15,kk:13,kl:11,g:2.31,a:"",t:"⚠️ DBS10042 & DEE10133 gagal C1 — wajib ulang Sem 2. Pantau GPA"},
+  {m:"05DEP25F2018",n:"DERRICK ANAK AUGUSTINE",pl:"Remedial",kd:15,kk:13,kl:13,g:3.41,a:"",t:"DBM10163 perlu daftar Sem 2"},
+  {m:"05DEP25F2019",n:"MUHAMMAD SYAFIQ DANIAL BIN ABDUL GANI",pl:"Remedial",kd:15,kk:13,kl:13,g:2.41,a:"",t:"DBM10163 perlu daftar Sem 2"},
+  {m:"05DEP25F2021",n:"MUHAMMAD MUAZ HAIQAL BIN MUSAINI",pl:"Remedial",kd:15,kk:13,kl:13,g:3.95,a:"Anugerah Ketua Jabatan",t:"DBM10163 perlu daftar Sem 2"},
+  {m:"05DEP25F2023",n:"ANATHASIA MARIA ANAK ALEX",pl:"Remedial",kd:15,kk:13,kl:13,g:2.80,a:"",t:"DBM10163 perlu daftar Sem 2"},
+  {m:"05DEP25F2025",n:"MOHAMMAD FITRI HARTONO",pl:"Remedial",kd:13,kk:13,kl:11,g:2.23,a:"",t:"⚠️ DBS10042 & DEE10133 gagal C1 — wajib ulang Sem 2. Pantau GPA"},
+  {m:"05DEP25F2026",n:"AWANG DANIAL FIDA'IY",pl:"Remedial",kd:13,kk:13,kl:13,g:2.92,a:"",t:"DBM10163 perlu daftar Sem 2"},
+  {m:"05DEP25F2027",n:"CHRIST ANGELO EDWIN",pl:"Standard",kd:18,kk:18,kl:18,g:2.85,a:"",t:"Standard — DBM20173 perlu daftar Sem 2. MPU22212 sudah lulus."},
+  {m:"05DEP25F2028",n:"FEBIAN FABREGAS ANAK FREDRICK",pl:"Remedial",kd:13,kk:13,kl:11,g:2.67,a:"",t:"⚠️ DEE10133 & DET10103 gagal C1 — wajib ulang Sem 2"},
+  {m:"05DEP25F2031",n:"CARL HANSON ANAK RINOS",pl:"Remedial",kd:15,kk:13,kl:13,g:3.59,a:"Anugerah Ketua Jabatan",t:"DBM10163 perlu daftar Sem 2"},
+];
+
+const K = {
+  "05DEP25F2001":[{k:"DBM10163",n:"Engineering Mathematics 1",kr:3,g:"A-",s:"Lulus",c:""},{k:"DBS10042",n:"Engineering Science",kr:2,g:"A-",s:"Lulus",c:""},{k:"DEE10133",n:"Measurement Devices",kr:3,g:"A-",s:"Lulus",c:""},{k:"DET10103",n:"Electrical Circuits 1",kr:3,g:"B",s:"Lulus",c:""},{k:"DUE10062",n:"Technical English 1",kr:2,g:"A",s:"Lulus",c:""},{k:"DUW10042",n:"OSH for Engineering",kr:2,g:"B+",s:"Lulus",c:""},{k:"MPU24041",n:"Ko-Kurikulum 1",kr:1,g:"A+",s:"Lulus",c:"KB134 - Kelas Seni Landskap 1"}],
+  "05DEP25F2002":[{k:"DBM10252",n:"Basic Mathematics",kr:0,g:"A-",s:"Lulus",c:"PRC"},{k:"DBS10042",n:"Engineering Science",kr:2,g:"B",s:"Lulus",c:""},{k:"DEE10133",n:"Measurement Devices",kr:3,g:"A",s:"Lulus",c:""},{k:"DET10103",n:"Electrical Circuits 1",kr:3,g:"B+",s:"Lulus",c:""},{k:"DUE10062",n:"Technical English 1",kr:2,g:"A",s:"Lulus",c:""},{k:"DUW10042",n:"OSH for Engineering",kr:2,g:"B",s:"Lulus",c:""},{k:"MPU24041",n:"Ko-Kurikulum 1",kr:1,g:"A+",s:"Lulus",c:"KB134 - Kelas Seni Landskap 1"}],
+  "05DEP25F2003":[{k:"DBM10252",n:"Basic Mathematics",kr:0,g:"A",s:"Lulus",c:"PRC"},{k:"DBS10042",n:"Engineering Science",kr:2,g:"C",s:"Lulus",c:""},{k:"DEE10133",n:"Measurement Devices",kr:3,g:"C+",s:"Gagal",c:"C1"},{k:"DET10103",n:"Electrical Circuits 1",kr:3,g:"C",s:"Lulus",c:""},{k:"DUE10062",n:"Technical English 1",kr:2,g:"A-",s:"Lulus",c:""},{k:"DUW10042",n:"OSH for Engineering",kr:2,g:"B",s:"Lulus",c:""},{k:"MPU24031",n:"Ko-Kurikulum 1 (Sukan)",kr:1,g:"A+",s:"Lulus",c:"SB105 - Bola Sepak 1"}],
+  "05DEP25F2004":[{k:"DBM10252",n:"Basic Mathematics",kr:0,g:"A",s:"Lulus",c:"PRC"},{k:"DBS10042",n:"Engineering Science",kr:2,g:"C",s:"Lulus",c:""},{k:"DEE10133",n:"Measurement Devices",kr:3,g:"C+",s:"Lulus",c:""},{k:"DET10103",n:"Electrical Circuits 1",kr:3,g:"C",s:"Lulus",c:""},{k:"DUE10062",n:"Technical English 1",kr:2,g:"A",s:"Lulus",c:""},{k:"DUW10042",n:"OSH for Engineering",kr:2,g:"B+",s:"Lulus",c:""},{k:"MPU24031",n:"Ko-Kurikulum 1 (Sukan)",kr:1,g:"A+",s:"Lulus",c:"SB126 - Futsal 1"}],
+  "05DEP25F2007":[{k:"DBM10252",n:"Basic Mathematics",kr:0,g:"A",s:"Lulus",c:"PRC"},{k:"DBS10042",n:"Engineering Science",kr:2,g:"C+",s:"Lulus",c:""},{k:"DEE10133",n:"Measurement Devices",kr:3,g:"B",s:"Lulus",c:""},{k:"DET10103",n:"Electrical Circuits 1",kr:3,g:"C",s:"Lulus",c:""},{k:"DUE10062",n:"Technical English 1",kr:2,g:"A",s:"Lulus",c:""},{k:"DUW10042",n:"OSH for Engineering",kr:2,g:"B",s:"Lulus",c:""},{k:"MPU24041",n:"Ko-Kurikulum 1 (Kelab)",kr:1,g:"A",s:"Lulus",c:"KB101 - Amalan 5S 1"}],
+  "05DEP25F2008":[{k:"DBM10252",n:"Basic Mathematics",kr:0,g:"A",s:"Lulus",c:"PRC"},{k:"DBS10042",n:"Engineering Science",kr:2,g:"C+",s:"Lulus",c:""},{k:"DEE10133",n:"Measurement Devices",kr:3,g:"A-",s:"Lulus",c:""},{k:"DET10103",n:"Electrical Circuits 1",kr:3,g:"B-",s:"Lulus",c:""},{k:"DUE10062",n:"Technical English 1",kr:2,g:"A-",s:"Lulus",c:""},{k:"DUW10042",n:"OSH for Engineering",kr:2,g:"B-",s:"Lulus",c:""},{k:"MPU24031",n:"Ko-Kurikulum 1 (Sukan)",kr:1,g:"A+",s:"Lulus",c:"SB126 - Futsal 1"}],
+  "05DEP25F2009":[{k:"DBM10252",n:"Basic Mathematics",kr:0,g:"A",s:"Lulus",c:"PRC"},{k:"DBS10042",n:"Engineering Science",kr:2,g:"B-",s:"Lulus",c:""},{k:"DEE10133",n:"Measurement Devices",kr:3,g:"A",s:"Lulus",c:""},{k:"DET10103",n:"Electrical Circuits 1",kr:3,g:"B",s:"Lulus",c:""},{k:"DUE10062",n:"Technical English 1",kr:2,g:"A-",s:"Lulus",c:""},{k:"DUW10042",n:"OSH for Engineering",kr:2,g:"B+",s:"Lulus",c:""},{k:"MPU24031",n:"Ko-Kurikulum 1 (Sukan)",kr:1,g:"A+",s:"Lulus",c:"SB126 - Futsal 1"}],
+  "05DEP25F2011":[{k:"DBM10252",n:"Basic Mathematics",kr:0,g:"B",s:"Lulus",c:"PRC"},{k:"DBS10042",n:"Engineering Science",kr:2,g:"B-",s:"Lulus",c:""},{k:"DEE10133",n:"Measurement Devices",kr:3,g:"B+",s:"Lulus",c:""},{k:"DET10103",n:"Electrical Circuits 1",kr:3,g:"C-",s:"Lulus",c:""},{k:"DUE10062",n:"Technical English 1",kr:2,g:"A",s:"Lulus",c:""},{k:"DUW10042",n:"OSH for Engineering",kr:2,g:"A",s:"Lulus",c:""},{k:"MPU24111",n:"Ko-Kurikulum 1 (Askar Wataniah)",kr:1,g:"A-",s:"Lulus",c:""}],
+  "05DEP25F2012":[{k:"DBM10252",n:"Basic Mathematics",kr:0,g:"A",s:"Lulus",c:"PRC"},{k:"DBS10042",n:"Engineering Science",kr:2,g:"B-",s:"Lulus",c:""},{k:"DEE10133",n:"Measurement Devices",kr:3,g:"A-",s:"Lulus",c:""},{k:"DET10103",n:"Electrical Circuits 1",kr:3,g:"B",s:"Lulus",c:""},{k:"DUE10062",n:"Technical English 1",kr:2,g:"A-",s:"Lulus",c:""},{k:"DUW10042",n:"OSH for Engineering",kr:2,g:"B-",s:"Lulus",c:""},{k:"MPU24031",n:"Ko-Kurikulum 1 (Sukan)",kr:1,g:"A+",s:"Lulus",c:"SB105 - Bola Sepak 1"}],
+  "05DEP25F2013":[{k:"DBM10252",n:"Basic Mathematics",kr:0,g:"A",s:"Lulus",c:"PRC"},{k:"DBS10042",n:"Engineering Science",kr:2,g:"B-",s:"Lulus",c:""},{k:"DEE10133",n:"Measurement Devices",kr:3,g:"A-",s:"Lulus",c:""},{k:"DET10103",n:"Electrical Circuits 1",kr:3,g:"B+",s:"Lulus",c:""},{k:"DUE10062",n:"Technical English 1",kr:2,g:"A-",s:"Lulus",c:""},{k:"DUW10042",n:"OSH for Engineering",kr:2,g:"B",s:"Lulus",c:""},{k:"MPU24031",n:"Ko-Kurikulum 1 (Sukan)",kr:1,g:"B",s:"Lulus",c:"SB101 - Badminton 1"}],
+  "05DEP25F2014":[{k:"DBM10252",n:"Basic Mathematics",kr:0,g:"A+",s:"Lulus",c:"PRC"},{k:"DBS10042",n:"Engineering Science",kr:2,g:"C",s:"Lulus",c:""},{k:"DEE10133",n:"Measurement Devices",kr:3,g:"B+",s:"Lulus",c:""},{k:"DET10103",n:"Electrical Circuits 1",kr:3,g:"C+",s:"Lulus",c:""},{k:"DUE10062",n:"Technical English 1",kr:2,g:"A",s:"Lulus",c:""},{k:"DUW10042",n:"OSH for Engineering",kr:2,g:"B",s:"Lulus",c:""},{k:"MPU24031",n:"Ko-Kurikulum 1 (Sukan)",kr:1,g:"A+",s:"Lulus",c:"SB126 - Futsal 1"}],
+  "05DEP25F2015":[{k:"DBM10252",n:"Basic Mathematics",kr:0,g:"B",s:"Lulus",c:"PRC"},{k:"DBS10042",n:"Engineering Science",kr:2,g:"A",s:"Lulus",c:""},{k:"DEE10133",n:"Measurement Devices",kr:3,g:"A",s:"Lulus",c:""},{k:"DET10103",n:"Electrical Circuits 1",kr:3,g:"A",s:"Lulus",c:""},{k:"DUE10062",n:"Technical English 1",kr:2,g:"A",s:"Lulus",c:""},{k:"DUW10042",n:"OSH for Engineering",kr:2,g:"A",s:"Lulus",c:""},{k:"MPU24031",n:"Ko-Kurikulum 1 (Sukan)",kr:1,g:"C",s:"Lulus",c:"SB101 - Badminton 1"}],
+  "05DEP25F2016":[{k:"DBM10252",n:"Basic Mathematics",kr:0,g:"A-",s:"Lulus",c:"PRC"},{k:"DBS10042",n:"Engineering Science",kr:2,g:"B+",s:"Lulus",c:""},{k:"DEE10133",n:"Measurement Devices",kr:3,g:"A-",s:"Lulus",c:""},{k:"DET10103",n:"Electrical Circuits 1",kr:3,g:"B-",s:"Lulus",c:""},{k:"DUE10062",n:"Technical English 1",kr:2,g:"A-",s:"Lulus",c:""},{k:"DUW10042",n:"OSH for Engineering",kr:2,g:"B+",s:"Lulus",c:""},{k:"MPU24041",n:"Ko-Kurikulum 1 (Kelab)",kr:1,g:"A+",s:"Lulus",c:"KB109 - Keusahawanan 1"}],
+  "05DEP25F2017":[{k:"DBM10252",n:"Basic Mathematics",kr:0,g:"C+",s:"Lulus",c:"PRC"},{k:"DBS10042",n:"Engineering Science",kr:2,g:"C-",s:"Gagal",c:"C1"},{k:"DEE10133",n:"Measurement Devices",kr:3,g:"C+",s:"Gagal",c:"C1"},{k:"DET10103",n:"Electrical Circuits 1",kr:3,g:"C-",s:"Lulus",c:""},{k:"DUE10062",n:"Technical English 1",kr:2,g:"A",s:"Lulus",c:""},{k:"DUW10042",n:"OSH for Engineering",kr:2,g:"C",s:"Lulus",c:""},{k:"MPU24031",n:"Ko-Kurikulum 1 (Sukan)",kr:1,g:"B-",s:"Lulus",c:"SB106 - Bola Tampar 1"}],
+  "05DEP25F2018":[{k:"DBM10252",n:"Basic Mathematics",kr:0,g:"A",s:"Lulus",c:"PRC"},{k:"DBS10042",n:"Engineering Science",kr:2,g:"C+",s:"Lulus",c:""},{k:"DEE10133",n:"Measurement Devices",kr:3,g:"A",s:"Lulus",c:""},{k:"DET10103",n:"Electrical Circuits 1",kr:3,g:"B",s:"Lulus",c:""},{k:"DUE10062",n:"Technical English 1",kr:2,g:"A",s:"Lulus",c:""},{k:"DUW10042",n:"OSH for Engineering",kr:2,g:"B+",s:"Lulus",c:""},{k:"MPU24031",n:"Ko-Kurikulum 1 (Sukan)",kr:1,g:"A+",s:"Lulus",c:"SB105 - Bola Sepak 1"}],
+  "05DEP25F2019":[{k:"DBM10252",n:"Basic Mathematics",kr:0,g:"B",s:"Lulus",c:"PRC"},{k:"DBS10042",n:"Engineering Science",kr:2,g:"C",s:"Lulus",c:""},{k:"DEE10133",n:"Measurement Devices",kr:3,g:"C+",s:"Lulus",c:""},{k:"DET10103",n:"Electrical Circuits 1",kr:3,g:"C",s:"Lulus",c:""},{k:"DUE10062",n:"Technical English 1",kr:2,g:"A-",s:"Lulus",c:""},{k:"DUW10042",n:"OSH for Engineering",kr:2,g:"B-",s:"Lulus",c:""},{k:"MPU24041",n:"Ko-Kurikulum 1 (Kelab)",kr:1,g:"C-",s:"Lulus",c:"KB103 - Bahasa Inggeris 1"}],
+  "05DEP25F2021":[{k:"DBM10252",n:"Basic Mathematics",kr:0,g:"A",s:"Lulus",c:"PRC"},{k:"DBS10042",n:"Engineering Science",kr:2,g:"A",s:"Lulus",c:""},{k:"DEE10133",n:"Measurement Devices",kr:3,g:"A",s:"Lulus",c:""},{k:"DET10103",n:"Electrical Circuits 1",kr:3,g:"A",s:"Lulus",c:""},{k:"DUE10062",n:"Technical English 1",kr:2,g:"A",s:"Lulus",c:""},{k:"DUW10042",n:"OSH for Engineering",kr:2,g:"A-",s:"Lulus",c:""},{k:"MPU24031",n:"Ko-Kurikulum 1 (Sukan)",kr:1,g:"A+",s:"Lulus",c:"SB126 - Futsal 1"}],
+  "05DEP25F2023":[{k:"DBM10252",n:"Basic Mathematics",kr:0,g:"B-",s:"Lulus",c:"PRC"},{k:"DBS10042",n:"Engineering Science",kr:2,g:"C+",s:"Lulus",c:""},{k:"DEE10133",n:"Measurement Devices",kr:3,g:"B",s:"Lulus",c:""},{k:"DET10103",n:"Electrical Circuits 1",kr:3,g:"C",s:"Lulus",c:""},{k:"DUE10062",n:"Technical English 1",kr:2,g:"A-",s:"Lulus",c:""},{k:"DUW10042",n:"OSH for Engineering",kr:2,g:"B-",s:"Lulus",c:""},{k:"MPU24041",n:"Ko-Kurikulum 1 (Kelab)",kr:1,g:"A+",s:"Lulus",c:"KB134 - Kelas Seni Landskap 1"}],
+  "05DEP25F2025":[{k:"DBM10252",n:"Basic Mathematics",kr:0,g:"A-",s:"Lulus",c:"PRC"},{k:"DBS10042",n:"Engineering Science",kr:2,g:"D",s:"Gagal",c:"C1"},{k:"DEE10133",n:"Measurement Devices",kr:3,g:"C",s:"Gagal",c:"C1"},{k:"DET10103",n:"Electrical Circuits 1",kr:3,g:"D",s:"Lulus",c:""},{k:"DUE10062",n:"Technical English 1",kr:2,g:"A",s:"Lulus",c:""},{k:"DUW10042",n:"OSH for Engineering",kr:2,g:"B+",s:"Lulus",c:""},{k:"MPU24041",n:"Ko-Kurikulum 1 (Kelab)",kr:1,g:"B+",s:"Lulus",c:"KB103 - Bahasa Inggeris 1"}],
+  "05DEP25F2026":[{k:"DBM10252",n:"Basic Mathematics",kr:0,g:"A",s:"Lulus",c:"PRC"},{k:"DBS10042",n:"Engineering Science",kr:2,g:"C",s:"Lulus",c:""},{k:"DEE10133",n:"Measurement Devices",kr:3,g:"B+",s:"Lulus",c:""},{k:"DET10103",n:"Electrical Circuits 1",kr:3,g:"C",s:"Lulus",c:""},{k:"DUE10062",n:"Technical English 1",kr:2,g:"A",s:"Lulus",c:""},{k:"DUW10042",n:"OSH for Engineering",kr:2,g:"B",s:"Lulus",c:""},{k:"MPU24041",n:"Ko-Kurikulum 1 (Kelab)",kr:1,g:"A",s:"Lulus",c:"KB101 - Amalan 5S 1"}],
+  "05DEP25F2027":[{k:"DBM10163",n:"Engineering Mathematics 1",kr:3,g:"C+",s:"Lulus",c:""},{k:"DBS10042",n:"Engineering Science",kr:2,g:"C",s:"Lulus",c:""},{k:"DEE10133",n:"Measurement Devices",kr:3,g:"B",s:"Lulus",c:""},{k:"DET10103",n:"Electrical Circuits 1",kr:3,g:"B-",s:"Lulus",c:""},{k:"DUE10062",n:"Technical English 1",kr:2,g:"A",s:"Lulus",c:""},{k:"DUW10042",n:"OSH for Engineering",kr:2,g:"B",s:"Lulus",c:""},{k:"MPU22212",n:"Bahasa Kebangsaan A",kr:2,g:"B-",s:"Lulus",c:"Wajib - BM SPM"},{k:"MPU24031",n:"Ko-Kurikulum 1 (Sukan)",kr:1,g:"A+",s:"Lulus",c:"SB126 - Futsal 1"}],
+  "05DEP25F2028":[{k:"DBM10252",n:"Basic Mathematics",kr:0,g:"A+",s:"Lulus",c:"PRC"},{k:"DBS10042",n:"Engineering Science",kr:2,g:"C+",s:"Lulus",c:""},{k:"DEE10133",n:"Measurement Devices",kr:3,g:"C+",s:"Gagal",c:"C1"},{k:"DET10103",n:"Electrical Circuits 1",kr:3,g:"C",s:"Gagal",c:"C1"},{k:"DUE10062",n:"Technical English 1",kr:2,g:"A-",s:"Lulus",c:""},{k:"DUW10042",n:"OSH for Engineering",kr:2,g:"B",s:"Lulus",c:""},{k:"MPU24031",n:"Ko-Kurikulum 1 (Sukan)",kr:1,g:"A-",s:"Lulus",c:"SB118 - Sepak Takraw 1"}],
+  "05DEP25F2031":[{k:"DBM10252",n:"Basic Mathematics",kr:0,g:"A",s:"Lulus",c:"PRC"},{k:"DBS10042",n:"Engineering Science",kr:2,g:"B",s:"Lulus",c:""},{k:"DEE10133",n:"Measurement Devices",kr:3,g:"A",s:"Lulus",c:""},{k:"DET10103",n:"Electrical Circuits 1",kr:3,g:"B+",s:"Lulus",c:""},{k:"DUE10062",n:"Technical English 1",kr:2,g:"A",s:"Lulus",c:""},{k:"DUW10042",n:"OSH for Engineering",kr:2,g:"B+",s:"Lulus",c:""},{k:"MPU24031",n:"Ko-Kurikulum 1 (Sukan)",kr:1,g:"A+",s:"Lulus",c:"SB126 - Futsal 1"}],
+};
+
+const S2std=[{k:"MPU24XX1",n:"Ko-Kurikulum 2",kr:1,j:"Compulsory",s:"📋 Study Plan"},{k:"DBM20173",n:"Engineering Mathematics 2",kr:3,j:"Common Core",s:"📋 Pre-req: DBM10163 ✅"},{k:"DEE20143",n:"Semiconductors Devices",kr:3,j:"Discipline Core",s:"📋 Study Plan"},{k:"DEE20153",n:"Digital Electronics",kr:3,j:"Discipline Core",s:"📋 Study Plan"},{k:"DET10112",n:"Electrical Wiring",kr:2,j:"Discipline Core",s:"📋 Study Plan"},{k:"DET20123",n:"Electrical Circuits 2",kr:3,j:"Discipline Core",s:"📋 Pre-req: DET10103 ✅"}];
+const S2rem=[{k:"MPU24XX1",n:"Ko-Kurikulum 2",kr:1,j:"Compulsory",s:"📋 Study Plan"},{k:"DBM10163",n:"Engineering Mathematics 1",kr:3,j:"Common Core",s:"📋 Pre-req: DBM10252 PRC ✅"},{k:"DEE20143",n:"Semiconductors Devices",kr:3,j:"Discipline Core",s:"📋 Study Plan"},{k:"DEE20153",n:"Digital Electronics",kr:3,j:"Discipline Core",s:"📋 Study Plan"},{k:"DET10112",n:"Electrical Wiring",kr:2,j:"Discipline Core",s:"📋 Study Plan"},{k:"DET20123",n:"Electrical Circuits 2",kr:3,j:"Discipline Core",s:"📋 Pre-req: DET10103 ✅"}];
+
+// ===================== HELPERS =====================
+function fl(m){ return (K[m]||[]).filter(x=>x.s==="Gagal"); }
+function gc(g){
+  if(g===null) return 'var(--text2)';
+  if(g>=3.5) return 'var(--gold)';
+  if(g>=3.0) return 'var(--green)';
+  if(g>=2.5) return 'var(--yellow)';
+  if(g>=2.0) return 'var(--orange)';
+  return 'var(--red)';
+}
+function gb(g){
+  if(g===null) return '<span class="b b-gray">Tiada Data</span>';
+  if(g>=3.5) return `<span class="b b-gold">🏆 ${g.toFixed(2)}</span>`;
+  if(g>=3.0) return `<span class="b b-green">${g.toFixed(2)}</span>`;
+  if(g>=2.5) return `<span class="b b-yellow">${g.toFixed(2)}</span>`;
+  if(g>=2.0) return `<span class="b b-orange">${g.toFixed(2)}</span>`;
+  return `<span class="b b-red">${g.toFixed(2)}</span>`;
+}
+
+// ===================== RENDER TABLE =====================
+function renderP(data){
+  const tb=document.getElementById('tbody-p');
+  tb.innerHTML='';
+  data.forEach((p,i)=>{
+    const f=fl(p.m);
+    let sb='';
+    if(p.g===null) sb='<span class="b b-gray">❓ Tiada Data</span>';
+    else if(p.a) sb='<span class="b b-gold">🏆 Anugerah</span>';
+    else if(f.length>0) sb='<span class="b b-red">☠️ Ada Gagal</span>';
+    else if(p.g>=3.0) sb='<span class="b b-green">✅ Baik</span>';
+    else if(p.g>=2.0) sb='<span class="b b-yellow">⚠️ Pantau</span>';
+    else sb='<span class="b b-red">🔴 Risiko</span>';
+    tb.innerHTML+=`<tr>
+      <td style="color:var(--text2);font-weight:700;">${i+1}</td>
+      <td><span style="color:var(--accent);font-weight:700;font-size:0.8rem;">${p.m}</span></td>
+      <td style="font-weight:600;">${p.n}</td>
+      <td><span class="b ${p.pl==='Standard'?'b-cyan':'b-purple'}">${p.pl}</span></td>
+      <td style="color:var(--text2);">${p.kl!==null?p.kl+' / '+(p.kk||'-'):'—'}</td>
+      <td>${gb(p.g)}</td>
+      <td>${sb}</td>
+      <td style="font-size:0.76rem;color:var(--text2);">${p.t||'—'}</td>
+    </tr>`;
+  });
+}
+
+function filterP(){
+  const s=document.getElementById('srch').value.toLowerCase();
+  const gf=document.getElementById('fgpa').value;
+  const sf=document.getElementById('fstatus').value;
+  let d=P.filter(p=>{
+    const ms=p.n.toLowerCase().includes(s)||p.m.toLowerCase().includes(s);
+    let mg=true;
+    if(gf==='cemerlang') mg=p.g!==null&&p.g>=3.5;
+    else if(gf==='baik') mg=p.g!==null&&p.g>=3.0&&p.g<3.5;
+    else if(gf==='sederhana') mg=p.g!==null&&p.g>=2.5&&p.g<3.0;
+    else if(gf==='pantau') mg=p.g!==null&&p.g>=2.0&&p.g<2.5;
+    else if(gf==='tiada') mg=p.g===null;
+    let mst=true;
+    if(sf==='anugerah') mst=p.a!=='';
+    else if(sf==='gagal') mst=fl(p.m).length>0;
+    return ms&&mg&&mst;
+  });
+  renderP(d);
+}
+
+// ===================== PROFIL =====================
+function showProfil(m){
+  if(!m) return;
+  const p=P.find(x=>x.m===m);
+  const ks=K[m]||[];
+  const f=fl(m);
+  const kg=ks.length===0
+    ?'<div class="empty"><div class="ico">📄</div><p>Tiada data kursus</p></div>'
+    :'<div class="kursus-grid">'+ks.map(k=>`
+      <div class="k-card ${k.s==='Gagal'?'gagal':k.c==='PRC'?'remedial':''}">
+        <div class="k-kod">${k.k} &nbsp;${k.kr===0?'<span class="b b-gray" style="font-size:0.68rem;">PRC</span>':k.kr+' Kredit'}</div>
+        <div class="k-nama">${k.n}</div>
+        <div class="k-meta">
+          <span class="b ${k.s==='Gagal'?'b-red':'b-green'}">${k.s==='Gagal'?'❌ Gagal':'✅ Lulus'}</span>
+          <span class="b b-cyan">${k.g}</span>
+          ${k.c&&k.c!=='PRC'?`<span class="b b-red" style="font-size:0.68rem;">${k.c}</span>`:''}
+          ${k.c?`<span style="font-size:0.72rem;color:var(--text2);">${k.c}</span>`:''}
+        </div>
+      </div>`).join('')+'</div>';
+
+  document.getElementById('profil-out').innerHTML=`
+    <div class="profil-wrap">
+      <div class="profil-header">
+        <div>
+          <div class="profil-name">⚡ ${p.n}</div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px;">
+            <span class="b b-cyan">${p.m}</span>
+            <span class="b ${p.pl==='Standard'?'b-cyan':'b-purple'}">${p.pl}</span>
+            <span class="b b-green">DEP1A · Sem 1 · 2025/2026</span>
+            ${p.a?`<span class="b b-gold">🏆 ${p.a}</span>`:''}
+          </div>
+        </div>
+        <div style="text-align:right;">
+          <div style="font-size:0.72rem;color:var(--text2);text-transform:uppercase;letter-spacing:0.06em;">GPA Semester 1</div>
+          <div class="profil-gpa" style="color:${gc(p.g)};text-shadow:0 0 20px ${gc(p.g)};">${p.g!==null?p.g.toFixed(2):'—'}</div>
+        </div>
+      </div>
+      <div class="info-grid">
+        <div class="info-item"><div class="lbl">Kredit Daftar</div><div class="val">${p.kd||'—'}</div></div>
+        <div class="info-item"><div class="lbl">Kredit Dikira</div><div class="val">${p.kk||'—'}</div></div>
+        <div class="info-item"><div class="lbl">Kredit Lulus</div><div class="val">${p.kl||'—'}</div></div>
+        <div class="info-item"><div class="lbl">PNM Kumulatif</div><div class="val">${p.g!==null?p.g.toFixed(2):'—'}</div></div>
+        <div class="info-item"><div class="lbl">Kursus Gagal</div><div class="val" style="color:${f.length>0?'var(--red)':'var(--green)'};">${f.length>0?f.length+' kursus':'Tiada'}</div></div>
+      </div>
+      ${p.t?`<div class="alert alert-yellow" style="margin-bottom:16px;"><div class="alert-icon">📌</div><div class="alert-body"><strong>Tindakan Penasihat</strong><p>${p.t}</p></div></div>`:''}
+      <div style="font-size:0.82rem;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px;">◈ Rekod Kursus — Semester 1</div>
+      ${kg}
+    </div>`;
+}
+
+// ===================== SEM 2 =====================
+function showSem2(m){
+  if(!m) return;
+  const p=P.find(x=>x.m===m);
+  const f=fl(m);
+  const base=p.pl==='Standard'?[...S2std]:[...S2rem];
+  const ulang=f.map(x=>({k:x.k,n:x.n,kr:x.kr,j:"🔁 Wajib Ulang",s:"C1 — Gagal Kali Pertama"}));
+  const all=[...ulang,...base];
+  const tot=all.reduce((s,c)=>s+(c.kr||0),0);
+  const rows=all.map(c=>`<tr>
+    <td><strong style="color:var(--accent);">${c.k}</strong></td>
+    <td>${c.n}</td>
+    <td style="text-align:center;font-weight:700;">${c.kr}</td>
+    <td><span class="b ${c.j.includes('Ulang')?'b-red':c.j==='Common Core'?'b-cyan':c.j==='Compulsory'?'b-gray':'b-green'}">${c.j}</span></td>
+    <td style="font-size:0.78rem;color:var(--text2);">${c.s}</td>
+  </tr>`).join('');
+  document.getElementById('sem2-out').innerHTML=`
+    <div class="rec-wrap">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px;margin-bottom:14px;">
+        <div>
+          <div style="font-size:1rem;font-weight:800;color:var(--text);">📋 Cadangan Kursus Semester 2</div>
+          <div style="font-size:0.82rem;color:var(--text2);margin-top:2px;">${p.n} &nbsp;|&nbsp; ${p.m}</div>
+        </div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;">
+          <span class="b ${p.pl==='Standard'?'b-cyan':'b-purple'}">${p.pl}</span>
+          <span class="b ${p.g>=2?'b-green':'b-red'}">GPA: ${p.g!==null?p.g.toFixed(2):'—'}</span>
+          ${f.length>0?`<span class="b b-red">⚠️ ${f.length} Wajib Ulang</span>`:'<span class="b b-green">✅ Tiada Gagal</span>'}
+        </div>
+      </div>
+      <table class="rec-table">
+        <thead><tr><th>Kod</th><th>Nama Kursus</th><th style="text-align:center;">Kredit</th><th>Jenis</th><th>Catatan</th></tr></thead>
+        <tbody>${rows}</tbody>
+        <tfoot><tr><td colspan="2">JUMLAH KREDIT SEM 2</td><td style="text-align:center;">${tot}</td><td colspan="2" style="font-size:0.75rem;color:var(--text2);">* Sahkan dengan had beban kredit politeknik</td></tr></tfoot>
+      </table>
+      ${f.length>0?`<div class="alert alert-red" style="margin-top:14px;"><div class="alert-icon">🚨</div><div class="alert-body"><strong>Peringatan Penting!</strong><p>Pelajar mesti daftar semula ${f.map(x=>x.k).join(' & ')} Sem 2. Gagal sekali lagi (C2) — berisiko PENAMATAN PENGAJIAN.</p></div></div>`:''}
+    </div>`;
+}
+
+// ===================== TAB & THEME =====================
+function showTab(name,el){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(t=>t.classList.remove('active'));
+  document.getElementById('tab-'+name).classList.add('active');
+  el.classList.add('active');
+}
+
+function toggleTheme(){
+  const html=document.documentElement;
+  const isDark=html.getAttribute('data-theme')==='dark';
+  html.setAttribute('data-theme',isDark?'light':'dark');
+  document.getElementById('theme-icon').textContent=isDark?'🌙':'☀️';
+  document.getElementById('theme-txt').textContent=isDark?'Dark Mode':'Light Mode';
+}
+
+// ===================== INIT =====================
+(function(){
+  renderP(P);
+  const s1=document.getElementById('sel-profil');
+  const s2=document.getElementById('sel-sem2');
+  P.forEach(p=>{
+    [s1,s2].forEach(s=>{
+      const o=document.createElement('option');
+      o.value=p.m;
+      o.textContent=p.m+' — '+p.n;
+      s.appendChild(o);
+    });
+  });
+})();
+</script>
+</body>
+</html>
