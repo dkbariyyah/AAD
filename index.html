@@ -148,6 +148,7 @@ tr:hover td { background: rgba(0,212,255,0.04); }
 .alert-yellow { background: rgba(255,215,0,0.06); border: 1px solid rgba(255,215,0,0.25); }
 .alert-gray { background: rgba(136,146,176,0.06); border: 1px solid rgba(136,146,176,0.2); }
 .alert-cyan { background: rgba(0,212,255,0.06); border: 1px solid rgba(0,212,255,0.25); }
+.alert-green { background: rgba(0,255,157,0.06); border: 1px solid rgba(0,255,157,0.25); }
 .alert-icon { font-size: 1.2rem; line-height: 1.4; }
 .alert-body strong { display: block; font-size: 0.85rem; color: var(--text); margin-bottom: 2px; }
 .alert-body p { font-size: 0.78rem; color: var(--text2); }
@@ -175,12 +176,19 @@ select.sel:focus { border-color: var(--accent); }
 .k-nama { font-size: 0.85rem; font-weight: 700; color: var(--text); margin-bottom: 6px; }
 .k-meta { display: flex; gap: 6px; flex-wrap: wrap; }
 
-/* === SEM2 === */
+/* === SEM CADANGAN === */
 .rec-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 20px; box-shadow: var(--card-shadow); }
 .rec-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
 .rec-table th { background: rgba(0,212,255,0.08); color: var(--accent); padding: 9px 12px; text-align: left; font-weight: 700; font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid rgba(0,212,255,0.2); }
 .rec-table td { padding: 9px 12px; border-bottom: 1px solid var(--border); color: var(--text); }
 .rec-table tfoot td { background: rgba(0,255,157,0.06); font-weight: 700; color: var(--green); border-top: 1px solid rgba(0,255,157,0.2); }
+.rec-table tr.deferred-row td { background: rgba(255,71,87,0.05); }
+
+/* === KREDIT BAR === */
+.kredit-bar-wrap { margin-bottom: 14px; }
+.kredit-bar-label { display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 5px; }
+.kredit-bar-track { height: 10px; background: var(--border); border-radius: 5px; overflow: hidden; }
+.kredit-bar-fill { height: 100%; border-radius: 5px; transition: width 0.4s ease; }
 
 /* === TWO COL === */
 .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 20px; }
@@ -194,6 +202,56 @@ select.sel:focus { border-color: var(--accent); }
 .rank-1 { color: var(--gold); text-shadow: 0 0 10px rgba(245,197,24,0.6); }
 .rank-2 { color: #c0c0c0; }
 .rank-3 { color: #cd7f32; }
+
+/* === UPLOAD SLIP === */
+.drop-zone {
+  border: 2px dashed var(--border);
+  border-radius: 14px;
+  padding: 40px 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: var(--surface);
+  margin-bottom: 20px;
+}
+.drop-zone:hover, .drop-zone.drag-over {
+  border-color: var(--accent);
+  background: rgba(0,212,255,0.05);
+}
+.drop-zone-icon { font-size: 3rem; margin-bottom: 10px; }
+.drop-zone-title { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+.drop-zone-sub { font-size: 0.82rem; color: var(--text2); margin-bottom: 16px; }
+.btn-upload { display: inline-flex; align-items: center; gap: 8px; padding: 9px 20px; background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #fff; border: none; border-radius: 8px; font-size: 0.85rem; font-weight: 700; cursor: pointer; transition: opacity 0.2s; }
+.btn-upload:hover { opacity: 0.85; }
+.progress-section { margin-bottom: 20px; }
+.progress-title { font-size: 0.85rem; font-weight: 700; color: var(--text); margin-bottom: 10px; }
+.progress-track { height: 8px; background: var(--border); border-radius: 4px; overflow: hidden; margin-bottom: 8px; }
+.progress-fill { height: 100%; border-radius: 4px; background: linear-gradient(90deg, var(--accent), var(--accent2)); transition: width 0.3s ease; }
+.progress-sub { font-size: 0.78rem; color: var(--text2); }
+.slip-log { display: flex; flex-direction: column; gap: 6px; max-height: 300px; overflow-y: auto; margin-bottom: 20px; }
+.slip-log-item { display: flex; align-items: center; gap: 10px; padding: 8px 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; font-size: 0.82rem; }
+.slip-log-item.ok { border-left: 3px solid var(--green); }
+.slip-log-item.warn { border-left: 3px solid var(--yellow); }
+.slip-log-item.err { border-left: 3px solid var(--red); }
+.slip-log-item .sli-name { flex: 1; color: var(--text); font-weight: 600; }
+.slip-log-item .sli-gpa { font-weight: 700; }
+.slip-results-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 14px; }
+.slip-result-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 16px; }
+.slip-result-card.has-fail { border-left: 3px solid var(--red); }
+.slip-result-card.has-carry { border-left: 3px solid var(--orange); }
+.slip-result-card.all-ok { border-left: 3px solid var(--green); }
+.src-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
+.src-name { font-size: 0.88rem; font-weight: 800; color: var(--text); }
+.src-matrik { font-size: 0.72rem; color: var(--text2); margin-top: 2px; }
+.src-gpa { font-size: 1.8rem; font-weight: 900; }
+.src-courses { display: flex; flex-direction: column; gap: 4px; margin-top: 8px; }
+.src-course-row { display: flex; justify-content: space-between; align-items: center; font-size: 0.76rem; padding: 3px 0; border-bottom: 1px solid var(--border); }
+.src-course-row:last-child { border-bottom: none; }
+
+/* === SEM TABS === */
+.sem-tabs { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+.sem-tab-btn { padding: 6px 16px; border-radius: 20px; border: 1px solid var(--border); background: var(--surface2); color: var(--text2); font-size: 0.8rem; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+.sem-tab-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
 
 @media(max-width:768px){
   .header { flex-wrap: wrap; gap: 10px; }
@@ -214,7 +272,7 @@ select.sel:focus { border-color: var(--accent); }
     </div>
   </div>
   <div class="header-right">
-    <div class="badge-sem">◈ SEMESTER 1 &nbsp;|&nbsp; SESI II 2025/2026</div>
+    <div class="badge-sem" id="badge-sem">◈ SEMESTER 1 &nbsp;|&nbsp; SESI II 2025/2026</div>
     <button class="theme-btn" onclick="toggleTheme()">
       <span id="theme-icon">☀️</span> <span id="theme-txt">Light Mode</span>
     </button>
@@ -227,19 +285,20 @@ select.sel:focus { border-color: var(--accent); }
   <div class="nav-item" onclick="showTab('pelajar',this)">🛡️ Semua Pelajar</div>
   <div class="nav-item" onclick="showTab('profil',this)">👤 Profil Pelajar</div>
   <div class="nav-item" onclick="showTab('risiko',this)">☠️ Pelajar Berisiko</div>
-  <div class="nav-item" onclick="showTab('sem2',this)">📋 Cadangan Sem 2</div>
+  <div class="nav-item" onclick="showTab('cadangan',this)">📋 Cadangan Kursus</div>
+  <div class="nav-item" onclick="showTab('slip',this)">📤 Analisis Slip</div>
 </div>
 
 <div class="main">
 
 <!-- ===== RINGKASAN ===== -->
 <div id="tab-ringkasan" class="tab active">
-  <div class="stat-row">
+  <div class="stat-row" id="stat-row-ringkasan">
     <div class="stat-card"><div class="stat-val cyan">23</div><div class="stat-lbl">⚡ Jumlah Pelajar</div></div>
     <div class="stat-card green"><div class="stat-val green">23</div><div class="stat-lbl">✅ Data Lengkap</div></div>
-    <div class="stat-card gold"><div class="stat-val gold">5</div><div class="stat-lbl">🏆 Anugerah Ketua Jabatan</div></div>
-    <div class="stat-card red"><div class="stat-val red">4</div><div class="stat-lbl">☠️ Ada Kursus Gagal C1</div></div>
-    <div class="stat-card orange"><div class="stat-val orange">3.09</div><div class="stat-lbl">📊 GPA Purata Kelas</div></div>
+    <div class="stat-card gold"><div class="stat-val gold" id="stat-anugerah">5</div><div class="stat-lbl">🏆 Anugerah Ketua Jabatan</div></div>
+    <div class="stat-card red"><div class="stat-val red" id="stat-gagal">4</div><div class="stat-lbl">☠️ Ada Kursus Gagal C1</div></div>
+    <div class="stat-card orange"><div class="stat-val orange" id="stat-gpa-avg">3.09</div><div class="stat-lbl">📊 GPA Purata Kelas</div></div>
     <div class="stat-card purple"><div class="stat-val" style="color:#a78bfa;">21</div><div class="stat-lbl">💊 Pelajar Remedial</div></div>
   </div>
 
@@ -272,11 +331,6 @@ select.sel:focus { border-color: var(--accent); }
             <div class="dist-lbl">🔴 &lt; 2.00</div>
             <div class="dist-bar-bg"><div class="dist-bar-fill" style="width:1%;background:#ff4757;"></div></div>
             <div class="dist-cnt" style="color:var(--text2);">0 pelajar</div>
-          </div>
-          <div class="dist-row">
-            <div class="dist-lbl">❓ Tiada Data</div>
-            <div class="dist-bar-bg"><div class="dist-bar-fill" style="width:5%;background:#4a5568;">5%</div></div>
-            <div class="dist-cnt" style="color:var(--text2);">1 pelajar</div>
           </div>
         </div>
       </div>
@@ -382,116 +436,226 @@ select.sel:focus { border-color: var(--accent); }
 <div id="tab-risiko" class="tab">
   <div class="alert alert-red">
     <div class="alert-icon">☠️</div>
-    <div class="alert-body"><strong>Pelajar Dengan Kursus Gagal C1 — Wajib Ulang Semester 2</strong><p>Berdasarkan Buku Panduan Peperiksaan Politeknik: Kursus gagal kali pertama (C1) mesti diulang semester berikutnya. Gagal kali ke-2 (C2) — berisiko penamatan pengajian.</p></div>
+    <div class="alert-body"><strong>Pelajar Dengan Kursus Gagal C1 — Wajib Ulang Semester Berikutnya</strong><p>Berdasarkan Buku Panduan Peperiksaan Politeknik: Kursus gagal kali pertama (C1) mesti diulang semester berikutnya. Gagal kali ke-2 (C2) — berisiko penamatan pengajian.</p></div>
   </div>
-  <div class="panel" style="margin-bottom:18px;">
-    <div class="panel-header"><div class="panel-title"><span>☠️</span> Kursus Gagal C1 (4 pelajar)</div></div>
-    <div class="tbl-wrap">
-      <table>
-        <thead><tr><th>No. Matrik</th><th>Nama Pelajar</th><th>GPA Sem 1</th><th>Kursus Gagal (C1)</th><th>Kali</th><th>Risiko</th></tr></thead>
-        <tbody>
-          <tr><td><strong>05DEP25F2003</strong></td><td>Berenden Christina Ngau</td><td><span class="b b-yellow">2.64</span></td><td><span class="b b-red">DEE10133 Measurement Devices</span></td><td>C1</td><td><span class="b b-yellow">⚠️ Pantau</span></td></tr>
-          <tr><td><strong>05DEP25F2017</strong></td><td>Mohammad Noorafizan bin Jalah</td><td><span class="b b-orange">2.31</span></td><td><span class="b b-red">DBS10042</span> &nbsp; <span class="b b-red">DEE10133</span></td><td>C1 (2 kursus)</td><td><span class="b b-red">🔴 Pantau Rapat</span></td></tr>
-          <tr><td><strong>05DEP25F2025</strong></td><td>Mohammad Fitri Hartono</td><td><span class="b b-orange">2.23</span></td><td><span class="b b-red">DBS10042</span> &nbsp; <span class="b b-red">DEE10133</span></td><td>C1 (2 kursus)</td><td><span class="b b-red">🔴 Pantau Rapat</span></td></tr>
-          <tr><td><strong>05DEP25F2028</strong></td><td>Febian Fabregas Anak Fredrick</td><td><span class="b b-yellow">2.67</span></td><td><span class="b b-red">DEE10133</span> &nbsp; <span class="b b-red">DET10103</span></td><td>C1 (2 kursus)</td><td><span class="b b-yellow">⚠️ Pantau</span></td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <div class="alert alert-yellow">
-    <div class="alert-icon">⚠️</div>
-    <div class="alert-body"><strong>GPA Rendah (2.00–2.49) — Perlu Dipantau</strong><p>Jika GPA jatuh bawah 2.00 DUA semester berturut-turut, pelajar berisiko penamatan pengajian.</p></div>
-  </div>
-  <div class="panel" style="margin-bottom:18px;">
-    <div class="tbl-wrap">
-      <table>
-        <thead><tr><th>No. Matrik</th><th>Nama</th><th>GPA Sem 1</th><th>GPA &lt; 2.00 (kali)</th><th>Tindakan</th></tr></thead>
-        <tbody>
-          <tr><td><strong>05DEP25F2017</strong></td><td>Mohammad Noorafizan bin Jalah</td><td><span class="b b-orange">2.31</span></td><td>0 kali</td><td style="font-size:0.78rem;color:var(--text2);">Pantau GPA Sem 2 — jangan biarkan jatuh bawah 2.00</td></tr>
-          <tr><td><strong>05DEP25F2025</strong></td><td>Mohammad Fitri Hartono</td><td><span class="b b-orange">2.23</span></td><td>0 kali</td><td style="font-size:0.78rem;color:var(--text2);">Pantau rapat — GPA paling rendah dalam kelas</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
+  <div id="risiko-body"></div>
 </div>
 
-<!-- ===== CADANGAN SEM 2 ===== -->
-<div id="tab-sem2" class="tab">
+<!-- ===== CADANGAN KURSUS ===== -->
+<div id="tab-cadangan" class="tab">
   <div class="toolbar">
-    <select class="sel" id="sel-sem2" onchange="showSem2(this.value)" style="width:380px;font-size:0.88rem;">
+    <select class="sel" id="sel-cadangan" onchange="showCadangan(this.value)" style="width:380px;font-size:0.88rem;">
       <option value="">-- Pilih Pelajar --</option>
     </select>
   </div>
-  <div id="sem2-out">
-    <div class="empty"><div class="ico">📋</div><p>Pilih pelajar untuk lihat cadangan kursus Semester 2</p></div>
+  <div id="cadangan-out">
+    <div class="empty"><div class="ico">📋</div><p>Pilih pelajar untuk lihat cadangan kursus</p></div>
+  </div>
+</div>
+
+<!-- ===== ANALISIS SLIP ===== -->
+<div id="tab-slip" class="tab">
+  <div class="alert alert-cyan">
+    <div class="alert-icon">📤</div>
+    <div class="alert-body">
+      <strong>Upload Slip Keputusan — Batch Processing</strong>
+      <p>Pilih semua slip PDF sekaligus (Ctrl+A). Sistem akan auto-detect No. Matrik, parse gred, kira GPA dan kemaskini cadangan kursus semester berikutnya secara automatik. Had kredit maksimum: <strong>20 kredit/semester</strong>. Kursus yang tidak muat akan di-carry forward sebagai 🔴 PRIORITI semester depan.</p>
+    </div>
+  </div>
+
+  <!-- Drop Zone -->
+  <div class="drop-zone" id="drop-zone" onclick="document.getElementById('file-input').click()"
+       ondragover="event.preventDefault();this.classList.add('drag-over')"
+       ondragleave="this.classList.remove('drag-over')"
+       ondrop="handleDrop(event)">
+    <div class="drop-zone-icon">🗂️</div>
+    <div class="drop-zone-title">Drag &amp; Drop Slip PDF Di Sini</div>
+    <div class="drop-zone-sub">atau klik untuk pilih fail — sokong multiple files sekaligus</div>
+    <button class="btn-upload" onclick="event.stopPropagation();document.getElementById('file-input').click()">
+      📂 Pilih Fail PDF
+    </button>
+    <input type="file" id="file-input" accept=".pdf" multiple style="display:none" onchange="handleFiles(this.files)">
+  </div>
+
+  <!-- Progress -->
+  <div class="progress-section" id="progress-section" style="display:none;">
+    <div class="panel">
+      <div class="panel-body">
+        <div class="progress-title" id="progress-title">Memproses slip...</div>
+        <div class="progress-track"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+        <div class="progress-sub" id="progress-sub">0 / 0 fail diproses</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Log -->
+  <div id="slip-log-wrap" style="display:none;">
+    <div class="panel">
+      <div class="panel-header">
+        <div class="panel-title"><span>◈</span> Log Pemprosesan</div>
+        <button class="btn-upload" style="padding:5px 12px;font-size:0.75rem;" onclick="applySlipUpdates()">✅ Simpan & Kemaskini Dashboard</button>
+      </div>
+      <div class="panel-body">
+        <div class="slip-log" id="slip-log"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Results Grid -->
+  <div id="slip-results-wrap" style="display:none;">
+    <div class="panel-header" style="padding:14px 0 10px 0;">
+      <div class="panel-title"><span>◈</span> Analisis Keputusan</div>
+    </div>
+    <div class="slip-results-grid" id="slip-results-grid"></div>
   </div>
 </div>
 
 </div><!-- /main -->
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script>
-// ===================== DATA =====================
+// PDF.js worker
+if(typeof pdfjsLib !== 'undefined'){
+  pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+}
+
+// ===================== CONSTANTS =====================
+const MAX_KREDIT = 20;
+
+// ===================== STUDY PLAN DATA =====================
+const STUDY_PLAN = {
+  Standard: {
+    1:[
+      {k:"DUE10062",n:"Technical English I",kr:2,j:"Compulsory",pr:null},
+      {k:"MPU21072",n:"Penghayatan Etika dan Peradaban",kr:2,j:"Compulsory",pr:null},
+      {k:"MPU24XX1",n:"Ko-Kurikulum 1",kr:1,j:"Compulsory",pr:null},
+      {k:"DUW10042",n:"Occupational Safety & Health for Engineering",kr:2,j:"Compulsory",pr:null},
+      {k:"DBM10163",n:"Engineering Mathematics 1",kr:3,j:"Common Core",pr:null},
+      {k:"DBS10042",n:"Engineering Science",kr:2,j:"Discipline Core",pr:null},
+      {k:"DEE10133",n:"Measurement Devices",kr:3,j:"Discipline Core",pr:null},
+      {k:"DET10103",n:"Electrical Circuits 1",kr:3,j:"Discipline Core",pr:null},
+    ],
+    2:[
+      {k:"MPU24XX2",n:"Ko-Kurikulum 2",kr:1,j:"Compulsory",pr:null},
+      {k:"DBM20173",n:"Engineering Mathematics 2",kr:3,j:"Common Core",pr:"DBM10163"},
+      {k:"DEE20143",n:"Semiconductors Devices",kr:3,j:"Discipline Core",pr:null},
+      {k:"DEE20153",n:"Digital Electronics",kr:3,j:"Discipline Core",pr:null},
+      {k:"DET10112",n:"Electrical Wiring",kr:2,j:"Discipline Core",pr:null},
+      {k:"DET20123",n:"Electrical Circuits 2",kr:3,j:"Discipline Core",pr:"DET10103"},
+    ],
+    3:[
+      {k:"DUE30072",n:"Technical English 2",kr:2,j:"Compulsory",pr:null},
+      {k:"MPU22071",n:"Kursus Integriti dan Antirasuah",kr:1,j:"Compulsory",pr:null},
+      {k:"DBM30193",n:"Electrical Engineering Mathematics",kr:3,j:"Common Core",pr:"DBM20173"},
+      {k:"DEC30252",n:"Internet of Things Devices Applications",kr:2,j:"Specialization",pr:null},
+      {k:"DEE30163",n:"Electronic Circuits",kr:3,j:"Discipline Core",pr:null},
+      {k:"DEE30172",n:"Electronic Equipment Diagnostic",kr:2,j:"Discipline Core",pr:"DEE20143"},
+      {k:"DEE30191",n:"Electronic Computer Aided Design",kr:1,j:"Discipline Core",pr:null},
+    ],
+  },
+  Remedial: {
+    1:[
+      {k:"DUE10062",n:"Technical English I",kr:2,j:"Compulsory",pr:null},
+      {k:"MPU21072",n:"Penghayatan Etika dan Peradaban",kr:2,j:"Compulsory",pr:null},
+      {k:"MPU24XX1",n:"Ko-Kurikulum 1",kr:1,j:"Compulsory",pr:null},
+      {k:"DUW10042",n:"Occupational Safety & Health for Engineering",kr:2,j:"Compulsory",pr:null},
+      {k:"DBM10252",n:"Basic Mathematics",kr:0,j:"Compulsory",pr:null},
+      {k:"DBS10042",n:"Engineering Science",kr:2,j:"Discipline Core",pr:null},
+      {k:"DEE10133",n:"Measurement Devices",kr:3,j:"Discipline Core",pr:null},
+      {k:"DET10103",n:"Electrical Circuits 1",kr:3,j:"Discipline Core",pr:null},
+    ],
+    2:[
+      {k:"MPU24XX2",n:"Ko-Kurikulum 2",kr:1,j:"Compulsory",pr:null},
+      {k:"DBM10163",n:"Engineering Mathematics 1",kr:3,j:"Common Core",pr:"DBM10252"},
+      {k:"DEE20143",n:"Semiconductors Devices",kr:3,j:"Discipline Core",pr:null},
+      {k:"DEE20153",n:"Digital Electronics",kr:3,j:"Discipline Core",pr:null},
+      {k:"DET10112",n:"Electrical Wiring",kr:2,j:"Discipline Core",pr:null},
+      {k:"DET20123",n:"Electrical Circuits 2",kr:3,j:"Discipline Core",pr:"DET10103"},
+    ],
+    3:[
+      {k:"DUE30072",n:"Technical English 2",kr:2,j:"Compulsory",pr:null},
+      {k:"MPU22071",n:"Kursus Integriti dan Antirasuah",kr:1,j:"Compulsory",pr:null},
+      {k:"DBM20173",n:"Engineering Mathematics 2",kr:3,j:"Common Core",pr:"DBM10163"},
+      {k:"DEC30252",n:"Internet of Things Devices Applications",kr:2,j:"Specialization",pr:null},
+      {k:"DEE30163",n:"Electronic Circuits",kr:3,j:"Discipline Core",pr:null},
+      {k:"DEE30172",n:"Electronic Equipment Diagnostic",kr:2,j:"Discipline Core",pr:"DEE20143"},
+      {k:"DEE30191",n:"Electronic Computer Aided Design",kr:1,j:"Discipline Core",pr:null},
+    ],
+  }
+};
+
+// ===================== PELAJAR DATA =====================
 const P = [
-  {m:"05DEP25F2001",n:"JOSHUA NGANG ANAK FEDRICK",pl:"Standard",kd:16,kk:16,kl:16,g:3.56,a:"Anugerah Ketua Jabatan",t:""},
-  {m:"05DEP25F2002",n:"JERRYCHO DANIEL ANAK JEPRY",pl:"Remedial",kd:15,kk:13,kl:13,g:3.54,a:"Anugerah Ketua Jabatan",t:"DBM10163 perlu daftar Sem 2"},
-  {m:"05DEP25F2003",n:"BERENDEN CHRISTINA NGAU",pl:"Remedial",kd:15,kk:13,kl:13,g:2.64,a:"",t:"⚠️ DEE10133 gagal C1 — wajib ulang Sem 2"},
-  {m:"05DEP25F2004",n:"DANIEL MATHIUS ANAK JOHN",pl:"Remedial",kd:13,kk:13,kl:13,g:2.74,a:"",t:"DBM10163 perlu daftar Sem 2"},
-  {m:"05DEP25F2007",n:"MOHAMMAD SYAFIQ AKMAL BIN ABDULLAH",pl:"Remedial",kd:15,kk:13,kl:13,g:2.90,a:"",t:"DBM10163 perlu daftar Sem 2"},
-  {m:"05DEP25F2008",n:"MUHAMAD JADDINIY IZZAT BIN TRESSNO",pl:"Remedial",kd:13,kk:13,kl:13,g:3.11,a:"",t:"DBM10163 perlu daftar Sem 2"},
-  {m:"05DEP25F2009",n:"MUHAMMAD ALFIAN HAFIZAL BIN AHAMAD",pl:"Remedial",kd:15,kk:13,kl:13,g:3.41,a:"",t:"DBM10163 perlu daftar Sem 2"},
-  {m:"05DEP25F2011",n:"CYRIL ISAAC AUGUSTINE",pl:"Remedial",kd:13,kk:13,kl:13,g:3.08,a:"",t:"DBM10163 perlu daftar Sem 2"},
-  {m:"05DEP25F2012",n:"PETERSON GUNTHUR PETERUS",pl:"Remedial",kd:15,kk:13,kl:13,g:3.23,a:"",t:"DBM10163 perlu daftar Sem 2"},
-  {m:"05DEP25F2013",n:"MOHAMMAD AIMAN BIN LET",pl:"Remedial",kd:15,kk:13,kl:13,g:3.28,a:"",t:"DBM10163 perlu daftar Sem 2"},
-  {m:"05DEP25F2014",n:"ABANG ABDURRAHMAN NAYAN BIN ABANG AHMAD RONNIE",pl:"Remedial",kd:15,kk:13,kl:13,g:3.00,a:"",t:"DBM10163 perlu daftar Sem 2"},
-  {m:"05DEP25F2015",n:"MOHAMMAD HAZIQ LUQMAN BIN MOHAMMAD ISMAIL HAIRUL",pl:"Remedial",kd:13,kk:13,kl:13,g:3.85,a:"Anugerah Ketua Jabatan",t:"DBM10163 perlu daftar Sem 2"},
-  {m:"05DEP25F2016",n:"CHEONG WUN SHING",pl:"Remedial",kd:13,kk:13,kl:13,g:3.36,a:"",t:"DBM10163 perlu daftar Sem 2"},
-  {m:"05DEP25F2017",n:"MOHAMMAD NOORAFIZAN BIN JALAH",pl:"Remedial",kd:15,kk:13,kl:11,g:2.31,a:"",t:"⚠️ DBS10042 & DEE10133 gagal C1 — wajib ulang Sem 2. Pantau GPA"},
-  {m:"05DEP25F2018",n:"DERRICK ANAK AUGUSTINE",pl:"Remedial",kd:15,kk:13,kl:13,g:3.41,a:"",t:"DBM10163 perlu daftar Sem 2"},
-  {m:"05DEP25F2019",n:"MUHAMMAD SYAFIQ DANIAL BIN ABDUL GANI",pl:"Remedial",kd:15,kk:13,kl:13,g:2.41,a:"",t:"DBM10163 perlu daftar Sem 2"},
-  {m:"05DEP25F2021",n:"MUHAMMAD MUAZ HAIQAL BIN MUSAINI",pl:"Remedial",kd:15,kk:13,kl:13,g:3.95,a:"Anugerah Ketua Jabatan",t:"DBM10163 perlu daftar Sem 2"},
-  {m:"05DEP25F2023",n:"ANATHASIA MARIA ANAK ALEX",pl:"Remedial",kd:15,kk:13,kl:13,g:2.80,a:"",t:"DBM10163 perlu daftar Sem 2"},
-  {m:"05DEP25F2025",n:"MOHAMMAD FITRI HARTONO",pl:"Remedial",kd:13,kk:13,kl:11,g:2.23,a:"",t:"⚠️ DBS10042 & DEE10133 gagal C1 — wajib ulang Sem 2. Pantau GPA"},
-  {m:"05DEP25F2026",n:"AWANG DANIAL FIDA'IY",pl:"Remedial",kd:13,kk:13,kl:13,g:2.92,a:"",t:"DBM10163 perlu daftar Sem 2"},
-  {m:"05DEP25F2027",n:"CHRIST ANGELO EDWIN",pl:"Standard",kd:18,kk:18,kl:18,g:2.85,a:"",t:"Standard — DBM20173 perlu daftar Sem 2. MPU22212 sudah lulus."},
-  {m:"05DEP25F2028",n:"FEBIAN FABREGAS ANAK FREDRICK",pl:"Remedial",kd:13,kk:13,kl:11,g:2.67,a:"",t:"⚠️ DEE10133 & DET10103 gagal C1 — wajib ulang Sem 2"},
-  {m:"05DEP25F2031",n:"CARL HANSON ANAK RINOS",pl:"Remedial",kd:15,kk:13,kl:13,g:3.59,a:"Anugerah Ketua Jabatan",t:"DBM10163 perlu daftar Sem 2"},
+  {m:"05DEP25F2001",n:"JOSHUA NGANG ANAK FEDRICK",pl:"Standard",kd:16,kk:16,kl:16,sems:[{sem:1,g:3.56}],a:"Anugerah Ketua Jabatan",t:"",deferred:[]},
+  {m:"05DEP25F2002",n:"JERRYCHO DANIEL ANAK JEPRY",pl:"Remedial",kd:15,kk:13,kl:13,sems:[{sem:1,g:3.54}],a:"Anugerah Ketua Jabatan",t:"DBM10163 perlu daftar Sem 2",deferred:[]},
+  {m:"05DEP25F2003",n:"BERENDEN CHRISTINA NGAU",pl:"Remedial",kd:15,kk:13,kl:13,sems:[{sem:1,g:2.64}],a:"",t:"⚠️ DEE10133 gagal C1 — wajib ulang Sem 2",deferred:[]},
+  {m:"05DEP25F2004",n:"DANIEL MATHIUS ANAK JOHN",pl:"Remedial",kd:13,kk:13,kl:13,sems:[{sem:1,g:2.74}],a:"",t:"DBM10163 perlu daftar Sem 2",deferred:[]},
+  {m:"05DEP25F2007",n:"MOHAMMAD SYAFIQ AKMAL BIN ABDULLAH",pl:"Remedial",kd:15,kk:13,kl:13,sems:[{sem:1,g:2.90}],a:"",t:"DBM10163 perlu daftar Sem 2",deferred:[]},
+  {m:"05DEP25F2008",n:"MUHAMAD JADDINIY IZZAT BIN TRESSNO",pl:"Remedial",kd:13,kk:13,kl:13,sems:[{sem:1,g:3.11}],a:"",t:"DBM10163 perlu daftar Sem 2",deferred:[]},
+  {m:"05DEP25F2009",n:"MUHAMMAD ALFIAN HAFIZAL BIN AHAMAD",pl:"Remedial",kd:15,kk:13,kl:13,sems:[{sem:1,g:3.41}],a:"",t:"DBM10163 perlu daftar Sem 2",deferred:[]},
+  {m:"05DEP25F2011",n:"CYRIL ISAAC AUGUSTINE",pl:"Remedial",kd:13,kk:13,kl:13,sems:[{sem:1,g:3.08}],a:"",t:"DBM10163 perlu daftar Sem 2",deferred:[]},
+  {m:"05DEP25F2012",n:"PETERSON GUNTHUR PETERUS",pl:"Remedial",kd:15,kk:13,kl:13,sems:[{sem:1,g:3.23}],a:"",t:"DBM10163 perlu daftar Sem 2",deferred:[]},
+  {m:"05DEP25F2013",n:"MOHAMMAD AIMAN BIN LET",pl:"Remedial",kd:15,kk:13,kl:13,sems:[{sem:1,g:3.28}],a:"",t:"DBM10163 perlu daftar Sem 2",deferred:[]},
+  {m:"05DEP25F2014",n:"ABANG ABDURRAHMAN NAYAN BIN ABANG AHMAD RONNIE",pl:"Remedial",kd:15,kk:13,kl:13,sems:[{sem:1,g:3.00}],a:"",t:"DBM10163 perlu daftar Sem 2",deferred:[]},
+  {m:"05DEP25F2015",n:"MOHAMMAD HAZIQ LUQMAN BIN MOHAMMAD ISMAIL HAIRUL",pl:"Remedial",kd:13,kk:13,kl:13,sems:[{sem:1,g:3.85}],a:"Anugerah Ketua Jabatan",t:"DBM10163 perlu daftar Sem 2",deferred:[]},
+  {m:"05DEP25F2016",n:"CHEONG WUN SHING",pl:"Remedial",kd:13,kk:13,kl:13,sems:[{sem:1,g:3.36}],a:"",t:"DBM10163 perlu daftar Sem 2",deferred:[]},
+  {m:"05DEP25F2017",n:"MOHAMMAD NOORAFIZAN BIN JALAH",pl:"Remedial",kd:15,kk:13,kl:11,sems:[{sem:1,g:2.31}],a:"",t:"⚠️ DBS10042 & DEE10133 gagal C1 — wajib ulang Sem 2. Pantau GPA",deferred:[]},
+  {m:"05DEP25F2018",n:"DERRICK ANAK AUGUSTINE",pl:"Remedial",kd:15,kk:13,kl:13,sems:[{sem:1,g:3.41}],a:"",t:"DBM10163 perlu daftar Sem 2",deferred:[]},
+  {m:"05DEP25F2019",n:"MUHAMMAD SYAFIQ DANIAL BIN ABDUL GANI",pl:"Remedial",kd:15,kk:13,kl:13,sems:[{sem:1,g:2.41}],a:"",t:"DBM10163 perlu daftar Sem 2",deferred:[]},
+  {m:"05DEP25F2021",n:"MUHAMMAD MUAZ HAIQAL BIN MUSAINI",pl:"Remedial",kd:15,kk:13,kl:13,sems:[{sem:1,g:3.95}],a:"Anugerah Ketua Jabatan",t:"DBM10163 perlu daftar Sem 2",deferred:[]},
+  {m:"05DEP25F2023",n:"ANATHASIA MARIA ANAK ALEX",pl:"Remedial",kd:15,kk:13,kl:13,sems:[{sem:1,g:2.80}],a:"",t:"DBM10163 perlu daftar Sem 2",deferred:[]},
+  {m:"05DEP25F2025",n:"MOHAMMAD FITRI HARTONO",pl:"Remedial",kd:13,kk:13,kl:11,sems:[{sem:1,g:2.23}],a:"",t:"⚠️ DBS10042 & DEE10133 gagal C1 — wajib ulang Sem 2. Pantau GPA",deferred:[]},
+  {m:"05DEP25F2026",n:"AWANG DANIAL FIDA'IY",pl:"Remedial",kd:13,kk:13,kl:13,sems:[{sem:1,g:2.92}],a:"",t:"DBM10163 perlu daftar Sem 2",deferred:[]},
+  {m:"05DEP25F2027",n:"CHRIST ANGELO EDWIN",pl:"Standard",kd:18,kk:18,kl:18,sems:[{sem:1,g:2.85}],a:"",t:"Standard — DBM20173 perlu daftar Sem 2. MPU22212 sudah lulus.",deferred:[]},
+  {m:"05DEP25F2028",n:"FEBIAN FABREGAS ANAK FREDRICK",pl:"Remedial",kd:13,kk:13,kl:11,sems:[{sem:1,g:2.67}],a:"",t:"⚠️ DEE10133 & DET10103 gagal C1 — wajib ulang Sem 2",deferred:[]},
+  {m:"05DEP25F2031",n:"CARL HANSON ANAK RINOS",pl:"Remedial",kd:15,kk:13,kl:13,sems:[{sem:1,g:3.59}],a:"Anugerah Ketua Jabatan",t:"DBM10163 perlu daftar Sem 2",deferred:[]},
 ];
 
 const K = {
-  "05DEP25F2001":[{k:"DBM10163",n:"Engineering Mathematics 1",kr:3,g:"A-",s:"Lulus",c:""},{k:"DBS10042",n:"Engineering Science",kr:2,g:"A-",s:"Lulus",c:""},{k:"DEE10133",n:"Measurement Devices",kr:3,g:"A-",s:"Lulus",c:""},{k:"DET10103",n:"Electrical Circuits 1",kr:3,g:"B",s:"Lulus",c:""},{k:"DUE10062",n:"Technical English 1",kr:2,g:"A",s:"Lulus",c:""},{k:"DUW10042",n:"OSH for Engineering",kr:2,g:"B+",s:"Lulus",c:""},{k:"MPU24041",n:"Ko-Kurikulum 1",kr:1,g:"A+",s:"Lulus",c:"KB134 - Kelas Seni Landskap 1"}],
-  "05DEP25F2002":[{k:"DBM10252",n:"Basic Mathematics",kr:0,g:"A-",s:"Lulus",c:"PRC"},{k:"DBS10042",n:"Engineering Science",kr:2,g:"B",s:"Lulus",c:""},{k:"DEE10133",n:"Measurement Devices",kr:3,g:"A",s:"Lulus",c:""},{k:"DET10103",n:"Electrical Circuits 1",kr:3,g:"B+",s:"Lulus",c:""},{k:"DUE10062",n:"Technical English 1",kr:2,g:"A",s:"Lulus",c:""},{k:"DUW10042",n:"OSH for Engineering",kr:2,g:"B",s:"Lulus",c:""},{k:"MPU24041",n:"Ko-Kurikulum 1",kr:1,g:"A+",s:"Lulus",c:"KB134 - Kelas Seni Landskap 1"}],
-  "05DEP25F2003":[{k:"DBM10252",n:"Basic Mathematics",kr:0,g:"A",s:"Lulus",c:"PRC"},{k:"DBS10042",n:"Engineering Science",kr:2,g:"C",s:"Lulus",c:""},{k:"DEE10133",n:"Measurement Devices",kr:3,g:"C+",s:"Gagal",c:"C1"},{k:"DET10103",n:"Electrical Circuits 1",kr:3,g:"C",s:"Lulus",c:""},{k:"DUE10062",n:"Technical English 1",kr:2,g:"A-",s:"Lulus",c:""},{k:"DUW10042",n:"OSH for Engineering",kr:2,g:"B",s:"Lulus",c:""},{k:"MPU24031",n:"Ko-Kurikulum 1 (Sukan)",kr:1,g:"A+",s:"Lulus",c:"SB105 - Bola Sepak 1"}],
-  "05DEP25F2004":[{k:"DBM10252",n:"Basic Mathematics",kr:0,g:"A",s:"Lulus",c:"PRC"},{k:"DBS10042",n:"Engineering Science",kr:2,g:"C",s:"Lulus",c:""},{k:"DEE10133",n:"Measurement Devices",kr:3,g:"C+",s:"Lulus",c:""},{k:"DET10103",n:"Electrical Circuits 1",kr:3,g:"C",s:"Lulus",c:""},{k:"DUE10062",n:"Technical English 1",kr:2,g:"A",s:"Lulus",c:""},{k:"DUW10042",n:"OSH for Engineering",kr:2,g:"B+",s:"Lulus",c:""},{k:"MPU24031",n:"Ko-Kurikulum 1 (Sukan)",kr:1,g:"A+",s:"Lulus",c:"SB126 - Futsal 1"}],
-  "05DEP25F2007":[{k:"DBM10252",n:"Basic Mathematics",kr:0,g:"A",s:"Lulus",c:"PRC"},{k:"DBS10042",n:"Engineering Science",kr:2,g:"C+",s:"Lulus",c:""},{k:"DEE10133",n:"Measurement Devices",kr:3,g:"B",s:"Lulus",c:""},{k:"DET10103",n:"Electrical Circuits 1",kr:3,g:"C",s:"Lulus",c:""},{k:"DUE10062",n:"Technical English 1",kr:2,g:"A",s:"Lulus",c:""},{k:"DUW10042",n:"OSH for Engineering",kr:2,g:"B",s:"Lulus",c:""},{k:"MPU24041",n:"Ko-Kurikulum 1 (Kelab)",kr:1,g:"A",s:"Lulus",c:"KB101 - Amalan 5S 1"}],
-  "05DEP25F2008":[{k:"DBM10252",n:"Basic Mathematics",kr:0,g:"A",s:"Lulus",c:"PRC"},{k:"DBS10042",n:"Engineering Science",kr:2,g:"C+",s:"Lulus",c:""},{k:"DEE10133",n:"Measurement Devices",kr:3,g:"A-",s:"Lulus",c:""},{k:"DET10103",n:"Electrical Circuits 1",kr:3,g:"B-",s:"Lulus",c:""},{k:"DUE10062",n:"Technical English 1",kr:2,g:"A-",s:"Lulus",c:""},{k:"DUW10042",n:"OSH for Engineering",kr:2,g:"B-",s:"Lulus",c:""},{k:"MPU24031",n:"Ko-Kurikulum 1 (Sukan)",kr:1,g:"A+",s:"Lulus",c:"SB126 - Futsal 1"}],
-  "05DEP25F2009":[{k:"DBM10252",n:"Basic Mathematics",kr:0,g:"A",s:"Lulus",c:"PRC"},{k:"DBS10042",n:"Engineering Science",kr:2,g:"B-",s:"Lulus",c:""},{k:"DEE10133",n:"Measurement Devices",kr:3,g:"A",s:"Lulus",c:""},{k:"DET10103",n:"Electrical Circuits 1",kr:3,g:"B",s:"Lulus",c:""},{k:"DUE10062",n:"Technical English 1",kr:2,g:"A-",s:"Lulus",c:""},{k:"DUW10042",n:"OSH for Engineering",kr:2,g:"B+",s:"Lulus",c:""},{k:"MPU24031",n:"Ko-Kurikulum 1 (Sukan)",kr:1,g:"A+",s:"Lulus",c:"SB126 - Futsal 1"}],
-  "05DEP25F2011":[{k:"DBM10252",n:"Basic Mathematics",kr:0,g:"B",s:"Lulus",c:"PRC"},{k:"DBS10042",n:"Engineering Science",kr:2,g:"B-",s:"Lulus",c:""},{k:"DEE10133",n:"Measurement Devices",kr:3,g:"B+",s:"Lulus",c:""},{k:"DET10103",n:"Electrical Circuits 1",kr:3,g:"C-",s:"Lulus",c:""},{k:"DUE10062",n:"Technical English 1",kr:2,g:"A",s:"Lulus",c:""},{k:"DUW10042",n:"OSH for Engineering",kr:2,g:"A",s:"Lulus",c:""},{k:"MPU24111",n:"Ko-Kurikulum 1 (Askar Wataniah)",kr:1,g:"A-",s:"Lulus",c:""}],
-  "05DEP25F2012":[{k:"DBM10252",n:"Basic Mathematics",kr:0,g:"A",s:"Lulus",c:"PRC"},{k:"DBS10042",n:"Engineering Science",kr:2,g:"B-",s:"Lulus",c:""},{k:"DEE10133",n:"Measurement Devices",kr:3,g:"A-",s:"Lulus",c:""},{k:"DET10103",n:"Electrical Circuits 1",kr:3,g:"B",s:"Lulus",c:""},{k:"DUE10062",n:"Technical English 1",kr:2,g:"A-",s:"Lulus",c:""},{k:"DUW10042",n:"OSH for Engineering",kr:2,g:"B-",s:"Lulus",c:""},{k:"MPU24031",n:"Ko-Kurikulum 1 (Sukan)",kr:1,g:"A+",s:"Lulus",c:"SB105 - Bola Sepak 1"}],
-  "05DEP25F2013":[{k:"DBM10252",n:"Basic Mathematics",kr:0,g:"A",s:"Lulus",c:"PRC"},{k:"DBS10042",n:"Engineering Science",kr:2,g:"B-",s:"Lulus",c:""},{k:"DEE10133",n:"Measurement Devices",kr:3,g:"A-",s:"Lulus",c:""},{k:"DET10103",n:"Electrical Circuits 1",kr:3,g:"B+",s:"Lulus",c:""},{k:"DUE10062",n:"Technical English 1",kr:2,g:"A-",s:"Lulus",c:""},{k:"DUW10042",n:"OSH for Engineering",kr:2,g:"B",s:"Lulus",c:""},{k:"MPU24031",n:"Ko-Kurikulum 1 (Sukan)",kr:1,g:"B",s:"Lulus",c:"SB101 - Badminton 1"}],
-  "05DEP25F2014":[{k:"DBM10252",n:"Basic Mathematics",kr:0,g:"A+",s:"Lulus",c:"PRC"},{k:"DBS10042",n:"Engineering Science",kr:2,g:"C",s:"Lulus",c:""},{k:"DEE10133",n:"Measurement Devices",kr:3,g:"B+",s:"Lulus",c:""},{k:"DET10103",n:"Electrical Circuits 1",kr:3,g:"C+",s:"Lulus",c:""},{k:"DUE10062",n:"Technical English 1",kr:2,g:"A",s:"Lulus",c:""},{k:"DUW10042",n:"OSH for Engineering",kr:2,g:"B",s:"Lulus",c:""},{k:"MPU24031",n:"Ko-Kurikulum 1 (Sukan)",kr:1,g:"A+",s:"Lulus",c:"SB126 - Futsal 1"}],
-  "05DEP25F2015":[{k:"DBM10252",n:"Basic Mathematics",kr:0,g:"B",s:"Lulus",c:"PRC"},{k:"DBS10042",n:"Engineering Science",kr:2,g:"A",s:"Lulus",c:""},{k:"DEE10133",n:"Measurement Devices",kr:3,g:"A",s:"Lulus",c:""},{k:"DET10103",n:"Electrical Circuits 1",kr:3,g:"A",s:"Lulus",c:""},{k:"DUE10062",n:"Technical English 1",kr:2,g:"A",s:"Lulus",c:""},{k:"DUW10042",n:"OSH for Engineering",kr:2,g:"A",s:"Lulus",c:""},{k:"MPU24031",n:"Ko-Kurikulum 1 (Sukan)",kr:1,g:"C",s:"Lulus",c:"SB101 - Badminton 1"}],
-  "05DEP25F2016":[{k:"DBM10252",n:"Basic Mathematics",kr:0,g:"A-",s:"Lulus",c:"PRC"},{k:"DBS10042",n:"Engineering Science",kr:2,g:"B+",s:"Lulus",c:""},{k:"DEE10133",n:"Measurement Devices",kr:3,g:"A-",s:"Lulus",c:""},{k:"DET10103",n:"Electrical Circuits 1",kr:3,g:"B-",s:"Lulus",c:""},{k:"DUE10062",n:"Technical English 1",kr:2,g:"A-",s:"Lulus",c:""},{k:"DUW10042",n:"OSH for Engineering",kr:2,g:"B+",s:"Lulus",c:""},{k:"MPU24041",n:"Ko-Kurikulum 1 (Kelab)",kr:1,g:"A+",s:"Lulus",c:"KB109 - Keusahawanan 1"}],
-  "05DEP25F2017":[{k:"DBM10252",n:"Basic Mathematics",kr:0,g:"C+",s:"Lulus",c:"PRC"},{k:"DBS10042",n:"Engineering Science",kr:2,g:"C-",s:"Gagal",c:"C1"},{k:"DEE10133",n:"Measurement Devices",kr:3,g:"C+",s:"Gagal",c:"C1"},{k:"DET10103",n:"Electrical Circuits 1",kr:3,g:"C-",s:"Lulus",c:""},{k:"DUE10062",n:"Technical English 1",kr:2,g:"A",s:"Lulus",c:""},{k:"DUW10042",n:"OSH for Engineering",kr:2,g:"C",s:"Lulus",c:""},{k:"MPU24031",n:"Ko-Kurikulum 1 (Sukan)",kr:1,g:"B-",s:"Lulus",c:"SB106 - Bola Tampar 1"}],
-  "05DEP25F2018":[{k:"DBM10252",n:"Basic Mathematics",kr:0,g:"A",s:"Lulus",c:"PRC"},{k:"DBS10042",n:"Engineering Science",kr:2,g:"C+",s:"Lulus",c:""},{k:"DEE10133",n:"Measurement Devices",kr:3,g:"A",s:"Lulus",c:""},{k:"DET10103",n:"Electrical Circuits 1",kr:3,g:"B",s:"Lulus",c:""},{k:"DUE10062",n:"Technical English 1",kr:2,g:"A",s:"Lulus",c:""},{k:"DUW10042",n:"OSH for Engineering",kr:2,g:"B+",s:"Lulus",c:""},{k:"MPU24031",n:"Ko-Kurikulum 1 (Sukan)",kr:1,g:"A+",s:"Lulus",c:"SB105 - Bola Sepak 1"}],
-  "05DEP25F2019":[{k:"DBM10252",n:"Basic Mathematics",kr:0,g:"B",s:"Lulus",c:"PRC"},{k:"DBS10042",n:"Engineering Science",kr:2,g:"C",s:"Lulus",c:""},{k:"DEE10133",n:"Measurement Devices",kr:3,g:"C+",s:"Lulus",c:""},{k:"DET10103",n:"Electrical Circuits 1",kr:3,g:"C",s:"Lulus",c:""},{k:"DUE10062",n:"Technical English 1",kr:2,g:"A-",s:"Lulus",c:""},{k:"DUW10042",n:"OSH for Engineering",kr:2,g:"B-",s:"Lulus",c:""},{k:"MPU24041",n:"Ko-Kurikulum 1 (Kelab)",kr:1,g:"C-",s:"Lulus",c:"KB103 - Bahasa Inggeris 1"}],
-  "05DEP25F2021":[{k:"DBM10252",n:"Basic Mathematics",kr:0,g:"A",s:"Lulus",c:"PRC"},{k:"DBS10042",n:"Engineering Science",kr:2,g:"A",s:"Lulus",c:""},{k:"DEE10133",n:"Measurement Devices",kr:3,g:"A",s:"Lulus",c:""},{k:"DET10103",n:"Electrical Circuits 1",kr:3,g:"A",s:"Lulus",c:""},{k:"DUE10062",n:"Technical English 1",kr:2,g:"A",s:"Lulus",c:""},{k:"DUW10042",n:"OSH for Engineering",kr:2,g:"A-",s:"Lulus",c:""},{k:"MPU24031",n:"Ko-Kurikulum 1 (Sukan)",kr:1,g:"A+",s:"Lulus",c:"SB126 - Futsal 1"}],
-  "05DEP25F2023":[{k:"DBM10252",n:"Basic Mathematics",kr:0,g:"B-",s:"Lulus",c:"PRC"},{k:"DBS10042",n:"Engineering Science",kr:2,g:"C+",s:"Lulus",c:""},{k:"DEE10133",n:"Measurement Devices",kr:3,g:"B",s:"Lulus",c:""},{k:"DET10103",n:"Electrical Circuits 1",kr:3,g:"C",s:"Lulus",c:""},{k:"DUE10062",n:"Technical English 1",kr:2,g:"A-",s:"Lulus",c:""},{k:"DUW10042",n:"OSH for Engineering",kr:2,g:"B-",s:"Lulus",c:""},{k:"MPU24041",n:"Ko-Kurikulum 1 (Kelab)",kr:1,g:"A+",s:"Lulus",c:"KB134 - Kelas Seni Landskap 1"}],
-  "05DEP25F2025":[{k:"DBM10252",n:"Basic Mathematics",kr:0,g:"A-",s:"Lulus",c:"PRC"},{k:"DBS10042",n:"Engineering Science",kr:2,g:"D",s:"Gagal",c:"C1"},{k:"DEE10133",n:"Measurement Devices",kr:3,g:"C",s:"Gagal",c:"C1"},{k:"DET10103",n:"Electrical Circuits 1",kr:3,g:"D",s:"Lulus",c:""},{k:"DUE10062",n:"Technical English 1",kr:2,g:"A",s:"Lulus",c:""},{k:"DUW10042",n:"OSH for Engineering",kr:2,g:"B+",s:"Lulus",c:""},{k:"MPU24041",n:"Ko-Kurikulum 1 (Kelab)",kr:1,g:"B+",s:"Lulus",c:"KB103 - Bahasa Inggeris 1"}],
-  "05DEP25F2026":[{k:"DBM10252",n:"Basic Mathematics",kr:0,g:"A",s:"Lulus",c:"PRC"},{k:"DBS10042",n:"Engineering Science",kr:2,g:"C",s:"Lulus",c:""},{k:"DEE10133",n:"Measurement Devices",kr:3,g:"B+",s:"Lulus",c:""},{k:"DET10103",n:"Electrical Circuits 1",kr:3,g:"C",s:"Lulus",c:""},{k:"DUE10062",n:"Technical English 1",kr:2,g:"A",s:"Lulus",c:""},{k:"DUW10042",n:"OSH for Engineering",kr:2,g:"B",s:"Lulus",c:""},{k:"MPU24041",n:"Ko-Kurikulum 1 (Kelab)",kr:1,g:"A",s:"Lulus",c:"KB101 - Amalan 5S 1"}],
-  "05DEP25F2027":[{k:"DBM10163",n:"Engineering Mathematics 1",kr:3,g:"C+",s:"Lulus",c:""},{k:"DBS10042",n:"Engineering Science",kr:2,g:"C",s:"Lulus",c:""},{k:"DEE10133",n:"Measurement Devices",kr:3,g:"B",s:"Lulus",c:""},{k:"DET10103",n:"Electrical Circuits 1",kr:3,g:"B-",s:"Lulus",c:""},{k:"DUE10062",n:"Technical English 1",kr:2,g:"A",s:"Lulus",c:""},{k:"DUW10042",n:"OSH for Engineering",kr:2,g:"B",s:"Lulus",c:""},{k:"MPU22212",n:"Bahasa Kebangsaan A",kr:2,g:"B-",s:"Lulus",c:"Wajib - BM SPM"},{k:"MPU24031",n:"Ko-Kurikulum 1 (Sukan)",kr:1,g:"A+",s:"Lulus",c:"SB126 - Futsal 1"}],
-  "05DEP25F2028":[{k:"DBM10252",n:"Basic Mathematics",kr:0,g:"A+",s:"Lulus",c:"PRC"},{k:"DBS10042",n:"Engineering Science",kr:2,g:"C+",s:"Lulus",c:""},{k:"DEE10133",n:"Measurement Devices",kr:3,g:"C+",s:"Gagal",c:"C1"},{k:"DET10103",n:"Electrical Circuits 1",kr:3,g:"C",s:"Gagal",c:"C1"},{k:"DUE10062",n:"Technical English 1",kr:2,g:"A-",s:"Lulus",c:""},{k:"DUW10042",n:"OSH for Engineering",kr:2,g:"B",s:"Lulus",c:""},{k:"MPU24031",n:"Ko-Kurikulum 1 (Sukan)",kr:1,g:"A-",s:"Lulus",c:"SB118 - Sepak Takraw 1"}],
-  "05DEP25F2031":[{k:"DBM10252",n:"Basic Mathematics",kr:0,g:"A",s:"Lulus",c:"PRC"},{k:"DBS10042",n:"Engineering Science",kr:2,g:"B",s:"Lulus",c:""},{k:"DEE10133",n:"Measurement Devices",kr:3,g:"A",s:"Lulus",c:""},{k:"DET10103",n:"Electrical Circuits 1",kr:3,g:"B+",s:"Lulus",c:""},{k:"DUE10062",n:"Technical English 1",kr:2,g:"A",s:"Lulus",c:""},{k:"DUW10042",n:"OSH for Engineering",kr:2,g:"B+",s:"Lulus",c:""},{k:"MPU24031",n:"Ko-Kurikulum 1 (Sukan)",kr:1,g:"A+",s:"Lulus",c:"SB126 - Futsal 1"}],
+  "05DEP25F2001":{1:[{k:"DBM10163",n:"Engineering Mathematics 1",kr:3,g:"A-",s:"Lulus",c:""},{k:"DBS10042",n:"Engineering Science",kr:2,g:"A-",s:"Lulus",c:""},{k:"DEE10133",n:"Measurement Devices",kr:3,g:"A-",s:"Lulus",c:""},{k:"DET10103",n:"Electrical Circuits 1",kr:3,g:"B",s:"Lulus",c:""},{k:"DUE10062",n:"Technical English 1",kr:2,g:"A",s:"Lulus",c:""},{k:"DUW10042",n:"OSH for Engineering",kr:2,g:"B+",s:"Lulus",c:""},{k:"MPU24041",n:"Ko-Kurikulum 1",kr:1,g:"A+",s:"Lulus",c:"KB134 - Kelas Seni Landskap 1"}]},
+  "05DEP25F2002":{1:[{k:"DBM10252",n:"Basic Mathematics",kr:0,g:"A-",s:"Lulus",c:"PRC"},{k:"DBS10042",n:"Engineering Science",kr:2,g:"B",s:"Lulus",c:""},{k:"DEE10133",n:"Measurement Devices",kr:3,g:"A",s:"Lulus",c:""},{k:"DET10103",n:"Electrical Circuits 1",kr:3,g:"B+",s:"Lulus",c:""},{k:"DUE10062",n:"Technical English 1",kr:2,g:"A",s:"Lulus",c:""},{k:"DUW10042",n:"OSH for Engineering",kr:2,g:"B",s:"Lulus",c:""},{k:"MPU24041",n:"Ko-Kurikulum 1",kr:1,g:"A+",s:"Lulus",c:"KB134 - Kelas Seni Landskap 1"}]},
+  "05DEP25F2003":{1:[{k:"DBM10252",n:"Basic Mathematics",kr:0,g:"A",s:"Lulus",c:"PRC"},{k:"DBS10042",n:"Engineering Science",kr:2,g:"C",s:"Lulus",c:""},{k:"DEE10133",n:"Measurement Devices",kr:3,g:"C+",s:"Gagal",c:"C1"},{k:"DET10103",n:"Electrical Circuits 1",kr:3,g:"C",s:"Lulus",c:""},{k:"DUE10062",n:"Technical English 1",kr:2,g:"A-",s:"Lulus",c:""},{k:"DUW10042",n:"OSH for Engineering",kr:2,g:"B",s:"Lulus",c:""},{k:"MPU24031",n:"Ko-Kurikulum 1 (Sukan)",kr:1,g:"A+",s:"Lulus",c:"SB105 - Bola Sepak 1"}]},
+  "05DEP25F2004":{1:[{k:"DBM10252",n:"Basic Mathematics",kr:0,g:"A",s:"Lulus",c:"PRC"},{k:"DBS10042",n:"Engineering Science",kr:2,g:"C",s:"Lulus",c:""},{k:"DEE10133",n:"Measurement Devices",kr:3,g:"C+",s:"Lulus",c:""},{k:"DET10103",n:"Electrical Circuits 1",kr:3,g:"C",s:"Lulus",c:""},{k:"DUE10062",n:"Technical English 1",kr:2,g:"A",s:"Lulus",c:""},{k:"DUW10042",n:"OSH for Engineering",kr:2,g:"B+",s:"Lulus",c:""},{k:"MPU24031",n:"Ko-Kurikulum 1 (Sukan)",kr:1,g:"A+",s:"Lulus",c:"SB126 - Futsal 1"}]},
+  "05DEP25F2007":{1:[{k:"DBM10252",n:"Basic Mathematics",kr:0,g:"A",s:"Lulus",c:"PRC"},{k:"DBS10042",n:"Engineering Science",kr:2,g:"C+",s:"Lulus",c:""},{k:"DEE10133",n:"Measurement Devices",kr:3,g:"B",s:"Lulus",c:""},{k:"DET10103",n:"Electrical Circuits 1",kr:3,g:"C",s:"Lulus",c:""},{k:"DUE10062",n:"Technical English 1",kr:2,g:"A",s:"Lulus",c:""},{k:"DUW10042",n:"OSH for Engineering",kr:2,g:"B",s:"Lulus",c:""},{k:"MPU24041",n:"Ko-Kurikulum 1 (Kelab)",kr:1,g:"A",s:"Lulus",c:"KB101 - Amalan 5S 1"}]},
+  "05DEP25F2008":{1:[{k:"DBM10252",n:"Basic Mathematics",kr:0,g:"A",s:"Lulus",c:"PRC"},{k:"DBS10042",n:"Engineering Science",kr:2,g:"C+",s:"Lulus",c:""},{k:"DEE10133",n:"Measurement Devices",kr:3,g:"A-",s:"Lulus",c:""},{k:"DET10103",n:"Electrical Circuits 1",kr:3,g:"B-",s:"Lulus",c:""},{k:"DUE10062",n:"Technical English 1",kr:2,g:"A-",s:"Lulus",c:""},{k:"DUW10042",n:"OSH for Engineering",kr:2,g:"B-",s:"Lulus",c:""},{k:"MPU24031",n:"Ko-Kurikulum 1 (Sukan)",kr:1,g:"A+",s:"Lulus",c:"SB126 - Futsal 1"}]},
+  "05DEP25F2009":{1:[{k:"DBM10252",n:"Basic Mathematics",kr:0,g:"A",s:"Lulus",c:"PRC"},{k:"DBS10042",n:"Engineering Science",kr:2,g:"B-",s:"Lulus",c:""},{k:"DEE10133",n:"Measurement Devices",kr:3,g:"A",s:"Lulus",c:""},{k:"DET10103",n:"Electrical Circuits 1",kr:3,g:"B",s:"Lulus",c:""},{k:"DUE10062",n:"Technical English 1",kr:2,g:"A-",s:"Lulus",c:""},{k:"DUW10042",n:"OSH for Engineering",kr:2,g:"B+",s:"Lulus",c:""},{k:"MPU24031",n:"Ko-Kurikulum 1 (Sukan)",kr:1,g:"A+",s:"Lulus",c:"SB126 - Futsal 1"}]},
+  "05DEP25F2011":{1:[{k:"DBM10252",n:"Basic Mathematics",kr:0,g:"B",s:"Lulus",c:"PRC"},{k:"DBS10042",n:"Engineering Science",kr:2,g:"B-",s:"Lulus",c:""},{k:"DEE10133",n:"Measurement Devices",kr:3,g:"B+",s:"Lulus",c:""},{k:"DET10103",n:"Electrical Circuits 1",kr:3,g:"C-",s:"Lulus",c:""},{k:"DUE10062",n:"Technical English 1",kr:2,g:"A",s:"Lulus",c:""},{k:"DUW10042",n:"OSH for Engineering",kr:2,g:"A",s:"Lulus",c:""},{k:"MPU24111",n:"Ko-Kurikulum 1 (Askar Wataniah)",kr:1,g:"A-",s:"Lulus",c:""}]},
+  "05DEP25F2012":{1:[{k:"DBM10252",n:"Basic Mathematics",kr:0,g:"A",s:"Lulus",c:"PRC"},{k:"DBS10042",n:"Engineering Science",kr:2,g:"B-",s:"Lulus",c:""},{k:"DEE10133",n:"Measurement Devices",kr:3,g:"A-",s:"Lulus",c:""},{k:"DET10103",n:"Electrical Circuits 1",kr:3,g:"B",s:"Lulus",c:""},{k:"DUE10062",n:"Technical English 1",kr:2,g:"A-",s:"Lulus",c:""},{k:"DUW10042",n:"OSH for Engineering",kr:2,g:"B-",s:"Lulus",c:""},{k:"MPU24031",n:"Ko-Kurikulum 1 (Sukan)",kr:1,g:"A+",s:"Lulus",c:"SB105 - Bola Sepak 1"}]},
+  "05DEP25F2013":{1:[{k:"DBM10252",n:"Basic Mathematics",kr:0,g:"A",s:"Lulus",c:"PRC"},{k:"DBS10042",n:"Engineering Science",kr:2,g:"B-",s:"Lulus",c:""},{k:"DEE10133",n:"Measurement Devices",kr:3,g:"A-",s:"Lulus",c:""},{k:"DET10103",n:"Electrical Circuits 1",kr:3,g:"B+",s:"Lulus",c:""},{k:"DUE10062",n:"Technical English 1",kr:2,g:"A-",s:"Lulus",c:""},{k:"DUW10042",n:"OSH for Engineering",kr:2,g:"B",s:"Lulus",c:""},{k:"MPU24031",n:"Ko-Kurikulum 1 (Sukan)",kr:1,g:"B",s:"Lulus",c:"SB101 - Badminton 1"}]},
+  "05DEP25F2014":{1:[{k:"DBM10252",n:"Basic Mathematics",kr:0,g:"A+",s:"Lulus",c:"PRC"},{k:"DBS10042",n:"Engineering Science",kr:2,g:"C",s:"Lulus",c:""},{k:"DEE10133",n:"Measurement Devices",kr:3,g:"B+",s:"Lulus",c:""},{k:"DET10103",n:"Electrical Circuits 1",kr:3,g:"C+",s:"Lulus",c:""},{k:"DUE10062",n:"Technical English 1",kr:2,g:"A",s:"Lulus",c:""},{k:"DUW10042",n:"OSH for Engineering",kr:2,g:"B",s:"Lulus",c:""},{k:"MPU24031",n:"Ko-Kurikulum 1 (Sukan)",kr:1,g:"A+",s:"Lulus",c:"SB126 - Futsal 1"}]},
+  "05DEP25F2015":{1:[{k:"DBM10252",n:"Basic Mathematics",kr:0,g:"B",s:"Lulus",c:"PRC"},{k:"DBS10042",n:"Engineering Science",kr:2,g:"A",s:"Lulus",c:""},{k:"DEE10133",n:"Measurement Devices",kr:3,g:"A",s:"Lulus",c:""},{k:"DET10103",n:"Electrical Circuits 1",kr:3,g:"A",s:"Lulus",c:""},{k:"DUE10062",n:"Technical English 1",kr:2,g:"A",s:"Lulus",c:""},{k:"DUW10042",n:"OSH for Engineering",kr:2,g:"A",s:"Lulus",c:""},{k:"MPU24031",n:"Ko-Kurikulum 1 (Sukan)",kr:1,g:"C",s:"Lulus",c:"SB101 - Badminton 1"}]},
+  "05DEP25F2016":{1:[{k:"DBM10252",n:"Basic Mathematics",kr:0,g:"A-",s:"Lulus",c:"PRC"},{k:"DBS10042",n:"Engineering Science",kr:2,g:"B+",s:"Lulus",c:""},{k:"DEE10133",n:"Measurement Devices",kr:3,g:"A-",s:"Lulus",c:""},{k:"DET10103",n:"Electrical Circuits 1",kr:3,g:"B-",s:"Lulus",c:""},{k:"DUE10062",n:"Technical English 1",kr:2,g:"A-",s:"Lulus",c:""},{k:"DUW10042",n:"OSH for Engineering",kr:2,g:"B+",s:"Lulus",c:""},{k:"MPU24041",n:"Ko-Kurikulum 1 (Kelab)",kr:1,g:"A+",s:"Lulus",c:"KB109 - Keusahawanan 1"}]},
+  "05DEP25F2017":{1:[{k:"DBM10252",n:"Basic Mathematics",kr:0,g:"C+",s:"Lulus",c:"PRC"},{k:"DBS10042",n:"Engineering Science",kr:2,g:"C-",s:"Gagal",c:"C1"},{k:"DEE10133",n:"Measurement Devices",kr:3,g:"C+",s:"Gagal",c:"C1"},{k:"DET10103",n:"Electrical Circuits 1",kr:3,g:"C-",s:"Lulus",c:""},{k:"DUE10062",n:"Technical English 1",kr:2,g:"A",s:"Lulus",c:""},{k:"DUW10042",n:"OSH for Engineering",kr:2,g:"C",s:"Lulus",c:""},{k:"MPU24031",n:"Ko-Kurikulum 1 (Sukan)",kr:1,g:"B-",s:"Lulus",c:"SB106 - Bola Tampar 1"}]},
+  "05DEP25F2018":{1:[{k:"DBM10252",n:"Basic Mathematics",kr:0,g:"A",s:"Lulus",c:"PRC"},{k:"DBS10042",n:"Engineering Science",kr:2,g:"C+",s:"Lulus",c:""},{k:"DEE10133",n:"Measurement Devices",kr:3,g:"A",s:"Lulus",c:""},{k:"DET10103",n:"Electrical Circuits 1",kr:3,g:"B",s:"Lulus",c:""},{k:"DUE10062",n:"Technical English 1",kr:2,g:"A",s:"Lulus",c:""},{k:"DUW10042",n:"OSH for Engineering",kr:2,g:"B+",s:"Lulus",c:""},{k:"MPU24031",n:"Ko-Kurikulum 1 (Sukan)",kr:1,g:"A+",s:"Lulus",c:"SB105 - Bola Sepak 1"}]},
+  "05DEP25F2019":{1:[{k:"DBM10252",n:"Basic Mathematics",kr:0,g:"B",s:"Lulus",c:"PRC"},{k:"DBS10042",n:"Engineering Science",kr:2,g:"C",s:"Lulus",c:""},{k:"DEE10133",n:"Measurement Devices",kr:3,g:"C+",s:"Lulus",c:""},{k:"DET10103",n:"Electrical Circuits 1",kr:3,g:"C",s:"Lulus",c:""},{k:"DUE10062",n:"Technical English 1",kr:2,g:"A-",s:"Lulus",c:""},{k:"DUW10042",n:"OSH for Engineering",kr:2,g:"B-",s:"Lulus",c:""},{k:"MPU24041",n:"Ko-Kurikulum 1 (Kelab)",kr:1,g:"C-",s:"Lulus",c:"KB103 - Bahasa Inggeris 1"}]},
+  "05DEP25F2021":{1:[{k:"DBM10252",n:"Basic Mathematics",kr:0,g:"A",s:"Lulus",c:"PRC"},{k:"DBS10042",n:"Engineering Science",kr:2,g:"A",s:"Lulus",c:""},{k:"DEE10133",n:"Measurement Devices",kr:3,g:"A",s:"Lulus",c:""},{k:"DET10103",n:"Electrical Circuits 1",kr:3,g:"A",s:"Lulus",c:""},{k:"DUE10062",n:"Technical English 1",kr:2,g:"A",s:"Lulus",c:""},{k:"DUW10042",n:"OSH for Engineering",kr:2,g:"A-",s:"Lulus",c:""},{k:"MPU24031",n:"Ko-Kurikulum 1 (Sukan)",kr:1,g:"A+",s:"Lulus",c:"SB126 - Futsal 1"}]},
+  "05DEP25F2023":{1:[{k:"DBM10252",n:"Basic Mathematics",kr:0,g:"B-",s:"Lulus",c:"PRC"},{k:"DBS10042",n:"Engineering Science",kr:2,g:"C+",s:"Lulus",c:""},{k:"DEE10133",n:"Measurement Devices",kr:3,g:"B",s:"Lulus",c:""},{k:"DET10103",n:"Electrical Circuits 1",kr:3,g:"C",s:"Lulus",c:""},{k:"DUE10062",n:"Technical English 1",kr:2,g:"A-",s:"Lulus",c:""},{k:"DUW10042",n:"OSH for Engineering",kr:2,g:"B-",s:"Lulus",c:""},{k:"MPU24041",n:"Ko-Kurikulum 1 (Kelab)",kr:1,g:"A+",s:"Lulus",c:"KB134 - Kelas Seni Landskap 1"}]},
+  "05DEP25F2025":{1:[{k:"DBM10252",n:"Basic Mathematics",kr:0,g:"A-",s:"Lulus",c:"PRC"},{k:"DBS10042",n:"Engineering Science",kr:2,g:"D",s:"Gagal",c:"C1"},{k:"DEE10133",n:"Measurement Devices",kr:3,g:"C",s:"Gagal",c:"C1"},{k:"DET10103",n:"Electrical Circuits 1",kr:3,g:"D",s:"Lulus",c:""},{k:"DUE10062",n:"Technical English 1",kr:2,g:"A",s:"Lulus",c:""},{k:"DUW10042",n:"OSH for Engineering",kr:2,g:"B+",s:"Lulus",c:""},{k:"MPU24041",n:"Ko-Kurikulum 1 (Kelab)",kr:1,g:"B+",s:"Lulus",c:"KB103 - Bahasa Inggeris 1"}]},
+  "05DEP25F2026":{1:[{k:"DBM10252",n:"Basic Mathematics",kr:0,g:"A",s:"Lulus",c:"PRC"},{k:"DBS10042",n:"Engineering Science",kr:2,g:"C",s:"Lulus",c:""},{k:"DEE10133",n:"Measurement Devices",kr:3,g:"B+",s:"Lulus",c:""},{k:"DET10103",n:"Electrical Circuits 1",kr:3,g:"C",s:"Lulus",c:""},{k:"DUE10062",n:"Technical English 1",kr:2,g:"A",s:"Lulus",c:""},{k:"DUW10042",n:"OSH for Engineering",kr:2,g:"B",s:"Lulus",c:""},{k:"MPU24041",n:"Ko-Kurikulum 1 (Kelab)",kr:1,g:"A",s:"Lulus",c:"KB101 - Amalan 5S 1"}]},
+  "05DEP25F2027":{1:[{k:"DBM10163",n:"Engineering Mathematics 1",kr:3,g:"C+",s:"Lulus",c:""},{k:"DBS10042",n:"Engineering Science",kr:2,g:"C",s:"Lulus",c:""},{k:"DEE10133",n:"Measurement Devices",kr:3,g:"B",s:"Lulus",c:""},{k:"DET10103",n:"Electrical Circuits 1",kr:3,g:"B-",s:"Lulus",c:""},{k:"DUE10062",n:"Technical English 1",kr:2,g:"A",s:"Lulus",c:""},{k:"DUW10042",n:"OSH for Engineering",kr:2,g:"B",s:"Lulus",c:""},{k:"MPU22212",n:"Bahasa Kebangsaan A",kr:2,g:"B-",s:"Lulus",c:"Wajib - BM SPM"},{k:"MPU24031",n:"Ko-Kurikulum 1 (Sukan)",kr:1,g:"A+",s:"Lulus",c:"SB126 - Futsal 1"}]},
+  "05DEP25F2028":{1:[{k:"DBM10252",n:"Basic Mathematics",kr:0,g:"A+",s:"Lulus",c:"PRC"},{k:"DBS10042",n:"Engineering Science",kr:2,g:"C+",s:"Lulus",c:""},{k:"DEE10133",n:"Measurement Devices",kr:3,g:"C+",s:"Gagal",c:"C1"},{k:"DET10103",n:"Electrical Circuits 1",kr:3,g:"C",s:"Gagal",c:"C1"},{k:"DUE10062",n:"Technical English 1",kr:2,g:"A-",s:"Lulus",c:""},{k:"DUW10042",n:"OSH for Engineering",kr:2,g:"B",s:"Lulus",c:""},{k:"MPU24031",n:"Ko-Kurikulum 1 (Sukan)",kr:1,g:"A-",s:"Lulus",c:"SB118 - Sepak Takraw 1"}]},
+  "05DEP25F2031":{1:[{k:"DBM10252",n:"Basic Mathematics",kr:0,g:"A",s:"Lulus",c:"PRC"},{k:"DBS10042",n:"Engineering Science",kr:2,g:"B",s:"Lulus",c:""},{k:"DEE10133",n:"Measurement Devices",kr:3,g:"A",s:"Lulus",c:""},{k:"DET10103",n:"Electrical Circuits 1",kr:3,g:"B+",s:"Lulus",c:""},{k:"DUE10062",n:"Technical English 1",kr:2,g:"A",s:"Lulus",c:""},{k:"DUW10042",n:"OSH for Engineering",kr:2,g:"B+",s:"Lulus",c:""},{k:"MPU24031",n:"Ko-Kurikulum 1 (Sukan)",kr:1,g:"A+",s:"Lulus",c:"SB126 - Futsal 1"}]},
 };
 
-const S2std=[{k:"MPU24XX1",n:"Ko-Kurikulum 2",kr:1,j:"Compulsory",s:"📋 Study Plan"},{k:"DBM20173",n:"Engineering Mathematics 2",kr:3,j:"Common Core",s:"📋 Pre-req: DBM10163 ✅"},{k:"DEE20143",n:"Semiconductors Devices",kr:3,j:"Discipline Core",s:"📋 Study Plan"},{k:"DEE20153",n:"Digital Electronics",kr:3,j:"Discipline Core",s:"📋 Study Plan"},{k:"DET10112",n:"Electrical Wiring",kr:2,j:"Discipline Core",s:"📋 Study Plan"},{k:"DET20123",n:"Electrical Circuits 2",kr:3,j:"Discipline Core",s:"📋 Pre-req: DET10103 ✅"}];
-const S2rem=[{k:"MPU24XX1",n:"Ko-Kurikulum 2",kr:1,j:"Compulsory",s:"📋 Study Plan"},{k:"DBM10163",n:"Engineering Mathematics 1",kr:3,j:"Common Core",s:"📋 Pre-req: DBM10252 PRC ✅"},{k:"DEE20143",n:"Semiconductors Devices",kr:3,j:"Discipline Core",s:"📋 Study Plan"},{k:"DEE20153",n:"Digital Electronics",kr:3,j:"Discipline Core",s:"📋 Study Plan"},{k:"DET10112",n:"Electrical Wiring",kr:2,j:"Discipline Core",s:"📋 Study Plan"},{k:"DET20123",n:"Electrical Circuits 2",kr:3,j:"Discipline Core",s:"📋 Pre-req: DET10103 ✅"}];
-
 // ===================== HELPERS =====================
-function fl(m){ return (K[m]||[]).filter(x=>x.s==="Gagal"); }
+function getLatestSem(p){ return Math.max(...p.sems.map(s=>s.sem)); }
+function getLatestGPA(p){ const ls=getLatestSem(p); const s=p.sems.find(x=>x.sem===ls); return s?s.g:null; }
+function getCGPA(p){
+  const valid=p.sems.filter(s=>s.g!==null&&s.kk);
+  if(!valid.length){ const g=getLatestGPA(p); return g; }
+  // weighted CGPA
+  let tm=0,tk=0;
+  p.sems.forEach(s=>{ if(s.g!==null&&s.kk){ tm+=s.g*s.kk; tk+=s.kk; } });
+  return tk>0?parseFloat((tm/tk).toFixed(2)):getLatestGPA(p);
+}
+function fl(m,sem){
+  const ks=K[m];
+  if(!ks) return [];
+  const semKs=sem?ks[sem]:Object.values(ks).flat();
+  return (semKs||[]).filter(x=>x.s==="Gagal");
+}
 function gc(g){
-  if(g===null) return 'var(--text2)';
+  if(g===null||g===undefined) return 'var(--text2)';
   if(g>=3.5) return 'var(--gold)';
   if(g>=3.0) return 'var(--green)';
   if(g>=2.5) return 'var(--yellow)';
@@ -499,7 +663,7 @@ function gc(g){
   return 'var(--red)';
 }
 function gb(g){
-  if(g===null) return '<span class="b b-gray">Tiada Data</span>';
+  if(g===null||g===undefined) return '<span class="b b-gray">Tiada Data</span>';
   if(g>=3.5) return `<span class="b b-gold">🏆 ${g.toFixed(2)}</span>`;
   if(g>=3.0) return `<span class="b b-green">${g.toFixed(2)}</span>`;
   if(g>=2.5) return `<span class="b b-yellow">${g.toFixed(2)}</span>`;
@@ -507,26 +671,89 @@ function gb(g){
   return `<span class="b b-red">${g.toFixed(2)}</span>`;
 }
 
+// Hitung cadangan kursus untuk semester tertentu, dengan had kredit & carry forward
+function buildCadangan(pelajar, targetSem) {
+  const p = pelajar;
+  const plan = STUDY_PLAN[p.pl] || STUDY_PLAN['Remedial'];
+  const planKursus = (plan[targetSem] || []).map(x=>({...x}));
+
+  // Kursus yang pernah lulus (semua semester)
+  const lulusKod = new Set();
+  Object.entries(K[p.m]||{}).forEach(([sem, ks]) => {
+    ks.forEach(k => { if(k.s==='Lulus') lulusKod.add(k.k); });
+  });
+
+  // Kursus gagal semester sebelum ini (perlu ulang)
+  const prevSem = targetSem - 1;
+  const gagalUlang = fl(p.m, prevSem).map(x => ({
+    k: x.k, n: x.n, kr: x.kr,
+    j: "🔁 Wajib Ulang",
+    s: `C1 — Gagal Sem ${prevSem}`,
+    pr: null,
+    prioriti: 1
+  }));
+
+  // Kursus deferred dari semester sebelum
+  const deferred = (p.deferred||[])
+    .filter(d => d.deferredFrom < targetSem && !lulusKod.has(d.k))
+    .map(d => ({...d, j: "🔴 Tertangguh", prioriti: 2}));
+
+  // Kursus plan untuk semester ini (tolak yang sudah lulus atau sudah dalam ulang/deferred)
+  const ulangKod = new Set([...gagalUlang.map(x=>x.k), ...deferred.map(x=>x.k)]);
+  const planFiltered = planKursus
+    .filter(k => !lulusKod.has(k.k) && !ulangKod.has(k.k))
+    .map(k => ({...k, prioriti: k.j==='Compulsory'?3:4}));
+
+  // Susun ikut prioriti: Wajib Ulang > Tertangguh > Compulsory > lain
+  const semua = [...gagalUlang, ...deferred, ...planFiltered];
+  semua.sort((a,b)=>a.prioriti-b.prioriti);
+
+  // Had kredit: potong bila lebih MAX_KREDIT
+  let totalKredit = 0;
+  const ambil = [];
+  const tertangguh = [];
+
+  semua.forEach(k => {
+    const kr = k.kr || 0;
+    if(k.prioriti <= 2) {
+      // Wajib ulang & tertangguh — mesti masuk walau apa pun
+      ambil.push(k);
+      totalKredit += kr;
+    } else {
+      if(totalKredit + kr <= MAX_KREDIT) {
+        ambil.push(k);
+        totalKredit += kr;
+      } else {
+        tertangguh.push({...k, deferredFrom: targetSem});
+      }
+    }
+  });
+
+  return { ambil, tertangguh, totalKredit };
+}
+
 // ===================== RENDER TABLE =====================
 function renderP(data){
   const tb=document.getElementById('tbody-p');
   tb.innerHTML='';
   data.forEach((p,i)=>{
-    const f=fl(p.m);
+    const g = getLatestGPA(p);
+    const ls = getLatestSem(p);
+    const f=fl(p.m,ls);
     let sb='';
-    if(p.g===null) sb='<span class="b b-gray">❓ Tiada Data</span>';
+    if(g===null) sb='<span class="b b-gray">❓ Tiada Data</span>';
     else if(p.a) sb='<span class="b b-gold">🏆 Anugerah</span>';
     else if(f.length>0) sb='<span class="b b-red">☠️ Ada Gagal</span>';
-    else if(p.g>=3.0) sb='<span class="b b-green">✅ Baik</span>';
-    else if(p.g>=2.0) sb='<span class="b b-yellow">⚠️ Pantau</span>';
+    else if(g>=3.0) sb='<span class="b b-green">✅ Baik</span>';
+    else if(g>=2.0) sb='<span class="b b-yellow">⚠️ Pantau</span>';
     else sb='<span class="b b-red">🔴 Risiko</span>';
     tb.innerHTML+=`<tr>
       <td style="color:var(--text2);font-weight:700;">${i+1}</td>
       <td><span style="color:var(--accent);font-weight:700;font-size:0.8rem;">${p.m}</span></td>
       <td style="font-weight:600;">${p.n}</td>
       <td><span class="b ${p.pl==='Standard'?'b-cyan':'b-purple'}">${p.pl}</span></td>
-      <td style="color:var(--text2);">${p.kl!==null?p.kl+' / '+(p.kk||'-'):'—'}</td>
-      <td>${gb(p.g)}</td>
+      <td style="color:var(--text2);">${p.kl!==null?p.kl+' / '+(p.kk||'-'):'—'} <span style="font-size:0.7rem;color:var(--text2);">(Sem ${ls})</span></td>
+      <td>${gb(g)} <span style="font-size:0.7rem;color:var(--text2);">Sem${ls}</span></td>
       <td>${sb}</td>
       <td style="font-size:0.76rem;color:var(--text2);">${p.t||'—'}</td>
     </tr>`;
@@ -538,16 +765,18 @@ function filterP(){
   const gf=document.getElementById('fgpa').value;
   const sf=document.getElementById('fstatus').value;
   let d=P.filter(p=>{
+    const g=getLatestGPA(p);
+    const ls=getLatestSem(p);
     const ms=p.n.toLowerCase().includes(s)||p.m.toLowerCase().includes(s);
     let mg=true;
-    if(gf==='cemerlang') mg=p.g!==null&&p.g>=3.5;
-    else if(gf==='baik') mg=p.g!==null&&p.g>=3.0&&p.g<3.5;
-    else if(gf==='sederhana') mg=p.g!==null&&p.g>=2.5&&p.g<3.0;
-    else if(gf==='pantau') mg=p.g!==null&&p.g>=2.0&&p.g<2.5;
-    else if(gf==='tiada') mg=p.g===null;
+    if(gf==='cemerlang') mg=g!==null&&g>=3.5;
+    else if(gf==='baik') mg=g!==null&&g>=3.0&&g<3.5;
+    else if(gf==='sederhana') mg=g!==null&&g>=2.5&&g<3.0;
+    else if(gf==='pantau') mg=g!==null&&g>=2.0&&g<2.5;
+    else if(gf==='tiada') mg=g===null;
     let mst=true;
     if(sf==='anugerah') mst=p.a!=='';
-    else if(sf==='gagal') mst=fl(p.m).length>0;
+    else if(sf==='gagal') mst=fl(p.m,ls).length>0;
     return ms&&mg&&mst;
   });
   renderP(d);
@@ -557,8 +786,10 @@ function filterP(){
 function showProfil(m){
   if(!m) return;
   const p=P.find(x=>x.m===m);
-  const ks=K[m]||[];
-  const f=fl(m);
+  const ls=getLatestSem(p);
+  const g=getLatestGPA(p);
+  const ks=(K[m]&&K[m][ls])||[];
+  const f=fl(m,ls);
   const kg=ks.length===0
     ?'<div class="empty"><div class="ico">📄</div><p>Tiada data kursus</p></div>'
     :'<div class="kursus-grid">'+ks.map(k=>`
@@ -569,9 +800,18 @@ function showProfil(m){
           <span class="b ${k.s==='Gagal'?'b-red':'b-green'}">${k.s==='Gagal'?'❌ Gagal':'✅ Lulus'}</span>
           <span class="b b-cyan">${k.g}</span>
           ${k.c&&k.c!=='PRC'?`<span class="b b-red" style="font-size:0.68rem;">${k.c}</span>`:''}
-          ${k.c?`<span style="font-size:0.72rem;color:var(--text2);">${k.c}</span>`:''}
         </div>
       </div>`).join('')+'</div>';
+
+  // Trend GPA
+  const gpaRows = p.sems.map(s=>`
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
+      <div style="width:60px;font-size:0.78rem;color:var(--text2);">Sem ${s.sem}</div>
+      <div style="flex:1;background:var(--border);border-radius:4px;height:18px;overflow:hidden;">
+        <div style="width:${s.g?((s.g/4)*100).toFixed(0):0}%;height:100%;background:${gc(s.g)};border-radius:4px;"></div>
+      </div>
+      <div style="width:50px;text-align:right;">${gb(s.g)}</div>
+    </div>`).join('');
 
   document.getElementById('profil-out').innerHTML=`
     <div class="profil-wrap">
@@ -581,64 +821,387 @@ function showProfil(m){
           <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px;">
             <span class="b b-cyan">${p.m}</span>
             <span class="b ${p.pl==='Standard'?'b-cyan':'b-purple'}">${p.pl}</span>
-            <span class="b b-green">DEP1A · Sem 1 · 2025/2026</span>
+            <span class="b b-green">DEP1A · Sem ${ls} · 2025/2026</span>
             ${p.a?`<span class="b b-gold">🏆 ${p.a}</span>`:''}
           </div>
         </div>
         <div style="text-align:right;">
-          <div style="font-size:0.72rem;color:var(--text2);text-transform:uppercase;letter-spacing:0.06em;">GPA Semester 1</div>
-          <div class="profil-gpa" style="color:${gc(p.g)};text-shadow:0 0 20px ${gc(p.g)};">${p.g!==null?p.g.toFixed(2):'—'}</div>
+          <div style="font-size:0.72rem;color:var(--text2);text-transform:uppercase;letter-spacing:0.06em;">GPA Semester ${ls}</div>
+          <div class="profil-gpa" style="color:${gc(g)};text-shadow:0 0 20px ${gc(g)};">${g!==null?g.toFixed(2):'—'}</div>
+          ${p.sems.length>1?`<div style="font-size:0.75rem;color:var(--text2);">CGPA: ${getCGPA(p)}</div>`:''}
         </div>
       </div>
       <div class="info-grid">
         <div class="info-item"><div class="lbl">Kredit Daftar</div><div class="val">${p.kd||'—'}</div></div>
         <div class="info-item"><div class="lbl">Kredit Dikira</div><div class="val">${p.kk||'—'}</div></div>
         <div class="info-item"><div class="lbl">Kredit Lulus</div><div class="val">${p.kl||'—'}</div></div>
-        <div class="info-item"><div class="lbl">PNM Kumulatif</div><div class="val">${p.g!==null?p.g.toFixed(2):'—'}</div></div>
+        <div class="info-item"><div class="lbl">CGPA</div><div class="val">${getCGPA(p)||'—'}</div></div>
         <div class="info-item"><div class="lbl">Kursus Gagal</div><div class="val" style="color:${f.length>0?'var(--red)':'var(--green)'};">${f.length>0?f.length+' kursus':'Tiada'}</div></div>
+        ${(p.deferred&&p.deferred.length>0)?`<div class="info-item"><div class="lbl">Kursus Tertangguh</div><div class="val" style="color:var(--orange);">${p.deferred.length} kursus</div></div>`:''}
       </div>
+      ${p.sems.length>1?`<div style="margin-bottom:16px;"><div style="font-size:0.82rem;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">◈ Trend GPA</div>${gpaRows}</div>`:''}
       ${p.t?`<div class="alert alert-yellow" style="margin-bottom:16px;"><div class="alert-icon">📌</div><div class="alert-body"><strong>Tindakan Penasihat</strong><p>${p.t}</p></div></div>`:''}
-      <div style="font-size:0.82rem;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px;">◈ Rekod Kursus — Semester 1</div>
+      ${(p.deferred&&p.deferred.length>0)?`<div class="alert alert-orange" style="margin-bottom:16px;background:rgba(255,107,53,0.08);border:1px solid rgba(255,107,53,0.3);"><div class="alert-icon">⏸️</div><div class="alert-body"><strong>Kursus Tertangguh (Kredit Terlebih)</strong><p>${p.deferred.map(d=>d.k+' '+d.n+' ('+d.kr+' kredit) — carry forward dari Sem '+d.deferredFrom).join(' | ')}</p></div></div>`:''}
+      <div style="font-size:0.82rem;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px;">◈ Rekod Kursus — Semester ${ls}</div>
       ${kg}
     </div>`;
 }
 
-// ===================== SEM 2 =====================
-function showSem2(m){
+// ===================== RISIKO =====================
+function renderRisiko(){
+  const ls_map = {};
+  P.forEach(p=>{ ls_map[p.m]=getLatestSem(p); });
+  const dengan_gagal = P.filter(p=>fl(p.m,ls_map[p.m]).length>0);
+  const gpa_rendah = P.filter(p=>{ const g=getLatestGPA(p); return g!==null&&g>=2.0&&g<2.5; });
+  const deferred_ada = P.filter(p=>p.deferred&&p.deferred.length>0);
+
+  let html='';
+
+  if(dengan_gagal.length>0){
+    html+=`<div class="panel" style="margin-bottom:18px;">
+      <div class="panel-header"><div class="panel-title"><span>☠️</span> Kursus Gagal C1 (${dengan_gagal.length} pelajar)</div></div>
+      <div class="tbl-wrap"><table>
+        <thead><tr><th>No. Matrik</th><th>Nama Pelajar</th><th>GPA</th><th>Kursus Gagal (C1)</th><th>Kali</th><th>Risiko</th></tr></thead>
+        <tbody>${dengan_gagal.map(p=>{
+          const g=getLatestGPA(p);
+          const ls=ls_map[p.m];
+          const f=fl(p.m,ls);
+          return `<tr><td><strong>${p.m}</strong></td><td>${p.n}</td>
+            <td>${gb(g)}</td>
+            <td>${f.map(x=>`<span class="b b-red">${x.k}</span>`).join(' ')}</td>
+            <td>C1 (${f.length} kursus)</td>
+            <td><span class="b ${g<2.5?'b-red':'b-yellow'}">${g<2.5?'🔴 Pantau Rapat':'⚠️ Pantau'}</span></td></tr>`;
+        }).join('')}
+        </tbody>
+      </table></div>
+    </div>`;
+  }
+
+  if(gpa_rendah.length>0){
+    html+=`<div class="alert alert-yellow"><div class="alert-icon">⚠️</div>
+      <div class="alert-body"><strong>GPA Rendah (2.00–2.49) — Perlu Dipantau</strong>
+      <p>Jika GPA jatuh bawah 2.00 DUA semester berturut-turut, pelajar berisiko penamatan pengajian.</p></div></div>
+    <div class="panel" style="margin-bottom:18px;"><div class="tbl-wrap"><table>
+      <thead><tr><th>No. Matrik</th><th>Nama</th><th>GPA</th><th>Tindakan</th></tr></thead>
+      <tbody>${gpa_rendah.map(p=>`<tr>
+        <td><strong>${p.m}</strong></td><td>${p.n}</td><td>${gb(getLatestGPA(p))}</td>
+        <td style="font-size:0.78rem;color:var(--text2);">Pantau rapat — jangan biarkan jatuh bawah 2.00</td></tr>`).join('')}
+      </tbody>
+    </table></div></div>`;
+  }
+
+  if(deferred_ada.length>0){
+    html+=`<div class="alert alert-yellow"><div class="alert-icon">⏸️</div>
+      <div class="alert-body"><strong>Kursus Tertangguh Disebabkan Had Kredit</strong>
+      <p>Kursus-kursus ini tidak dapat didaftarkan kerana melebihi ${MAX_KREDIT} kredit. Wajib didaftarkan semester berikutnya sebagai 🔴 PRIORITI.</p></div></div>
+    <div class="panel" style="margin-bottom:18px;"><div class="tbl-wrap"><table>
+      <thead><tr><th>No. Matrik</th><th>Nama</th><th>Kursus Tertangguh</th><th>Kredit</th><th>Carry Forward Ke</th></tr></thead>
+      <tbody>${deferred_ada.map(p=>p.deferred.map(d=>`<tr>
+        <td><strong>${p.m}</strong></td><td>${p.n}</td>
+        <td><span class="b b-orange">${d.k}</span> ${d.n}</td>
+        <td>${d.kr}</td>
+        <td><span class="b b-red">🔴 Sem ${d.deferredFrom+1}</span></td></tr>`).join('')).join('')}
+      </tbody>
+    </table></div></div>`;
+  }
+
+  if(!html) html=`<div class="alert alert-green"><div class="alert-icon">✅</div><div class="alert-body"><strong>Tiada Isu Risiko</strong><p>Semua pelajar dalam keadaan baik.</p></div></div>`;
+
+  document.getElementById('risiko-body').innerHTML=html;
+}
+
+// ===================== CADANGAN KURSUS =====================
+function showCadangan(m){
   if(!m) return;
   const p=P.find(x=>x.m===m);
-  const f=fl(m);
-  const base=p.pl==='Standard'?[...S2std]:[...S2rem];
-  const ulang=f.map(x=>({k:x.k,n:x.n,kr:x.kr,j:"🔁 Wajib Ulang",s:"C1 — Gagal Kali Pertama"}));
-  const all=[...ulang,...base];
-  const tot=all.reduce((s,c)=>s+(c.kr||0),0);
-  const rows=all.map(c=>`<tr>
+  const ls=getLatestSem(p);
+  const nextSem=ls+1;
+  const { ambil, tertangguh, totalKredit } = buildCadangan(p, nextSem);
+
+  const kreditPct = Math.min(100,(totalKredit/MAX_KREDIT)*100).toFixed(0);
+  const kreditColor = totalKredit>MAX_KREDIT?'var(--red)':totalKredit>=18?'var(--yellow)':'var(--green)';
+
+  const rows=ambil.map(c=>`<tr class="${c.j==='🔴 Tertangguh'?'deferred-row':''}">
     <td><strong style="color:var(--accent);">${c.k}</strong></td>
     <td>${c.n}</td>
     <td style="text-align:center;font-weight:700;">${c.kr}</td>
-    <td><span class="b ${c.j.includes('Ulang')?'b-red':c.j==='Common Core'?'b-cyan':c.j==='Compulsory'?'b-gray':'b-green'}">${c.j}</span></td>
-    <td style="font-size:0.78rem;color:var(--text2);">${c.s}</td>
+    <td><span class="b ${c.j.includes('Ulang')?'b-red':c.j.includes('Tertangguh')?'b-orange':c.j==='Common Core'?'b-cyan':c.j==='Compulsory'?'b-gray':'b-green'}">${c.j}</span></td>
+    <td style="font-size:0.78rem;color:var(--text2);">${c.s||'—'} ${c.pr?'<span class="b b-gray" style="font-size:0.7rem;">Pre-req: '+c.pr+'</span>':''}</td>
   </tr>`).join('');
-  document.getElementById('sem2-out').innerHTML=`
+
+  const deferredSection = tertangguh.length>0?`
+    <div class="alert alert-yellow" style="margin-top:14px;">
+      <div class="alert-icon">⏸️</div>
+      <div class="alert-body">
+        <strong>🔴 ${tertangguh.length} Kursus Tertangguh — Carry Forward ke Sem ${nextSem+1}</strong>
+        <p>Kredit melebihi had ${MAX_KREDIT} kredit. Kursus berikut akan didaftarkan PERTAMA pada Sem ${nextSem+1}:</p>
+        <div style="margin-top:6px;display:flex;flex-wrap:wrap;gap:6px;">
+          ${tertangguh.map(d=>`<span class="b b-orange">⏸️ ${d.k} — ${d.n} (${d.kr} kr)</span>`).join('')}
+        </div>
+      </div>
+    </div>`:'';
+
+  const gagalAlert = ambil.filter(c=>c.j==='🔁 Wajib Ulang').length>0?`
+    <div class="alert alert-red" style="margin-top:14px;">
+      <div class="alert-icon">🚨</div>
+      <div class="alert-body"><strong>Peringatan Penting!</strong>
+      <p>Pelajar mesti daftar semula ${ambil.filter(c=>c.j==='🔁 Wajib Ulang').map(x=>x.k).join(' & ')} Sem ${nextSem}. Gagal sekali lagi (C2) — berisiko PENAMATAN PENGAJIAN.</p></div>
+    </div>`:'';
+
+  document.getElementById('cadangan-out').innerHTML=`
     <div class="rec-wrap">
       <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px;margin-bottom:14px;">
         <div>
-          <div style="font-size:1rem;font-weight:800;color:var(--text);">📋 Cadangan Kursus Semester 2</div>
+          <div style="font-size:1rem;font-weight:800;color:var(--text);">📋 Cadangan Kursus Semester ${nextSem}</div>
           <div style="font-size:0.82rem;color:var(--text2);margin-top:2px;">${p.n} &nbsp;|&nbsp; ${p.m}</div>
         </div>
         <div style="display:flex;gap:6px;flex-wrap:wrap;">
           <span class="b ${p.pl==='Standard'?'b-cyan':'b-purple'}">${p.pl}</span>
-          <span class="b ${p.g>=2?'b-green':'b-red'}">GPA: ${p.g!==null?p.g.toFixed(2):'—'}</span>
-          ${f.length>0?`<span class="b b-red">⚠️ ${f.length} Wajib Ulang</span>`:'<span class="b b-green">✅ Tiada Gagal</span>'}
+          <span class="b ${getLatestGPA(p)>=2?'b-green':'b-red'}">GPA Sem ${ls}: ${getLatestGPA(p)!==null?getLatestGPA(p).toFixed(2):'—'}</span>
+          ${ambil.filter(c=>c.j==='🔁 Wajib Ulang').length>0?`<span class="b b-red">⚠️ ${ambil.filter(c=>c.j==='🔁 Wajib Ulang').length} Wajib Ulang</span>`:'<span class="b b-green">✅ Tiada Gagal</span>'}
+          ${tertangguh.length>0?`<span class="b b-orange">⏸️ ${tertangguh.length} Tertangguh</span>`:''}
+        </div>
+      </div>
+      <div class="kredit-bar-wrap">
+        <div class="kredit-bar-label">
+          <span style="font-size:0.8rem;color:var(--text2);">Jumlah Kredit Sem ${nextSem}</span>
+          <span style="font-weight:700;color:${kreditColor};">${totalKredit} / ${MAX_KREDIT} kredit</span>
+        </div>
+        <div class="kredit-bar-track">
+          <div class="kredit-bar-fill" style="width:${kreditPct}%;background:${kreditColor};"></div>
         </div>
       </div>
       <table class="rec-table">
         <thead><tr><th>Kod</th><th>Nama Kursus</th><th style="text-align:center;">Kredit</th><th>Jenis</th><th>Catatan</th></tr></thead>
         <tbody>${rows}</tbody>
-        <tfoot><tr><td colspan="2">JUMLAH KREDIT SEM 2</td><td style="text-align:center;">${tot}</td><td colspan="2" style="font-size:0.75rem;color:var(--text2);">* Sahkan dengan had beban kredit politeknik</td></tr></tfoot>
+        <tfoot><tr><td colspan="2">JUMLAH KREDIT SEM ${nextSem}</td><td style="text-align:center;">${totalKredit}</td>
+          <td colspan="2" style="font-size:0.75rem;color:var(--text2);">Had maksimum: ${MAX_KREDIT} kredit/semester</td></tr></tfoot>
       </table>
-      ${f.length>0?`<div class="alert alert-red" style="margin-top:14px;"><div class="alert-icon">🚨</div><div class="alert-body"><strong>Peringatan Penting!</strong><p>Pelajar mesti daftar semula ${f.map(x=>x.k).join(' & ')} Sem 2. Gagal sekali lagi (C2) — berisiko PENAMATAN PENGAJIAN.</p></div></div>`:''}
+      ${deferredSection}
+      ${gagalAlert}
     </div>`;
+}
+
+// ===================== SLIP PDF PARSING =====================
+let parsedSlips = [];
+
+async function extractTextFromPDF(file) {
+  if(typeof pdfjsLib === 'undefined') throw new Error('PDF.js tidak dimuatkan');
+  const arrayBuffer = await file.arrayBuffer();
+  const pdf = await pdfjsLib.getDocument({data: arrayBuffer}).promise;
+  let fullText = '';
+  for(let i=1; i<=pdf.numPages; i++){
+    const page = await pdf.getPage(i);
+    const content = await page.getTextContent();
+    fullText += content.items.map(x=>x.str).join(' ') + '\n';
+  }
+  return fullText;
+}
+
+function parseSlipText(text) {
+  const result = { matrik: null, nama: null, sem: null, gpa: null, kursus: [], format: null };
+
+  // Format 1: Slip rasmi (NO.PEND : 05DEP25F2001)
+  const m1 = text.match(/NO\.PEND\s*[:\s]+\s*(05DEP\d{2}F\d{4})/i);
+  if(m1){ result.matrik = m1[1].trim(); result.format='rasmi'; }
+
+  // Format 2: Slip PA (NO. PEND:05DEP25F2001)
+  const m2 = text.match(/NO\.\s*PEND\s*:(05DEP\d{2}F\d{4})/i);
+  if(m2 && !result.matrik){ result.matrik = m2[1].trim(); result.format='pa'; }
+
+  if(!result.matrik) return null;
+
+  // Nama
+  const nm1 = text.match(/NAMA\s*[:\s]+\s*([A-Z][A-Z '\-]+?)(?:\s+NO\.KP|\s+SEMESTER|\n)/i);
+  const nm2 = text.match(/NAMA:([A-Z][A-Z '\-]+?)(?:\s+SEMESTER|$)/im);
+  if(nm1) result.nama = nm1[1].trim();
+  else if(nm2) result.nama = nm2[1].trim();
+
+  // Semester
+  const sm = text.match(/SEMESTER\s*[:\s]*([A-Z]+|[0-9]+)/i);
+  if(sm){
+    const sv = sm[1].trim().toUpperCase();
+    const semMap = {SATU:1,DUA:2,TIGA:3,EMPAT:4,LIMA:5,ENAM:6,'1':1,'2':2,'3':3,'4':4,'5':5,'6':6};
+    result.sem = semMap[sv] || parseInt(sv) || 1;
+  } else { result.sem = 1; }
+
+  // GPA — Format rasmi: ": 3.56" sebelum "Jam Kredit"
+  const gpa1 = text.match(/:\s*([\d]+\.[\d]+)\s*(?:Jam Kredit|PNMHPNM)/);
+  // Format PA: PNM:3.36
+  const gpa2 = text.match(/PNM\s*:([\d]+\.[\d]+)/i);
+  if(gpa1) result.gpa = parseFloat(gpa1[1]);
+  else if(gpa2) result.gpa = parseFloat(gpa2[1]);
+
+  // Kursus — Format PA: "DBM10252  BASIC MATHEMATICS2.0A-3.677.34"  + baris seterusnya "LULUS" atau "GAGAL (C1)"
+  // Format rasmi: "ENGINEERING MATHEMATICS 1DBM101633.0A-3.6711.01"
+  const lines = text.split(/\n|\r/);
+  let i = 0;
+  while(i < lines.length){
+    const line = lines[i].trim();
+    // Format PA: kod di awal
+    const paMatch = line.match(/^([A-Z]{2,3}\d{5,8})\s{2,}(.+?)(\d+\.\d+)([A-F][+\-]?)\s*([\d.]+)\s*([\d.]+)\s*$/);
+    if(paMatch){
+      const kod = paMatch[1].trim();
+      const nama = paMatch[2].trim().replace(/\s+/g,' ');
+      const kr = parseFloat(paMatch[3]);
+      const gred = paMatch[4].trim();
+      // baris berikut: status
+      const nextLine = (lines[i+1]||'').trim().toUpperCase();
+      let status = 'Lulus'; let catatan = '';
+      if(nextLine.includes('GAGAL')){
+        status='Gagal';
+        const c1m = nextLine.match(/C[12]/);
+        catatan = c1m?c1m[0]:'C1';
+        i++;
+      } else if(nextLine.includes('LULUS')||nextLine==='LULUS'){
+        i++;
+      }
+      // PRC check: kr===0 atau ada PRC dalam baris
+      if(kr===0||line.includes('PRC')||(lines[i+1]||'').includes('PRC')) catatan='PRC';
+      result.kursus.push({k:kod,n:nama,kr,g:gred,s:status,c:catatan});
+      i++; continue;
+    }
+    // Format rasmi: nama kursus sebelum kod
+    const rasmiMatch = line.match(/^([A-Z ]+?)([A-Z]{2,3}\d{5,8})(\d+\.\d+)([A-F][+\-]?)\s*([\d.]+)\s*([\d.]+)\s*(C1|C2|PRC)?$/);
+    if(rasmiMatch){
+      const nama = rasmiMatch[1].trim();
+      const kod = rasmiMatch[2].trim();
+      const kr = parseFloat(rasmiMatch[3]);
+      const gred = rasmiMatch[4].trim();
+      let status='Lulus'; let catatan=rasmiMatch[7]||'';
+      if(catatan==='C1'||catatan==='C2') status='Gagal';
+      result.kursus.push({k:kod,n:nama,kr,g:gred,s:status,c:catatan});
+    }
+    i++;
+  }
+
+  return result;
+}
+
+async function handleFiles(files){
+  if(!files||!files.length) return;
+  parsedSlips = [];
+  const arr = Array.from(files);
+  const progressSection = document.getElementById('progress-section');
+  const progressFill = document.getElementById('progress-fill');
+  const progressTitle = document.getElementById('progress-title');
+  const progressSub = document.getElementById('progress-sub');
+  const logWrap = document.getElementById('slip-log-wrap');
+  const log = document.getElementById('slip-log');
+  const resultsWrap = document.getElementById('slip-results-wrap');
+  const resultsGrid = document.getElementById('slip-results-grid');
+
+  progressSection.style.display='block';
+  logWrap.style.display='none';
+  resultsWrap.style.display='none';
+  log.innerHTML='';
+  resultsGrid.innerHTML='';
+
+  let done=0;
+  for(const file of arr){
+    progressTitle.textContent=`Memproses: ${file.name}`;
+    progressSub.textContent=`${done} / ${arr.length} fail diproses`;
+    progressFill.style.width=`${(done/arr.length)*100}%`;
+    try{
+      const text = await extractTextFromPDF(file);
+      const parsed = parseSlipText(text);
+      if(!parsed||!parsed.matrik){
+        log.innerHTML+=`<div class="slip-log-item err"><span>❓</span><span class="sli-name">${file.name}</span><span style="color:var(--red);font-size:0.76rem;">Tidak dapat kesan No. Matrik</span></div>`;
+      } else {
+        const pelajar = P.find(x=>x.m===parsed.matrik);
+        const nama = pelajar?pelajar.n:parsed.nama||'—';
+        const statusClass = parsed.kursus.some(k=>k.s==='Gagal')?'warn':'ok';
+        const gagalList = parsed.kursus.filter(k=>k.s==='Gagal');
+        log.innerHTML+=`<div class="slip-log-item ${statusClass}">
+          <span>${statusClass==='ok'?'✅':'⚠️'}</span>
+          <span class="sli-name">${parsed.matrik} — ${nama}</span>
+          <span class="sli-gpa" style="color:${gc(parsed.gpa)};">${parsed.gpa?parsed.gpa.toFixed(2):'—'}</span>
+          ${gagalList.length>0?`<span style="font-size:0.74rem;color:var(--red);">❌ ${gagalList.map(x=>x.k).join(', ')}</span>`:''}
+          <span style="font-size:0.72rem;color:var(--text2);">Sem ${parsed.sem}</span>
+        </div>`;
+        parsedSlips.push({...parsed, fileName:file.name, pelajar});
+      }
+    } catch(e){
+      log.innerHTML+=`<div class="slip-log-item err"><span>💥</span><span class="sli-name">${file.name}</span><span style="color:var(--red);font-size:0.76rem;">Ralat: ${e.message}</span></div>`;
+    }
+    done++;
+  }
+
+  progressFill.style.width='100%';
+  progressTitle.textContent=`✅ Selesai — ${done} fail diproses`;
+  progressSub.textContent=`${parsedSlips.length} pelajar berjaya dikesan`;
+  logWrap.style.display='block';
+
+  // Render result cards
+  if(parsedSlips.length>0){
+    resultsWrap.style.display='block';
+    resultsGrid.innerHTML=parsedSlips.map(s=>{
+      const gagal=s.kursus.filter(k=>k.s==='Gagal');
+      const cardClass=gagal.length>0?'has-fail':'all-ok';
+      return `<div class="slip-result-card ${cardClass}">
+        <div class="src-header">
+          <div>
+            <div class="src-name">${s.pelajar?s.pelajar.n:s.nama||'—'}</div>
+            <div class="src-matrik">${s.matrik} &nbsp;|&nbsp; Sem ${s.sem}</div>
+          </div>
+          <div class="src-gpa" style="color:${gc(s.gpa)};">${s.gpa?s.gpa.toFixed(2):'—'}</div>
+        </div>
+        <div class="src-courses">
+          ${s.kursus.map(k=>`<div class="src-course-row">
+            <span style="color:var(--text2);font-size:0.73rem;">${k.k}</span>
+            <span style="flex:1;padding:0 6px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${k.n}</span>
+            <span class="b ${k.s==='Gagal'?'b-red':'b-green'}" style="font-size:0.68rem;padding:1px 6px;">${k.s==='Gagal'?`❌ ${k.c}`:'✅'}</span>
+          </div>`).join('')}
+        </div>
+      </div>`;
+    }).join('');
+  }
+}
+
+function handleDrop(e){
+  e.preventDefault();
+  document.getElementById('drop-zone').classList.remove('drag-over');
+  handleFiles(e.dataTransfer.files);
+}
+
+function applySlipUpdates(){
+  if(!parsedSlips.length){ alert('Tiada slip yang berjaya diparse.'); return; }
+  let updated=0, notFound=0;
+  parsedSlips.forEach(s=>{
+    const p = P.find(x=>x.m===s.matrik);
+    if(!p){ notFound++; return; }
+    // Tambah/update rekod semester
+    const existingIdx = p.sems.findIndex(x=>x.sem===s.sem);
+    const semData = {sem:s.sem, g:s.gpa, kk:s.kursus.filter(k=>k.kr>0&&k.c!=='PRC').reduce((a,k)=>a+k.kr,0)};
+    if(existingIdx>=0) p.sems[existingIdx]=semData;
+    else p.sems.push(semData);
+    // Kemaskini rekod kursus
+    if(!K[p.m]) K[p.m]={};
+    K[p.m][s.sem] = s.kursus;
+    // Kira deferred untuk semester berikutnya
+    const nextSem = s.sem+1;
+    const { tertangguh } = buildCadangan(p, nextSem);
+    // Tambah ke deferred (elak duplikasi)
+    tertangguh.forEach(d=>{
+      if(!(p.deferred||[]).find(x=>x.k===d.k&&x.deferredFrom===d.deferredFrom)){
+        if(!p.deferred) p.deferred=[];
+        p.deferred.push(d);
+      }
+    });
+    // Update info kad
+    p.kk = semData.kk;
+    p.kl = s.kursus.filter(k=>k.s==='Lulus'&&k.kr>0).reduce((a,k)=>a+k.kr,0);
+    // Update anugerah
+    if(s.gpa>=3.5) p.a='Anugerah Ketua Jabatan';
+    else if(p.a&&s.gpa<3.5) p.a='';
+    updated++;
+  });
+  // Refresh semua views
+  renderP(P);
+  renderRisiko();
+  // Update dropdown cadangan & profil
+  initDropdowns();
+  alert(`✅ ${updated} rekod pelajar dikemaskini. ${notFound>0?notFound+' pelajar tidak dijumpai dalam sistem.':''}`);
 }
 
 // ===================== TAB & THEME =====================
@@ -647,6 +1210,7 @@ function showTab(name,el){
   document.querySelectorAll('.nav-item').forEach(t=>t.classList.remove('active'));
   document.getElementById('tab-'+name).classList.add('active');
   el.classList.add('active');
+  if(name==='risiko') renderRisiko();
 }
 
 function toggleTheme(){
@@ -658,10 +1222,12 @@ function toggleTheme(){
 }
 
 // ===================== INIT =====================
-(function(){
-  renderP(P);
+function initDropdowns(){
   const s1=document.getElementById('sel-profil');
-  const s2=document.getElementById('sel-sem2');
+  const s2=document.getElementById('sel-cadangan');
+  const prev1=s1.value, prev2=s2.value;
+  s1.innerHTML='<option value="">-- Pilih Pelajar --</option>';
+  s2.innerHTML='<option value="">-- Pilih Pelajar --</option>';
   P.forEach(p=>{
     [s1,s2].forEach(s=>{
       const o=document.createElement('option');
@@ -670,6 +1236,14 @@ function toggleTheme(){
       s.appendChild(o);
     });
   });
+  if(prev1) s1.value=prev1;
+  if(prev2) s2.value=prev2;
+}
+
+(function(){
+  renderP(P);
+  renderRisiko();
+  initDropdowns();
 })();
 </script>
 </body>
