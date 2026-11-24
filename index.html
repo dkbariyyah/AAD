@@ -413,7 +413,7 @@ select.sel:focus { border-color: var(--accent); }
   <div class="panel">
     <div class="tbl-wrap">
       <table>
-        <thead><tr><th>#</th><th>No. Matrik</th><th>Nama Penuh</th><th>Plan</th><th>Kredit Lulus/Dikira</th><th>GPA Sem 1</th><th>Status</th><th>Tindakan Penasihat</th></tr></thead>
+        <thead><tr><th>#</th><th>No. Matrik</th><th>Nama Penuh</th><th>Plan</th><th>Kredit Lulus/Dikira</th><th>GPA Terkini</th><th>Status</th><th>Tindakan Penasihat</th></tr></thead>
         <tbody id="tbody-p"></tbody>
       </table>
     </div>
@@ -586,29 +586,29 @@ const STUDY_PLAN = {
 
 // ===================== PELAJAR DATA =====================
 const P = [
-  {m:"05DEP25F2001",n:"JOSHUA NGANG ANAK FEDRICK",pl:"Standard",kd:16,kk:16,kl:16,sems:[{sem:1,g:3.56}],a:"Anugerah Ketua Jabatan",t:"",deferred:[]},
-  {m:"05DEP25F2002",n:"JERRYCHO DANIEL ANAK JEPRY",pl:"Remedial",kd:15,kk:13,kl:13,sems:[{sem:1,g:3.54}],a:"Anugerah Ketua Jabatan",t:"DBM10163 perlu daftar Sem 2",deferred:[]},
-  {m:"05DEP25F2003",n:"BERENDEN CHRISTINA NGAU",pl:"Remedial",kd:15,kk:13,kl:13,sems:[{sem:1,g:2.64}],a:"",t:"⚠️ DEE10133 gagal C1 — wajib ulang Sem 2",deferred:[]},
-  {m:"05DEP25F2004",n:"DANIEL MATHIUS ANAK JOHN",pl:"Remedial",kd:13,kk:13,kl:13,sems:[{sem:1,g:2.74}],a:"",t:"DBM10163 perlu daftar Sem 2",deferred:[]},
-  {m:"05DEP25F2007",n:"MOHAMMAD SYAFIQ AKMAL BIN ABDULLAH",pl:"Remedial",kd:15,kk:13,kl:13,sems:[{sem:1,g:2.90}],a:"",t:"DBM10163 perlu daftar Sem 2",deferred:[]},
-  {m:"05DEP25F2008",n:"MUHAMAD JADDINIY IZZAT BIN TRESSNO",pl:"Remedial",kd:13,kk:13,kl:13,sems:[{sem:1,g:3.11}],a:"",t:"DBM10163 perlu daftar Sem 2",deferred:[]},
-  {m:"05DEP25F2009",n:"MUHAMMAD ALFIAN HAFIZAL BIN AHAMAD",pl:"Remedial",kd:15,kk:13,kl:13,sems:[{sem:1,g:3.41}],a:"",t:"DBM10163 perlu daftar Sem 2",deferred:[]},
-  {m:"05DEP25F2011",n:"CYRIL ISAAC AUGUSTINE",pl:"Remedial",kd:13,kk:13,kl:13,sems:[{sem:1,g:3.08}],a:"",t:"DBM10163 perlu daftar Sem 2",deferred:[]},
-  {m:"05DEP25F2012",n:"PETERSON GUNTHUR PETERUS",pl:"Remedial",kd:15,kk:13,kl:13,sems:[{sem:1,g:3.23}],a:"",t:"DBM10163 perlu daftar Sem 2",deferred:[]},
-  {m:"05DEP25F2013",n:"MOHAMMAD AIMAN BIN LET",pl:"Remedial",kd:15,kk:13,kl:13,sems:[{sem:1,g:3.28}],a:"",t:"DBM10163 perlu daftar Sem 2",deferred:[]},
-  {m:"05DEP25F2014",n:"ABANG ABDURRAHMAN NAYAN BIN ABANG AHMAD RONNIE",pl:"Remedial",kd:15,kk:13,kl:13,sems:[{sem:1,g:3.00}],a:"",t:"DBM10163 perlu daftar Sem 2",deferred:[]},
-  {m:"05DEP25F2015",n:"MOHAMMAD HAZIQ LUQMAN BIN MOHAMMAD ISMAIL HAIRUL",pl:"Remedial",kd:13,kk:13,kl:13,sems:[{sem:1,g:3.85}],a:"Anugerah Ketua Jabatan",t:"DBM10163 perlu daftar Sem 2",deferred:[]},
-  {m:"05DEP25F2016",n:"CHEONG WUN SHING",pl:"Remedial",kd:13,kk:13,kl:13,sems:[{sem:1,g:3.36}],a:"",t:"DBM10163 perlu daftar Sem 2",deferred:[]},
-  {m:"05DEP25F2017",n:"MOHAMMAD NOORAFIZAN BIN JALAH",pl:"Remedial",kd:15,kk:13,kl:11,sems:[{sem:1,g:2.31}],a:"",t:"⚠️ DBS10042 & DEE10133 gagal C1 — wajib ulang Sem 2. Pantau GPA",deferred:[]},
-  {m:"05DEP25F2018",n:"DERRICK ANAK AUGUSTINE",pl:"Remedial",kd:15,kk:13,kl:13,sems:[{sem:1,g:3.41}],a:"",t:"DBM10163 perlu daftar Sem 2",deferred:[]},
-  {m:"05DEP25F2019",n:"MUHAMMAD SYAFIQ DANIAL BIN ABDUL GANI",pl:"Remedial",kd:15,kk:13,kl:13,sems:[{sem:1,g:2.41}],a:"",t:"DBM10163 perlu daftar Sem 2",deferred:[]},
-  {m:"05DEP25F2021",n:"MUHAMMAD MUAZ HAIQAL BIN MUSAINI",pl:"Remedial",kd:15,kk:13,kl:13,sems:[{sem:1,g:3.95}],a:"Anugerah Ketua Jabatan",t:"DBM10163 perlu daftar Sem 2",deferred:[]},
-  {m:"05DEP25F2023",n:"ANATHASIA MARIA ANAK ALEX",pl:"Remedial",kd:15,kk:13,kl:13,sems:[{sem:1,g:2.80}],a:"",t:"DBM10163 perlu daftar Sem 2",deferred:[]},
-  {m:"05DEP25F2025",n:"MOHAMMAD FITRI HARTONO",pl:"Remedial",kd:13,kk:13,kl:11,sems:[{sem:1,g:2.23}],a:"",t:"⚠️ DBS10042 & DEE10133 gagal C1 — wajib ulang Sem 2. Pantau GPA",deferred:[]},
-  {m:"05DEP25F2026",n:"AWANG DANIAL FIDA'IY",pl:"Remedial",kd:13,kk:13,kl:13,sems:[{sem:1,g:2.92}],a:"",t:"DBM10163 perlu daftar Sem 2",deferred:[]},
-  {m:"05DEP25F2027",n:"CHRIST ANGELO EDWIN",pl:"Standard",kd:18,kk:18,kl:18,sems:[{sem:1,g:2.85}],a:"",t:"Standard — DBM20173 perlu daftar Sem 2. MPU22212 sudah lulus.",deferred:[]},
-  {m:"05DEP25F2028",n:"FEBIAN FABREGAS ANAK FREDRICK",pl:"Remedial",kd:13,kk:13,kl:11,sems:[{sem:1,g:2.67}],a:"",t:"⚠️ DEE10133 & DET10103 gagal C1 — wajib ulang Sem 2",deferred:[]},
-  {m:"05DEP25F2031",n:"CARL HANSON ANAK RINOS",pl:"Remedial",kd:15,kk:13,kl:13,sems:[{sem:1,g:3.59}],a:"Anugerah Ketua Jabatan",t:"DBM10163 perlu daftar Sem 2",deferred:[]},
+  {m:"05DEP25F2001",n:"JOSHUA NGANG ANAK FEDRICK",pl:"Standard",kd:16,kk:16,kl:16,sems:[{sem:1,g:3.56,kk:16}],a:"Anugerah Ketua Jabatan",t:"",deferred:[]},
+  {m:"05DEP25F2002",n:"JERRYCHO DANIEL ANAK JEPRY",pl:"Remedial",kd:15,kk:13,kl:13,sems:[{sem:1,g:3.54,kk:13}],a:"Anugerah Ketua Jabatan",t:"DBM10163 perlu daftar Sem 2",deferred:[]},
+  {m:"05DEP25F2003",n:"BERENDEN CHRISTINA NGAU",pl:"Remedial",kd:15,kk:13,kl:13,sems:[{sem:1,g:2.64,kk:13}],a:"",t:"⚠️ DEE10133 gagal C1 — wajib ulang Sem 2",deferred:[]},
+  {m:"05DEP25F2004",n:"DANIEL MATHIUS ANAK JOHN",pl:"Remedial",kd:13,kk:13,kl:13,sems:[{sem:1,g:2.74,kk:13}],a:"",t:"DBM10163 perlu daftar Sem 2",deferred:[]},
+  {m:"05DEP25F2007",n:"MOHAMMAD SYAFIQ AKMAL BIN ABDULLAH",pl:"Remedial",kd:15,kk:13,kl:13,sems:[{sem:1,g:2.90,kk:13}],a:"",t:"DBM10163 perlu daftar Sem 2",deferred:[]},
+  {m:"05DEP25F2008",n:"MUHAMAD JADDINIY IZZAT BIN TRESSNO",pl:"Remedial",kd:13,kk:13,kl:13,sems:[{sem:1,g:3.11,kk:13}],a:"",t:"DBM10163 perlu daftar Sem 2",deferred:[]},
+  {m:"05DEP25F2009",n:"MUHAMMAD ALFIAN HAFIZAL BIN AHAMAD",pl:"Remedial",kd:15,kk:13,kl:13,sems:[{sem:1,g:3.41,kk:13}],a:"",t:"DBM10163 perlu daftar Sem 2",deferred:[]},
+  {m:"05DEP25F2011",n:"CYRIL ISAAC AUGUSTINE",pl:"Remedial",kd:13,kk:13,kl:13,sems:[{sem:1,g:3.08,kk:13}],a:"",t:"DBM10163 perlu daftar Sem 2",deferred:[]},
+  {m:"05DEP25F2012",n:"PETERSON GUNTHUR PETERUS",pl:"Remedial",kd:15,kk:13,kl:13,sems:[{sem:1,g:3.23,kk:13}],a:"",t:"DBM10163 perlu daftar Sem 2",deferred:[]},
+  {m:"05DEP25F2013",n:"MOHAMMAD AIMAN BIN LET",pl:"Remedial",kd:15,kk:13,kl:13,sems:[{sem:1,g:3.28,kk:13}],a:"",t:"DBM10163 perlu daftar Sem 2",deferred:[]},
+  {m:"05DEP25F2014",n:"ABANG ABDURRAHMAN NAYAN BIN ABANG AHMAD RONNIE",pl:"Remedial",kd:15,kk:13,kl:13,sems:[{sem:1,g:3.00,kk:13}],a:"",t:"DBM10163 perlu daftar Sem 2",deferred:[]},
+  {m:"05DEP25F2015",n:"MOHAMMAD HAZIQ LUQMAN BIN MOHAMMAD ISMAIL HAIRUL",pl:"Remedial",kd:13,kk:13,kl:13,sems:[{sem:1,g:3.85,kk:13}],a:"Anugerah Ketua Jabatan",t:"DBM10163 perlu daftar Sem 2",deferred:[]},
+  {m:"05DEP25F2016",n:"CHEONG WUN SHING",pl:"Remedial",kd:13,kk:13,kl:13,sems:[{sem:1,g:3.36,kk:13}],a:"",t:"DBM10163 perlu daftar Sem 2",deferred:[]},
+  {m:"05DEP25F2017",n:"MOHAMMAD NOORAFIZAN BIN JALAH",pl:"Remedial",kd:15,kk:13,kl:11,sems:[{sem:1,g:2.31,kk:13}],a:"",t:"⚠️ DBS10042 & DEE10133 gagal C1 — wajib ulang Sem 2. Pantau GPA",deferred:[]},
+  {m:"05DEP25F2018",n:"DERRICK ANAK AUGUSTINE",pl:"Remedial",kd:15,kk:13,kl:13,sems:[{sem:1,g:3.41,kk:13}],a:"",t:"DBM10163 perlu daftar Sem 2",deferred:[]},
+  {m:"05DEP25F2019",n:"MUHAMMAD SYAFIQ DANIAL BIN ABDUL GANI",pl:"Remedial",kd:15,kk:13,kl:13,sems:[{sem:1,g:2.41,kk:13}],a:"",t:"DBM10163 perlu daftar Sem 2",deferred:[]},
+  {m:"05DEP25F2021",n:"MUHAMMAD MUAZ HAIQAL BIN MUSAINI",pl:"Remedial",kd:15,kk:13,kl:13,sems:[{sem:1,g:3.95,kk:13}],a:"Anugerah Ketua Jabatan",t:"DBM10163 perlu daftar Sem 2",deferred:[]},
+  {m:"05DEP25F2023",n:"ANATHASIA MARIA ANAK ALEX",pl:"Remedial",kd:15,kk:13,kl:13,sems:[{sem:1,g:2.80,kk:13}],a:"",t:"DBM10163 perlu daftar Sem 2",deferred:[]},
+  {m:"05DEP25F2025",n:"MOHAMMAD FITRI HARTONO",pl:"Remedial",kd:13,kk:13,kl:11,sems:[{sem:1,g:2.23,kk:13}],a:"",t:"⚠️ DBS10042 & DEE10133 gagal C1 — wajib ulang Sem 2. Pantau GPA",deferred:[]},
+  {m:"05DEP25F2026",n:"AWANG DANIAL FIDA'IY",pl:"Remedial",kd:13,kk:13,kl:13,sems:[{sem:1,g:2.92,kk:13}],a:"",t:"DBM10163 perlu daftar Sem 2",deferred:[]},
+  {m:"05DEP25F2027",n:"CHRIST ANGELO EDWIN",pl:"Standard",kd:18,kk:18,kl:18,sems:[{sem:1,g:2.85,kk:18}],a:"",t:"Standard — DBM20173 perlu daftar Sem 2. MPU22212 sudah lulus.",deferred:[]},
+  {m:"05DEP25F2028",n:"FEBIAN FABREGAS ANAK FREDRICK",pl:"Remedial",kd:13,kk:13,kl:11,sems:[{sem:1,g:2.67,kk:13}],a:"",t:"⚠️ DEE10133 & DET10103 gagal C1 — wajib ulang Sem 2",deferred:[]},
+  {m:"05DEP25F2031",n:"CARL HANSON ANAK RINOS",pl:"Remedial",kd:15,kk:13,kl:13,sems:[{sem:1,g:3.59,kk:13}],a:"Anugerah Ketua Jabatan",t:"DBM10163 perlu daftar Sem 2",deferred:[]},
 ];
 
 const K = {
@@ -641,9 +641,11 @@ const K = {
 function getLatestSem(p){ return Math.max(...p.sems.map(s=>s.sem)); }
 function getLatestGPA(p){ const ls=getLatestSem(p); const s=p.sems.find(x=>x.sem===ls); return s?s.g:null; }
 function getCGPA(p){
-  const valid=p.sems.filter(s=>s.g!==null&&s.kk);
-  if(!valid.length){ const g=getLatestGPA(p); return g; }
-  // weighted CGPA
+  const ls = getLatestSem(p);
+  const latestObj = p.sems.find(x=>x.sem===ls);
+  if(latestObj && latestObj.cgpa !== undefined && latestObj.cgpa !== null){
+    return parseFloat(latestObj.cgpa.toFixed(2));
+  }
   let tm=0,tk=0;
   p.sems.forEach(s=>{ if(s.g!==null&&s.kk){ tm+=s.g*s.kk; tk+=s.kk; } });
   return tk>0?parseFloat((tm/tk).toFixed(2)):getLatestGPA(p);
@@ -716,7 +718,6 @@ function buildCadangan(pelajar, targetSem) {
   semua.forEach(k => {
     const kr = k.kr || 0;
     if(k.prioriti <= 2) {
-      // Wajib ulang & tertangguh — mesti masuk walau apa pun
       ambil.push(k);
       totalKredit += kr;
     } else {
@@ -804,7 +805,7 @@ function showProfil(m){
       </div>`).join('')+'</div>';
 
   // Trend GPA
-  const gpaRows = p.sems.map(s=>`
+  const gpaRows = p.sems.slice().sort((a,b)=>a.sem-b.sem).map(s=>`
     <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
       <div style="width:60px;font-size:0.78rem;color:var(--text2);">Sem ${s.sem}</div>
       <div style="flex:1;background:var(--border);border-radius:4px;height:18px;overflow:hidden;">
@@ -828,14 +829,14 @@ function showProfil(m){
         <div style="text-align:right;">
           <div style="font-size:0.72rem;color:var(--text2);text-transform:uppercase;letter-spacing:0.06em;">GPA Semester ${ls}</div>
           <div class="profil-gpa" style="color:${gc(g)};text-shadow:0 0 20px ${gc(g)};">${g!==null?g.toFixed(2):'—'}</div>
-          ${p.sems.length>1?`<div style="font-size:0.75rem;color:var(--text2);">CGPA: ${getCGPA(p)}</div>`:''}
+          ${p.sems.length>1?`<div style="font-size:0.75rem;color:var(--text2);">CGPA: ${getCGPA(p).toFixed(2)}</div>`:''}
         </div>
       </div>
       <div class="info-grid">
         <div class="info-item"><div class="lbl">Kredit Daftar</div><div class="val">${p.kd||'—'}</div></div>
         <div class="info-item"><div class="lbl">Kredit Dikira</div><div class="val">${p.kk||'—'}</div></div>
         <div class="info-item"><div class="lbl">Kredit Lulus</div><div class="val">${p.kl||'—'}</div></div>
-        <div class="info-item"><div class="lbl">CGPA</div><div class="val">${getCGPA(p)||'—'}</div></div>
+        <div class="info-item"><div class="lbl">CGPA</div><div class="val">${getCGPA(p)?getCGPA(p).toFixed(2):'—'}</div></div>
         <div class="info-item"><div class="lbl">Kursus Gagal</div><div class="val" style="color:${f.length>0?'var(--red)':'var(--green)'};">${f.length>0?f.length+' kursus':'Tiada'}</div></div>
         ${(p.deferred&&p.deferred.length>0)?`<div class="info-item"><div class="lbl">Kursus Tertangguh</div><div class="val" style="color:var(--orange);">${p.deferred.length} kursus</div></div>`:''}
       </div>
@@ -993,86 +994,108 @@ async function extractTextFromPDF(file) {
   for(let i=1; i<=pdf.numPages; i++){
     const page = await pdf.getPage(i);
     const content = await page.getTextContent();
-    fullText += content.items.map(x=>x.str).join(' ') + '\n';
+    // Susun item teks mengikut posisi Y (atas ke bawah) & X (kiri ke kanan) supaya baris jadual tepat
+    const items = content.items.slice().sort((a, b) => {
+      const yDiff = Math.abs(b.transform[5] - a.transform[5]);
+      if (yDiff > 4) return b.transform[5] - a.transform[5];
+      return a.transform[4] - b.transform[4];
+    });
+    let lastY = null;
+    const pageLines = [];
+    let currentLine = [];
+    for (const item of items) {
+      const str = item.str.trim();
+      if (!str) continue;
+      const y = item.transform[5];
+      if (lastY !== null && Math.abs(y - lastY) > 4) {
+        pageLines.push(currentLine.join(' '));
+        currentLine = [str];
+      } else {
+        currentLine.push(str);
+      }
+      lastY = y;
+    }
+    if (currentLine.length) pageLines.push(currentLine.join(' '));
+    fullText += pageLines.join('\n') + '\n';
   }
   return fullText;
 }
 
 function parseSlipText(text) {
-  const result = { matrik: null, nama: null, sem: null, gpa: null, kursus: [], format: null };
+  const normalized = text.replace(/\s+/g, ' ').trim();
+  const result = { matrik: null, nama: null, sem: null, gpa: null, cgpa: null, kursus: [], format: null };
 
-  // Format 1: Slip rasmi (NO.PEND : 05DEP25F2001)
-  const m1 = text.match(/NO\.PEND\s*[:\s]+\s*(05DEP\d{2}F\d{4})/i);
-  if(m1){ result.matrik = m1[1].trim(); result.format='rasmi'; }
+  // 1. No. Pendaftaran / Matrik (sokong "NO.PEND : 05DEP..." dan "NO. PEND : 05DEP...")
+  const mMatch = normalized.match(/NO\.?\s*PEND\s*[:\-]?\s*(05DEP\d{2}F\d{4})/i)
+              || normalized.match(/\b(05DEP\d{2}F\d{4})\b/i);
+  if (!mMatch) return null;
+  result.matrik = mMatch[1].toUpperCase().trim();
+  result.format = normalized.includes('RUJUKAN PA') ? 'pa' : 'rasmi';
 
-  // Format 2: Slip PA (NO. PEND:05DEP25F2001)
-  const m2 = text.match(/NO\.\s*PEND\s*:(05DEP\d{2}F\d{4})/i);
-  if(m2 && !result.matrik){ result.matrik = m2[1].trim(); result.format='pa'; }
+  // 2. Nama Pelajar (termasuk aksara Greek lookalike seperti ΝΟ. Κ.Ρ dalam sesetengah PDF)
+  const nmMatch = normalized.match(/NAMA\s*[:\-]\s*(.+?)(?=\s+(?:[NΝ][OΟ]\.?\s*K\.?\s*P|SEMESTER|KELAS)\b)/i);
+  if (nmMatch) result.nama = nmMatch[1].trim();
 
-  if(!result.matrik) return null;
+  // 3. Semester
+  const smMatch = normalized.match(/SEMESTER\s*[:\-]?\s*(SATU|DUA|TIGA|EMPAT|LIMA|ENAM|[1-6])\b/i);
+  if (smMatch) {
+    const sv = smMatch[1].toUpperCase();
+    const semMap = { SATU: 1, DUA: 2, TIGA: 3, EMPAT: 4, LIMA: 5, ENAM: 6, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6 };
+    result.sem = semMap[sv] || 1;
+  } else {
+    result.sem = 1;
+  }
 
-  // Nama
-  const nm1 = text.match(/NAMA\s*[:\s]+\s*([A-Z][A-Z '\-]+?)(?:\s+NO\.KP|\s+SEMESTER|\n)/i);
-  const nm2 = text.match(/NAMA:([A-Z][A-Z '\-]+?)(?:\s+SEMESTER|$)/im);
-  if(nm1) result.nama = nm1[1].trim();
-  else if(nm2) result.nama = nm2[1].trim();
+  // 4. GPA (PNM) & CGPA (HPNM)
+  const pnmMatch = normalized.match(/\bPNM\s*[:\-]?\s*(\d+\.\d{2})\b/i);
+  const hpnmMatch = normalized.match(/\bHPNM\s*[:\-]?\s*(\d+\.\d{2})\b/i);
+  const rasmiGpaMatch = normalized.match(/[:\-]\s*(\d+\.\d{2})\s*(?:Jam Kredit|PNMHPNM)/i);
+  if (pnmMatch) result.gpa = parseFloat(pnmMatch[1]);
+  else if (rasmiGpaMatch) result.gpa = parseFloat(rasmiGpaMatch[1]);
+  if (hpnmMatch) result.cgpa = parseFloat(hpnmMatch[1]);
 
-  // Semester
-  const sm = text.match(/SEMESTER\s*[:\s]*([A-Z]+|[0-9]+)/i);
-  if(sm){
-    const sv = sm[1].trim().toUpperCase();
-    const semMap = {SATU:1,DUA:2,TIGA:3,EMPAT:4,LIMA:5,ENAM:6,'1':1,'2':2,'3':3,'4':4,'5':5,'6':6};
-    result.sem = semMap[sv] || parseInt(sv) || 1;
-  } else { result.sem = 1; }
+  // 5. Parse Kursus — Format Slip PA (cth: DBM10163 ENGINEERING MATHEMATICS 1 3.0 B 3.00 9.00 LULUS)
+  // Sokong kod 5-8 aksara seperti SB201, DBM10163, MPU21072
+  const paRegex = /\b([A-Z]{2,4}\d{3,5})\s+(.+?)\s+(\d+\.\d+)\s+([A-F][+\-]?|TH|LU|GL)\s+(\d+\.\d+)\s+(\d+\.\d+)\s+(LULUS|GAGAL)(?:\s*\(?(C[12]|PRC)\)?)?/gi;
+  let match;
+  while ((match = paRegex.exec(normalized)) !== null) {
+    const kod = match[1].toUpperCase();
+    const nama = match[2].trim();
+    let kr = parseFloat(match[3]);
+    const gred = match[4].toUpperCase();
+    const statusRaw = match[7].toUpperCase();
+    let catatan = (match[8] || '').toUpperCase();
 
-  // GPA — Format rasmi: ": 3.56" sebelum "Jam Kredit"
-  const gpa1 = text.match(/:\s*([\d]+\.[\d]+)\s*(?:Jam Kredit|PNMHPNM)/);
-  // Format PA: PNM:3.36
-  const gpa2 = text.match(/PNM\s*:([\d]+\.[\d]+)/i);
-  if(gpa1) result.gpa = parseFloat(gpa1[1]);
-  else if(gpa2) result.gpa = parseFloat(gpa2[1]);
+    if (kod === 'DBM10252' || catatan === 'PRC') {
+      catatan = 'PRC';
+      kr = 0;
+    }
+    const status = statusRaw === 'GAGAL' ? 'Gagal' : 'Lulus';
+    if (status === 'Gagal' && !catatan) catatan = 'C1';
 
-  // Kursus — Format PA: "DBM10252  BASIC MATHEMATICS2.0A-3.677.34"  + baris seterusnya "LULUS" atau "GAGAL (C1)"
-  // Format rasmi: "ENGINEERING MATHEMATICS 1DBM101633.0A-3.6711.01"
-  const lines = text.split(/\n|\r/);
-  let i = 0;
-  while(i < lines.length){
-    const line = lines[i].trim();
-    // Format PA: kod di awal
-    const paMatch = line.match(/^([A-Z]{2,3}\d{5,8})\s{2,}(.+?)(\d+\.\d+)([A-F][+\-]?)\s*([\d.]+)\s*([\d.]+)\s*$/);
-    if(paMatch){
-      const kod = paMatch[1].trim();
-      const nama = paMatch[2].trim().replace(/\s+/g,' ');
-      const kr = parseFloat(paMatch[3]);
-      const gred = paMatch[4].trim();
-      // baris berikut: status
-      const nextLine = (lines[i+1]||'').trim().toUpperCase();
-      let status = 'Lulus'; let catatan = '';
-      if(nextLine.includes('GAGAL')){
-        status='Gagal';
-        const c1m = nextLine.match(/C[12]/);
-        catatan = c1m?c1m[0]:'C1';
-        i++;
-      } else if(nextLine.includes('LULUS')||nextLine==='LULUS'){
-        i++;
+    result.kursus.push({ k: kod, n: nama, kr, g: gred, s: status, c: catatan });
+  }
+
+  // 6. Fallback: Format Slip Rasmi (nama sebelum kod)
+  if (result.kursus.length === 0) {
+    const lines = text.split(/\n|\r/);
+    for (const rawLine of lines) {
+      const line = rawLine.trim();
+      const rasmiMatch = line.match(/^([A-Z0-9 &\-/()]+?)\s*([A-Z]{2,4}\d{3,5})\s*(\d+\.\d+)\s*([A-F][+\-]?)\s*([\d.]+)\s*([\d.]+)\s*(C1|C2|PRC)?$/i);
+      if (rasmiMatch) {
+        const nama = rasmiMatch[1].trim();
+        const kod = rasmiMatch[2].toUpperCase();
+        let kr = parseFloat(rasmiMatch[3]);
+        const gred = rasmiMatch[4].toUpperCase();
+        let catatan = (rasmiMatch[7] || '').toUpperCase();
+        const status = (catatan === 'C1' || catatan === 'C2') ? 'Gagal' : 'Lulus';
+        if (kod === 'DBM10252' || catatan === 'PRC') {
+          catatan = 'PRC';
+          kr = 0;
+        }
+        result.kursus.push({ k: kod, n: nama, kr, g: gred, s: status, c: catatan });
       }
-      // PRC check: kr===0 atau ada PRC dalam baris
-      if(kr===0||line.includes('PRC')||(lines[i+1]||'').includes('PRC')) catatan='PRC';
-      result.kursus.push({k:kod,n:nama,kr,g:gred,s:status,c:catatan});
-      i++; continue;
     }
-    // Format rasmi: nama kursus sebelum kod
-    const rasmiMatch = line.match(/^([A-Z ]+?)([A-Z]{2,3}\d{5,8})(\d+\.\d+)([A-F][+\-]?)\s*([\d.]+)\s*([\d.]+)\s*(C1|C2|PRC)?$/);
-    if(rasmiMatch){
-      const nama = rasmiMatch[1].trim();
-      const kod = rasmiMatch[2].trim();
-      const kr = parseFloat(rasmiMatch[3]);
-      const gred = rasmiMatch[4].trim();
-      let status='Lulus'; let catatan=rasmiMatch[7]||'';
-      if(catatan==='C1'||catatan==='C2') status='Gagal';
-      result.kursus.push({k:kod,n:nama,kr,g:gred,s:status,c:catatan});
-    }
-    i++;
   }
 
   return result;
@@ -1114,8 +1137,8 @@ async function handleFiles(files){
         const gagalList = parsed.kursus.filter(k=>k.s==='Gagal');
         log.innerHTML+=`<div class="slip-log-item ${statusClass}">
           <span>${statusClass==='ok'?'✅':'⚠️'}</span>
-          <span class="sli-name">${parsed.matrik} — ${nama}</span>
-          <span class="sli-gpa" style="color:${gc(parsed.gpa)};">${parsed.gpa?parsed.gpa.toFixed(2):'—'}</span>
+          <span class="sli-name">${parsed.matrik} — ${nama} (${parsed.kursus.length} kursus)</span>
+          <span class="sli-gpa" style="color:${gc(parsed.gpa)};">${parsed.gpa!==null?parsed.gpa.toFixed(2):'—'}</span>
           ${gagalList.length>0?`<span style="font-size:0.74rem;color:var(--red);">❌ ${gagalList.map(x=>x.k).join(', ')}</span>`:''}
           <span style="font-size:0.72rem;color:var(--text2);">Sem ${parsed.sem}</span>
         </div>`;
@@ -1142,14 +1165,15 @@ async function handleFiles(files){
         <div class="src-header">
           <div>
             <div class="src-name">${s.pelajar?s.pelajar.n:s.nama||'—'}</div>
-            <div class="src-matrik">${s.matrik} &nbsp;|&nbsp; Sem ${s.sem}</div>
+            <div class="src-matrik">${s.matrik} &nbsp;|&nbsp; Sem ${s.sem} (${s.kursus.length} kursus)</div>
           </div>
-          <div class="src-gpa" style="color:${gc(s.gpa)};">${s.gpa?s.gpa.toFixed(2):'—'}</div>
+          <div class="src-gpa" style="color:${gc(s.gpa)};">${s.gpa!==null?s.gpa.toFixed(2):'—'}</div>
         </div>
         <div class="src-courses">
           ${s.kursus.map(k=>`<div class="src-course-row">
-            <span style="color:var(--text2);font-size:0.73rem;">${k.k}</span>
+            <span style="color:var(--text2);font-size:0.73rem;min-width:72px;">${k.k}</span>
             <span style="flex:1;padding:0 6px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${k.n}</span>
+            <span style="font-weight:700;margin-right:6px;color:var(--accent);">${k.g}</span>
             <span class="b ${k.s==='Gagal'?'b-red':'b-green'}" style="font-size:0.68rem;padding:1px 6px;">${k.s==='Gagal'?`❌ ${k.c}`:'✅'}</span>
           </div>`).join('')}
         </div>
@@ -1172,7 +1196,8 @@ function applySlipUpdates(){
     if(!p){ notFound++; return; }
     // Tambah/update rekod semester
     const existingIdx = p.sems.findIndex(x=>x.sem===s.sem);
-    const semData = {sem:s.sem, g:s.gpa, kk:s.kursus.filter(k=>k.kr>0&&k.c!=='PRC').reduce((a,k)=>a+k.kr,0)};
+    const kk = s.kursus.filter(k=>k.kr>0&&k.c!=='PRC').reduce((a,k)=>a+k.kr,0);
+    const semData = {sem:s.sem, g:s.gpa, kk, cgpa:s.cgpa};
     if(existingIdx>=0) p.sems[existingIdx]=semData;
     else p.sems.push(semData);
     // Kemaskini rekod kursus
@@ -1181,7 +1206,6 @@ function applySlipUpdates(){
     // Kira deferred untuk semester berikutnya
     const nextSem = s.sem+1;
     const { tertangguh } = buildCadangan(p, nextSem);
-    // Tambah ke deferred (elak duplikasi)
     tertangguh.forEach(d=>{
       if(!(p.deferred||[]).find(x=>x.k===d.k&&x.deferredFrom===d.deferredFrom)){
         if(!p.deferred) p.deferred=[];
@@ -1189,7 +1213,7 @@ function applySlipUpdates(){
       }
     });
     // Update info kad
-    p.kk = semData.kk;
+    p.kk = kk;
     p.kl = s.kursus.filter(k=>k.s==='Lulus'&&k.kr>0).reduce((a,k)=>a+k.kr,0);
     // Update anugerah
     if(s.gpa>=3.5) p.a='Anugerah Ketua Jabatan';
@@ -1199,7 +1223,6 @@ function applySlipUpdates(){
   // Refresh semua views
   renderP(P);
   renderRisiko();
-  // Update dropdown cadangan & profil
   initDropdowns();
   alert(`✅ ${updated} rekod pelajar dikemaskini. ${notFound>0?notFound+' pelajar tidak dijumpai dalam sistem.':''}`);
 }
